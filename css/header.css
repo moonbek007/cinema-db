@@ -1,0 +1,89 @@
+.header {
+  width: 100vw;
+  height: 10vh;
+  background-color: rgb(8, 7, 5);
+  opacity: 0.96;
+}
+.header__input {
+  position: absolute;
+  left: 10vw;
+  top: 15px;
+  display: flex;
+  background: rgba(45, 65, 63, 0.856);
+  border-radius: 10px;
+}
+.header__input__input-field, .header__input__search-button, .header__input__clear-button {
+  display: flex;
+  padding: 10px;
+  outline: none;
+  border: none;
+  background: inherit;
+  color: wheat;
+}
+.header__input__input-field {
+  color: wheat;
+  text-align: center;
+  border-left: none;
+  border-right: none;
+}
+.header__input__search-button {
+  border-left: none;
+  cursor: pointer;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.header__input__clear-button {
+  border-right: none;
+  cursor: pointer;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.header__icons {
+  background-color: inherit;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 10vw;
+}
+.header__icons__active {
+  color: black;
+  border-bottom: 2px solid rgb(54, 137, 185);
+  border-radius: 10%;
+}
+.header__icons > button {
+  cursor: pointer;
+  margin: 5px;
+  outline: none;
+  border: none;
+  background: inherit;
+  font-size: 22px;
+}
+.header__icons > button > svg {
+  padding: 5px;
+}
+.header__icons > button__notifications {
+  position: relative;
+}
+
+#filters-icon {
+  color: rgb(179, 28, 121);
+}
+
+#favourites-icon {
+  color: red;
+}
+
+#notifications-icon {
+  color: gold;
+}
+
+#login-icon {
+  color: lightskyblue;
+}
+
+#explore-icon {
+  color: white;
+}/*# sourceMappingURL=header.css.map */
