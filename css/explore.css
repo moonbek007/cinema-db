@@ -1,0 +1,195 @@
+.explore {
+  overflow-x: hidden;
+  background: rgba(0, 0, 0, 0.817);
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+}
+.explore__row-elements {
+  display: flex;
+  overflow-x: scroll;
+  min-height: 400px;
+}
+.explore__row-elements::-webkit-scrollbar {
+  width: 1px;
+}
+.explore__row-elements::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(70, 68, 68, 0.3);
+  width: 1px;
+}
+.explore__row-elements::-webkit-scrollbar-thumb {
+  background-color: rgb(8, 8, 8);
+  outline: 1px solid rgb(11, 15, 19);
+  width: 1px;
+  border: 1px solid white;
+  border-radius: 7px;
+  padding: 2px;
+}
+.explore__row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.explore__row-header__title {
+  text-align: left;
+  padding: 15px 0px 0px 15px;
+  font-size: 1.75rem;
+}
+.explore__row-header__link {
+  text-decoration: none;
+  color: white;
+  padding: 0 55px;
+  font-size: 18px;
+}
+
+.element {
+  margin-bottom: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-width: 250px;
+  max-height: 450px;
+  text-decoration: none;
+  text-align: left;
+}
+.element img {
+  display: block;
+  min-height: 225px;
+}
+.element__info {
+  color: burlywood;
+}
+.element__info__title {
+  margin: 10px 5px 5px 5px;
+  font-size: 1.5rem;
+}
+.element__info__year-country {
+  margin: 0 5px;
+  font-size: 1rem;
+}
+
+.loading {
+  color: gold;
+  font-size: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.loading-icon {
+  animation-name: rotate;
+  animation-duration: 1s;
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.users {
+  width: 40vw;
+  min-width: 400px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.817);
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.users h1 {
+  margin: 0;
+}
+.users button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: transparent;
+  padding: 10px;
+}
+.users__user {
+  display: flex;
+  justify-content: space-evenly;
+}
+.users__user__pic {
+  font-size: 48px;
+}
+.users__user__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.users__user__info__add-to-friends {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  padding: 10px;
+}
+
+.friends {
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  display: none;
+  width: 200px;
+  background: white;
+  height: 250px;
+  overflow-y: scroll;
+  border: 4px solid black;
+  font-family: "Roboto";
+  top: 5px;
+  left: 5px;
+}
+.friends__friend {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+.friends__title {
+  text-align: center;
+  font-family: "Roboto";
+}
+.friends::-webkit-scrollbar {
+  width: 2px;
+}
+.friends::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.friends::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.friends-open {
+  display: block;
+}
+.friends button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+}
+
+#notifications-number {
+  position: absolute;
+  top: 5px;
+  margin: 0;
+  font-size: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 25%;
+  padding: 1px;
+}/*# sourceMappingURL=explore.css.map */
