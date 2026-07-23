@@ -34,6 +34,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
   position: relative;
+  overflow-x: hidden;
 }
 
 .app-searching-mode {
