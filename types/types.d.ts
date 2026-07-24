@@ -101,3 +101,9 @@ declare type SearchResultsProps = {
   searchWord: string;
   searchResults: Show[];
 };
+
+declare type CollectionElementProps = {
+  name: string;
+  image: string;
+  numberOfShows: number;
+};

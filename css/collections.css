@@ -1,0 +1,55 @@
+.collections {
+  overflow-x: hidden;
+  background: rgba(0, 0, 1, 0.95);
+  color: white;
+  padding: 30px;
+}
+.collections h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.collections__display {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  row-gap: 15px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.collections__element {
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  min-width: 250px;
+  max-height: 350px;
+  text-decoration: none;
+  text-align: left;
+}
+.collections__element a {
+  width: 100%;
+  height: 100%;
+}
+.collections__element img {
+  display: block;
+  width: 100%;
+  opacity: 0.8;
+}
+.collections__element__title, .collections__element__quantity {
+  position: absolute;
+  z-index: 10;
+  color: white;
+}
+.collections__element__title {
+  margin: 10px 5px 5px 5px;
+  font-size: 1.5rem;
+  bottom: 5px;
+  left: 5px;
+}
+.collections__element__quantity {
+  top: 5px;
+  right: 5px;
+  background-color: black;
+}/*# sourceMappingURL=collections.css.map */
