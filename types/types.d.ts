@@ -85,3 +85,14 @@ declare type ElementProps = {
   country: string | undefined;
   show: Show;
 };
+
+declare type SearchResultProps = {
+  image: string;
+  link: string;
+  name: string;
+  status: string;
+  rating: number;
+  year: string;
+  genres: string[];
+  description: string;
+};
