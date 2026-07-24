@@ -7,6 +7,8 @@ import SearchResults from "./SearchResults/SearchResults";
 
 import { movies } from "@/constants/constants";
 import "../../css/header.css";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const filterShows = (searchWord: string, shows: Show[]) => {
   const result = shows.filter((show) => {
@@ -16,6 +18,8 @@ const filterShows = (searchWord: string, shows: Show[]) => {
 };
 
 function Header({}) {
+  const pathName = usePathname();
+
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<Show[]>(movies);
   const [showResults, setShowResults] = useState(false);
@@ -86,6 +90,31 @@ function Header({}) {
           />
         )}
       </div>
+      <nav className="header__nav">
+        <ul>
+          <li>
+            <button
+              className={`header__nav__btn text-amber-50 hover:text-gray-100 ${pathName === "/" && "link-active"}`}
+            >
+              <Link href="/">Home</Link>
+            </button>
+          </li>
+          <li>
+            <button
+              className={`header__nav__btn text-amber-50 hover:text-gray-100 ${pathName === "/collections" && "link-active"}`}
+            >
+              <Link href="/collections">Collections</Link>
+            </button>
+          </li>
+          <li>
+            <button
+              className={`header__nav__btn text-amber-50 hover:text-gray-100 ${pathName === "/explore" && "link-active"}`}
+            >
+              <Link href="/explore">Explore</Link>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
