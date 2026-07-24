@@ -1,13 +1,18 @@
 .header {
   width: 100vw;
+  min-height: 60px;
   height: 10vh;
   background-color: rgb(8, 7, 5);
   opacity: 0.96;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
 }
 .header__input {
   position: absolute;
   left: 10vw;
-  top: 15px;
   display: flex;
   background: rgba(45, 65, 63, 0.856);
   border-radius: 10px;

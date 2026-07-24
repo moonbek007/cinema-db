@@ -1,9 +1,8 @@
 .explore {
   overflow-x: hidden;
-  background: rgba(0, 0, 0, 0.817);
+  background: rgba(0, 0, 1, 0.95);
   color: white;
   text-align: center;
-  border-radius: 4px;
 
   &__row-elements {
     display: flex;
@@ -39,7 +38,7 @@
     &__title {
       text-align: left;
       padding: 15px 0px 0px 15px;
-      font-size: 1.75rem;
+      font-size: 2rem;
     }
     &__link {
       text-decoration: none;
