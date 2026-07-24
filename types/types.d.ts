@@ -96,3 +96,8 @@ declare type SearchResultProps = {
   genres: string[];
   description: string;
 };
+
+declare type SearchResultsProps = {
+  searchWord: string;
+  searchResults: Show[];
+};
