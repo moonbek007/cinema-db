@@ -9,23 +9,6 @@
 .filters h2 {
   margin: 0;
 }
-.filters__row-filters {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px auto;
-  border: 2px solid whitesmoke;
-  border-radius: 12px;
-  background-color: black;
-  padding: 15px;
-  position: relative;
-}
-.filters__row-filters label {
-  margin: 5px 0;
-}
-.filters__row-filters div {
-  display: flex;
-  flex-direction: column;
-}
 .filters__display {
   width: 100%;
   position: relative;
@@ -39,7 +22,10 @@
 .filters__display__title h1 {
   font-size: 2.25rem;
 }
-.filters__display__title__filters-btn {
+.filters__display__filters-btn-and-modal {
+  position: relative;
+}
+.filters__display__filters-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,7 +35,7 @@
   cursor: pointer;
   outline: none;
 }
-.filters__display__title__filters-btn svg {
+.filters__display__filters-btn svg {
   margin-left: 6px;
   width: 20px;
 }
@@ -110,4 +96,179 @@
   text-align: center;
   margin: 0;
   font-family: "Roboto";
+}
+
+.filters-modal {
+  position: absolute;
+  z-index: 100;
+  top: 50px;
+  left: 0px;
+  width: 380px;
+  background-color: black;
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+  padding: 16px 16px 20px 16px;
+}
+.filters-modal .title {
+  display: flex;
+  font-size: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+.filters-modal .title__close__button {
+  background-color: inherit;
+  border: none;
+}
+.filters-modal__filters {
+  margin: 12px 0 18px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.filters-modal__filters button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.filters-modal__filters button svg {
+  margin-left: 3px;
+  width: 1rem;
+  height: auto;
+}
+.filters-modal__filters__filter {
+  display: inline-block;
+  position: relative;
+}
+.filters-modal__filters__filter p {
+  font-size: 1rem;
+}
+.filters-modal__filters__filter button {
+  min-width: 50px;
+  border: 1px solid white;
+  width: 100%;
+}
+.filters-modal__filters .rating {
+  min-width: 80px;
+}
+.filters-modal__filters .status {
+  min-width: 110px;
+}
+.filters-modal__filters .country {
+  min-width: 100px;
+}
+.filters-modal__filters .language {
+  min-width: 100px;
+}
+.filters-modal__filters .type {
+  min-width: 130px;
+}
+.filters-modal__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.filters-modal__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 0.75rem;
+  width: 45%;
+}
+.filters-modal__buttons button:hover {
+  cursor: pointer;
+}
+.filters-modal__buttons button span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.filters-modal__buttons .apply__filters__button {
+  border: 1px solid lightblue;
+}
+.filters-modal__buttons .apply__filters__button svg path {
+  fill: lightblue;
+}
+.filters-modal__buttons .apply__filters__button span {
+  color: lightblue;
+  margin-left: 6px;
+}
+.filters-modal__buttons .clear__filters__button {
+  border: 1px solid red;
+  margin-left: 2px;
+}
+.filters-modal__buttons .clear__filters__button svg path {
+  fill: red;
+}
+.filters-modal__buttons .clear__filters__button span {
+  color: red;
+  margin-left: 4px;
+  margin-top: 1px;
+}
+
+.dropdown {
+  background: black;
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+}
+.dropdown ul {
+  margin: 0;
+  padding: 0;
+}
+.dropdown ul li {
+  list-style: none;
+}
+.dropdown ul li .position__option {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  text-align: start;
+  width: 100%;
+  border: none;
+  background-color: white;
+  font-size: 10px;
+  font-weight: 400;
+  color: gray;
+  border: none;
+}
+.dropdown ul li .position__option:hover {
+  background: lightblue;
+  color: blue;
+}
+.dropdown ul li .position__option:hover svg path {
+  fill: blue;
+}
+.dropdown ul li .position__option svg {
+  max-width: 12px;
+  max-height: 12px;
+}
+.dropdown ul li .position__option svg path {
+  fill: #bababa;
+}
+.dropdown ul li .position__option span {
+  margin-left: 8px;
+}
+.dropdown ul li .dropdown__option {
+  width: 100%;
+  padding: 4px 0;
+  margin: 0;
+}
+.dropdown ul li:first-of-type .dropdown__option {
+  margin-top: 5px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.dropdown ul li:last-of-type .dropdown__option {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.separator {
+  margin: 0 10px;
+  border: 2px solid rgba(255, 255, 255, 0.527);
 }/*# sourceMappingURL=filters.css.map */

@@ -113,3 +113,11 @@ declare type FilterResultProps = {
   link: string;
   name: string;
 };
+
+declare type FiltersModalProps = {
+  closeModal: () => void;
+};
+
+declare type DropdownMenuProps = {
+  options: string[];
+};
