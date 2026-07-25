@@ -13736,3 +13736,28 @@ export const genres: Genre[] = [
   "Romance",
   "Science-Fiction",
 ];
+
+export const images = [
+  "/drama.avif",
+  "/crime.avif",
+  "/thriller.avif",
+  "/adventure.jpg",
+  "/fantasy.jpg",
+  "/science-fiction.avif",
+  "/action.jpg",
+  "/anime.avif",
+  "/western.jpg",
+  "/mystery.jpg",
+  "/medical.avif",
+  "/war.avif",
+  "/comedy.jpg",
+  "/history.jpg",
+  "/family.avif",
+  "/espionage.avif",
+  "/supernatural.avif",
+  "/horror.avif",
+  "/romance.avif",
+  "/legal.avif",
+  "/sports.jpeg",
+  "/music.avif",
+];
