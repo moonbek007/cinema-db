@@ -107,3 +107,9 @@ declare type CollectionElementProps = {
   image: string;
   numberOfShows: number;
 };
+
+declare type FilterResultProps = {
+  image: string;
+  link: string;
+  name: string;
+};

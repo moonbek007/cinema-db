@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Roboto&display=swap");
+
+.filters {
+  background: rgba(0, 0, 0, 0.817);
+  color: white;
+  display: flex;
+  min-height: 80vh;
+
+  & h1,
+  h2 {
+    margin: 0;
+  }
+
+  &__row-filters {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px auto;
+    border: 2px solid whitesmoke;
+    border-radius: 12px;
+    background-color: black;
+    padding: 15px;
+    position: relative;
+
+    & label {
+      margin: 5px 0;
+    }
+
+    & div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__display {
+    width: 100%;
+    position: relative;
+
+    &__title {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      &__filters-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6px 8px;
+        border: 2px solid lightblue;
+        border-radius: 8px;
+        cursor: pointer;
+        outline: none;
+
+        svg {
+          margin-left: 6px;
+          width: 20px;
+        }
+      }
+    }
+
+    &__results {
+      padding: 10px;
+    }
+
+    &__search-bar {
+      margin: 15px auto;
+      display: flex;
+      justify-content: center;
+      &__input-field,
+      &__search-button,
+      &__clear-button {
+        outline: none;
+        border: none;
+        background: rgba(45, 65, 63, 0.856);
+        border: 1px solid;
+        color: wheat;
+      }
+
+      &__input-field {
+        color: wheat;
+        text-align: center;
+        padding: 6px;
+        border-left: none;
+        border-right: none;
+        width: 80%;
+        height: 25px;
+      }
+
+      &__search-button {
+        border-left: none;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        cursor: pointer;
+        padding: 10px;
+        padding-bottom: 11px;
+      }
+      &__clear-button {
+        border-right: none;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        cursor: pointer;
+        padding: 10px;
+        padding-bottom: 11px;
+      }
+    }
+  }
+}
+
+.filter-result {
+  margin: 10px;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+
+  &__link {
+    color: white;
+    text-decoration: none;
+  }
+
+  &-title {
+    background-color: black;
+    padding: 5px 0px;
+    text-align: center;
+    margin: 0;
+    font-family: "Roboto";
+  }
+}
