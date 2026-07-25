@@ -13777,3 +13777,11 @@ export const enum FilterTypes {
   COUNTRY = "Country",
   RATING = "Rating",
 }
+
+export const defaultFilters = {
+  Rating: { value: "All", dropdownOpen: false },
+  Status: { value: "All", dropdownOpen: false },
+  Type: { value: "All", dropdownOpen: false },
+  Country: { value: "All", dropdownOpen: false },
+  Language: { value: "All", dropdownOpen: false },
+};

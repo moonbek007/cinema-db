@@ -1,37 +1,37 @@
 "use client";
 
 import { useState } from "react";
-import clsx from "clsx";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
-  CircleXIcon,
   PlayIcon,
   StarIcon,
-  StarsIcon,
   XIcon,
 } from "lucide-react";
 
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
+import {
+  defaultFilters,
+  dropdownOptions,
+  FilterTypes,
+} from "@/constants/constants";
 import "../../../css/filters.css";
-import { dropdownOptions, FilterTypes } from "@/constants/constants";
 
 function FiltersModal({ closeModal }: FiltersModalProps) {
-  const [rating] = useState("+5.0");
-  const [ratingDropdownOpen, setRatingDropdownOpen] = useState(false);
+  const [filters, setFilters] = useState(defaultFilters);
 
-  const [status] = useState("Running");
-  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
-
-  const [type] = useState("Scripted");
-  const [typeDropdownOpen, setTypeDropdownOpen] = useState(false);
-
-  const [country] = useState("France");
-  const [countryDropdownOpen, setCountryDropdownOpen] = useState(false);
-
-  const [language] = useState("English");
-  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+  const handleToggleDropdown = (type: FilterTypes, isOpen: boolean) => {
+    setFilters((state) => {
+      return {
+        ...state,
+        [type]: {
+          ...state[type],
+          dropdownOpen: !isOpen,
+        },
+      };
+    });
+  };
 
   const handleClickApplyFilters = () => {
     closeModal();
@@ -60,13 +60,18 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           <button
             id="rating"
             className="rounded-md dropdown-btn"
-            onClick={() => setRatingDropdownOpen(!ratingDropdownOpen)}
+            onClick={() =>
+              handleToggleDropdown(
+                FilterTypes.RATING,
+                filters.Rating.dropdownOpen,
+              )
+            }
           >
-            <StarIcon />
-            <span>{rating}</span>
-            {ratingDropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            {filters.Rating.value !== "All" && <StarIcon />}
+            <span>{filters.Rating.value}</span>
+            {filters.Rating.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
-          {ratingDropdownOpen && (
+          {filters.Rating.dropdownOpen && (
             <DropdownMenu options={dropdownOptions[FilterTypes.RATING]} />
           )}
         </div>
@@ -77,12 +82,17 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           <button
             id="country"
             className="rounded-md dropdown-btn"
-            onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
+            onClick={() =>
+              handleToggleDropdown(
+                FilterTypes.COUNTRY,
+                filters.Country.dropdownOpen,
+              )
+            }
           >
-            <span>{country}</span>
-            {countryDropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            <span>{filters.Country.value}</span>
+            {filters.Country.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
-          {countryDropdownOpen && (
+          {filters.Country.dropdownOpen && (
             <DropdownMenu options={dropdownOptions[FilterTypes.COUNTRY]} />
           )}
         </div>
@@ -93,12 +103,17 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           <button
             id="status"
             className="rounded-md dropdown-btn"
-            onClick={() => setStatusDropdownOpen(!statusDropdownOpen)}
+            onClick={() =>
+              handleToggleDropdown(
+                FilterTypes.STATUS,
+                filters.Status.dropdownOpen,
+              )
+            }
           >
-            <span>{status}</span>
-            {statusDropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            <span>{filters.Status.value}</span>
+            {filters.Status.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
-          {statusDropdownOpen && (
+          {filters.Status.dropdownOpen && (
             <DropdownMenu options={dropdownOptions[FilterTypes.STATUS]} />
           )}
         </div>
@@ -110,12 +125,21 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           <button
             id="language"
             className="rounded-md dropdown-btn"
-            onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
+            onClick={() =>
+              handleToggleDropdown(
+                FilterTypes.LANGUAGE,
+                filters.Language.dropdownOpen,
+              )
+            }
           >
-            <span>{language}</span>
-            {languageDropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            <span>{filters.Language.value}</span>
+            {filters.Language.dropdownOpen ? (
+              <ArrowUpIcon />
+            ) : (
+              <ArrowDownIcon />
+            )}
           </button>
-          {languageDropdownOpen && (
+          {filters.Language.dropdownOpen && (
             <DropdownMenu options={dropdownOptions[FilterTypes.LANGUAGE]} />
           )}
         </div>
@@ -126,12 +150,14 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           <button
             id="type"
             className="rounded-md dropdown-btn"
-            onClick={() => setTypeDropdownOpen(!typeDropdownOpen)}
+            onClick={() =>
+              handleToggleDropdown(FilterTypes.TYPE, filters.Type.dropdownOpen)
+            }
           >
-            <span>{type}</span>
-            {typeDropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+            <span>{filters.Type.value}</span>
+            {filters.Type.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
-          {typeDropdownOpen && (
+          {filters.Type.dropdownOpen && (
             <DropdownMenu options={dropdownOptions[FilterTypes.TYPE]} />
           )}
         </div>
