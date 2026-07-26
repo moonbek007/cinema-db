@@ -119,5 +119,10 @@ declare type FiltersModalProps = {
 };
 
 declare type DropdownMenuProps = {
+  type: import("@/constants/constants").FilterTypes;
   options: string[];
+  pickOption: (
+    type: import("@/constants/constants").FilterTypes,
+    option: string,
+  ) => void;
 };

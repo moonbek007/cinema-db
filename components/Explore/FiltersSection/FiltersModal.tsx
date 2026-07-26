@@ -1,13 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  PlayIcon,
-  StarIcon,
-  XIcon,
-} from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon, StarIcon, XIcon } from "lucide-react";
 
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
@@ -20,6 +14,18 @@ import "../../../css/filters.css";
 
 function FiltersModal({ closeModal }: FiltersModalProps) {
   const [filters, setFilters] = useState(defaultFilters);
+
+  const handlePickDropdownOption = (type: FilterTypes, option: string) => {
+    setFilters((state) => {
+      return {
+        ...state,
+        [type]: {
+          value: option,
+          dropdownOpen: false,
+        },
+      };
+    });
+  };
 
   const handleToggleDropdown = (type: FilterTypes, isOpen: boolean) => {
     setFilters((state) => {
@@ -38,7 +44,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
   };
 
   const handleClickClearFilters = () => {
-    closeModal();
+    setFilters(defaultFilters);
   };
 
   return (
@@ -72,7 +78,11 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             {filters.Rating.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
           {filters.Rating.dropdownOpen && (
-            <DropdownMenu options={dropdownOptions[FilterTypes.RATING]} />
+            <DropdownMenu
+              type={FilterTypes.RATING}
+              options={dropdownOptions[FilterTypes.RATING]}
+              pickOption={handlePickDropdownOption}
+            />
           )}
         </div>
         <div className="filters-modal__filters__filter country">
@@ -93,7 +103,11 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             {filters.Country.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
           {filters.Country.dropdownOpen && (
-            <DropdownMenu options={dropdownOptions[FilterTypes.COUNTRY]} />
+            <DropdownMenu
+              type={FilterTypes.COUNTRY}
+              options={dropdownOptions[FilterTypes.COUNTRY]}
+              pickOption={handlePickDropdownOption}
+            />
           )}
         </div>
         <div className="filters-modal__filters__filter status">
@@ -114,7 +128,11 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             {filters.Status.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
           {filters.Status.dropdownOpen && (
-            <DropdownMenu options={dropdownOptions[FilterTypes.STATUS]} />
+            <DropdownMenu
+              type={FilterTypes.STATUS}
+              options={dropdownOptions[FilterTypes.STATUS]}
+              pickOption={handlePickDropdownOption}
+            />
           )}
         </div>
 
@@ -140,7 +158,11 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             )}
           </button>
           {filters.Language.dropdownOpen && (
-            <DropdownMenu options={dropdownOptions[FilterTypes.LANGUAGE]} />
+            <DropdownMenu
+              type={FilterTypes.LANGUAGE}
+              options={dropdownOptions[FilterTypes.LANGUAGE]}
+              pickOption={handlePickDropdownOption}
+            />
           )}
         </div>
         <div className="filters-modal__filters__filter type">
@@ -158,7 +180,11 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             {filters.Type.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
           {filters.Type.dropdownOpen && (
-            <DropdownMenu options={dropdownOptions[FilterTypes.TYPE]} />
+            <DropdownMenu
+              type={FilterTypes.TYPE}
+              options={dropdownOptions[FilterTypes.TYPE]}
+              pickOption={handlePickDropdownOption}
+            />
           )}
         </div>
       </div>
@@ -167,14 +193,12 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
           className="apply__filters__button"
           onClick={handleClickApplyFilters}
         >
-          <PlayIcon />
           <span>Apply</span>
         </button>
         <button
           className="clear__filters__button"
           onClick={handleClickClearFilters}
         >
-          <XIcon />
           <span>Clear</span>
         </button>
       </div>

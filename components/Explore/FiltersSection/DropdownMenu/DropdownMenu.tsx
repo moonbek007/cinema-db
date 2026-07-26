@@ -1,14 +1,17 @@
 import { FilterTypes } from "@/constants/constants";
 import { StarIcon } from "lucide-react";
 
-function DropdownMenu({ options }: DropdownMenuProps) {
+function DropdownMenu({ type, options, pickOption }: DropdownMenuProps) {
   return (
     <div className="dropdown">
       <ul>
         {options.map((option) => {
           return (
             <li key={option}>
-              <button className="dropdown__option">
+              <button
+                className="dropdown__option"
+                onClick={() => pickOption(type, option)}
+              >
                 {option === FilterTypes.RATING && <StarIcon />}
                 {option}
               </button>
