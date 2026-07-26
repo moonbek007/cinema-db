@@ -13763,10 +13763,10 @@ export const images = [
 ];
 
 export const dropdownOptions = {
-  Status: ["All", "Running", "Finished"],
+  Status: ["All", "Running", "Ended"],
   Language: ["All", "English", "Japanese"],
   Type: ["All", "Scripted", "Animation", "Talk Show", "Reality", "Documentary"],
-  Country: ["All", "USA", "Canada", "Japan", "UK", "France"],
+  Country: ["All", "USA", "Canada", "Japan", "UK", "France", "Germany"],
   Rating: ["All", "+5.0", "+6.0", "+7.0", "+8.0", "+9.0"],
 };
 
@@ -13780,6 +13780,10 @@ export const enum FilterTypes {
 
 export const enum DropdownValues {
   ALL = "All",
+  USA = "USA",
+  UNITED_STATES = "United States",
+  UK = "UK",
+  UNITED_KINGDOM = "United Kingdom",
 }
 
 export const defaultFilters: DefaultFiltersType = {
