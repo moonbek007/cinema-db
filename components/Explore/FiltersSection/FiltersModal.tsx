@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDownIcon, ArrowUpIcon, StarIcon, XIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon, XIcon } from "lucide-react";
 
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
 import {
   defaultFilters,
   dropdownOptions,
+  DropdownValues,
   FilterTypes,
 } from "@/constants/constants";
 import "../../../css/filters.css";
@@ -16,12 +17,79 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
   const [filters, setFilters] = useState(defaultFilters);
 
   const handlePickDropdownOption = (type: FilterTypes, option: string) => {
+    // When dropdown type is 'Rating', only one option can be picked
+    if (type === FilterTypes.RATING) {
+      setFilters((state) => {
+        return {
+          ...state,
+          [type]: {
+            ...state[type],
+            value: option,
+            picked: [option],
+            dropdownOpen: false,
+          },
+        };
+      });
+
+      return;
+    }
+
+    // When dropdown option is 'All' is picked, dropdown must close
+    if (option === DropdownValues.ALL) {
+      setFilters((state) => {
+        return {
+          ...state,
+          [type]: {
+            ...state[type],
+            value: option,
+            picked: [],
+            dropdownOpen: false,
+          },
+        };
+      });
+
+      return;
+    }
+
+    // When dropdown option is already ticked, it should be unticked and removed from 'picked' array
+    if (filters[type].picked.find((pickedOption) => pickedOption === option)) {
+      setFilters((state) => {
+        const newPicked = filters[type].picked.filter(
+          (pickedOption) => pickedOption !== option,
+        );
+
+        return {
+          ...state,
+          [type]: {
+            ...state[type],
+            value:
+              newPicked.length > 1
+                ? `${newPicked[0]} +${newPicked.length - 1}`
+                : newPicked.length === 1
+                  ? newPicked[0]
+                  : DropdownValues.ALL,
+            picked: newPicked,
+          },
+        };
+      });
+
+      return;
+    }
+
+    // When new dropdown option is picked, it should be added to 'picked' array
     setFilters((state) => {
+      const newPicked = [...state[type].picked];
+      newPicked.push(option);
+
       return {
         ...state,
         [type]: {
-          value: option,
-          dropdownOpen: false,
+          ...state[type],
+          value:
+            newPicked.length > 1
+              ? `${newPicked[0]} +${newPicked.length - 1}`
+              : option,
+          picked: newPicked,
         },
       };
     });
@@ -73,7 +141,6 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
               )
             }
           >
-            {filters.Rating.value !== "All" && <StarIcon />}
             <span>{filters.Rating.value}</span>
             {filters.Rating.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
           </button>
@@ -81,6 +148,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             <DropdownMenu
               type={FilterTypes.RATING}
               options={dropdownOptions[FilterTypes.RATING]}
+              tickedOptions={filters.Rating.picked}
               pickOption={handlePickDropdownOption}
             />
           )}
@@ -106,6 +174,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             <DropdownMenu
               type={FilterTypes.COUNTRY}
               options={dropdownOptions[FilterTypes.COUNTRY]}
+              tickedOptions={filters.Country.picked}
               pickOption={handlePickDropdownOption}
             />
           )}
@@ -131,6 +200,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             <DropdownMenu
               type={FilterTypes.STATUS}
               options={dropdownOptions[FilterTypes.STATUS]}
+              tickedOptions={filters.Status.picked}
               pickOption={handlePickDropdownOption}
             />
           )}
@@ -161,6 +231,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             <DropdownMenu
               type={FilterTypes.LANGUAGE}
               options={dropdownOptions[FilterTypes.LANGUAGE]}
+              tickedOptions={filters.Language.picked}
               pickOption={handlePickDropdownOption}
             />
           )}
@@ -183,6 +254,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
             <DropdownMenu
               type={FilterTypes.TYPE}
               options={dropdownOptions[FilterTypes.TYPE]}
+              tickedOptions={filters.Type.picked}
               pickOption={handlePickDropdownOption}
             />
           )}

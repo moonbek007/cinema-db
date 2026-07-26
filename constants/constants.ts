@@ -13778,10 +13778,14 @@ export const enum FilterTypes {
   RATING = "Rating",
 }
 
-export const defaultFilters = {
-  Rating: { value: "All", dropdownOpen: false },
-  Status: { value: "All", dropdownOpen: false },
-  Type: { value: "All", dropdownOpen: false },
-  Country: { value: "All", dropdownOpen: false },
-  Language: { value: "All", dropdownOpen: false },
+export const enum DropdownValues {
+  ALL = "All",
+}
+
+export const defaultFilters: DefaultFiltersType = {
+  Rating: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+  Status: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+  Type: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+  Country: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+  Language: { value: "All", dropdownOpen: false, picked: [], applied: [] },
 };

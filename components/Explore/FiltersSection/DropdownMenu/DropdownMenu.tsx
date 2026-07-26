@@ -1,18 +1,29 @@
-import { FilterTypes } from "@/constants/constants";
-import { StarIcon } from "lucide-react";
+import clsx from "clsx";
+import { CheckIcon } from "lucide-react";
 
-function DropdownMenu({ type, options, pickOption }: DropdownMenuProps) {
+function DropdownMenu({
+  type,
+  options,
+  tickedOptions,
+  pickOption,
+}: DropdownMenuProps) {
   return (
     <div className="dropdown">
       <ul>
         {options.map((option) => {
+          const isTicked = !!tickedOptions.find(
+            (tickedOption) => tickedOption === option,
+          );
+
           return (
             <li key={option}>
               <button
-                className="dropdown__option"
+                className={clsx("dropdown__option", {
+                  "bg-gray-900": isTicked,
+                })}
                 onClick={() => pickOption(type, option)}
               >
-                {option === FilterTypes.RATING && <StarIcon />}
+                {isTicked && <CheckIcon />}
                 {option}
               </button>
             </li>

@@ -103,7 +103,7 @@
   z-index: 100;
   top: 50px;
   left: 0px;
-  width: 380px;
+  width: 400px;
   background-color: black;
   box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
   padding: 16px 16px 20px 16px;
@@ -129,13 +129,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2px 4px 4px 10px;
+  padding: 2px 4px;
   font-size: 16px;
   cursor: pointer;
   margin-top: 4px;
 }
 .filters-modal__filters button svg {
-  margin-left: 3px;
+  position: absolute;
+  right: 5px;
   width: 1rem;
   height: auto;
 }
@@ -151,20 +152,23 @@
   border: 1px solid white;
   width: 100%;
 }
+.filters-modal__filters__filter button.dropdown__option svg {
+  left: 5px;
+}
 .filters-modal__filters .rating {
-  min-width: 80px;
+  min-width: 90px;
 }
 .filters-modal__filters .status {
-  min-width: 110px;
+  min-width: 120px;
 }
 .filters-modal__filters .country {
-  min-width: 100px;
+  min-width: 120px;
 }
 .filters-modal__filters .language {
-  min-width: 100px;
+  min-width: 120px;
 }
 .filters-modal__filters .type {
-  min-width: 130px;
+  min-width: 160px;
 }
 .filters-modal__buttons {
   display: flex;
@@ -223,40 +227,11 @@
 .dropdown ul li {
   list-style: none;
 }
-.dropdown ul li .position__option {
-  display: flex;
-  align-items: center;
-  padding: 6px 8px;
-  text-align: start;
-  width: 100%;
-  border: none;
-  background-color: white;
-  font-size: 10px;
-  font-weight: 400;
-  color: gray;
-  border: none;
-}
-.dropdown ul li .position__option:hover {
-  background: lightblue;
-  color: blue;
-}
-.dropdown ul li .position__option:hover svg path {
-  fill: blue;
-}
-.dropdown ul li .position__option svg {
-  max-width: 12px;
-  max-height: 12px;
-}
-.dropdown ul li .position__option svg path {
-  fill: #bababa;
-}
-.dropdown ul li .position__option span {
-  margin-left: 8px;
-}
 .dropdown ul li .dropdown__option {
   width: 100%;
   padding: 4px 0;
   margin: 0;
+  border: none;
 }
 .dropdown ul li:first-of-type .dropdown__option {
   margin-top: 5px;

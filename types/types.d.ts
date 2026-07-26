@@ -121,8 +121,19 @@ declare type FiltersModalProps = {
 declare type DropdownMenuProps = {
   type: import("@/constants/constants").FilterTypes;
   options: string[];
+  tickedOptions: string[];
   pickOption: (
     type: import("@/constants/constants").FilterTypes,
     option: string,
   ) => void;
 };
+
+declare type DefaultFiltersType = Record<
+  import("@/constants/constants").FilterTypes,
+  {
+    value: string;
+    dropdownOpen: boolean;
+    picked: string[];
+    applied: string[];
+  }
+>;
