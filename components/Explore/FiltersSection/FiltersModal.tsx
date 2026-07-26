@@ -97,13 +97,19 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
 
   const handleToggleDropdown = (type: FilterTypes, isOpen: boolean) => {
     setFilters((state) => {
-      return {
-        ...state,
-        [type]: {
-          ...state[type],
-          dropdownOpen: !isOpen,
-        },
-      };
+      const newState = { ...state };
+      const filters = Object.keys(newState) as FilterTypes[];
+
+      // Close all other dropdown and toggle the chosen one afterwards
+      filters.forEach((filter: FilterTypes) => {
+        if (filter === type) {
+          newState[type].dropdownOpen = !isOpen;
+        } else {
+          newState[filter].dropdownOpen = false;
+        }
+      });
+
+      return { ...newState };
     });
   };
 
