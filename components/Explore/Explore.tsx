@@ -5,6 +5,7 @@ import { SlidersHorizontalIcon } from "lucide-react";
 
 import FilterResult from "./FilterResult.tsx";
 import FiltersModal from "./FiltersSection/FiltersModal.tsx";
+import SearchBar from "./SearchBar.tsx";
 
 import { DropdownValues, FilterTypes, movies } from "@/constants/constants.ts";
 import "../../css/filters.css";
@@ -77,6 +78,17 @@ function ExploreDisplay() {
     setFilteredShows(newFilteredShows);
   };
 
+  const handleSearchShows = (searchWord: string) => {
+    const shows = movies.filter((show) =>
+      show.name.toLowerCase().includes(searchWord.toLowerCase()),
+    );
+    setFilteredShows([...shows]);
+  };
+
+  const handleClearSearchBar = () => {
+    setFilteredShows([...movies]);
+  };
+
   return (
     <div className="filters">
       <div className="filters__display">
@@ -99,6 +111,7 @@ function ExploreDisplay() {
               />
             )}
           </div>
+          <SearchBar search={handleSearchShows} clear={handleClearSearchBar} />
         </div>
         <div className="separator"> </div>
         <div className="filters__display__results">

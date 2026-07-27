@@ -143,3 +143,8 @@ declare type DefaultFiltersType = Record<
     applied: string[];
   }
 >;
+
+declare type SearchBarProps = {
+  search: (word: string) => void;
+  clear: () => void;
+};
