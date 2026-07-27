@@ -21,15 +21,29 @@ function ExploreDisplay() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Get filters from searchParams for the initial render
+  const queryFilters: {
+    name: FilterTypes;
+    applied: string[];
+  }[] = [];
+  [...searchParams.entries()].forEach((param) => {
+    queryFilters.push({
+      name: param[0] as FilterTypes,
+      applied: param[1].split("&"),
+    });
+  });
+
   const [filtersModalOpen, setFiltersModalOpen] = useState(false);
-  const [filteredShows, setFilteredShows] = useState([...movies]);
+  const [filteredShows, setFilteredShows] = useState([
+    ...loadFilteredShows(queryFilters),
+  ]);
 
   const updateQueryParam = (queryParams: queryParams) => {
     const params = new URLSearchParams(searchParams.toString());
 
     const queries = Object.keys(queryParams) as unknown as FilterTypes[];
     queries.forEach((query) => {
-      const searchQuery = query.toLowerCase();
+      const searchQuery = query; //.toLowerCase();
       if (!queryParams[query].length) {
         params.delete(searchQuery);
         return;
@@ -53,16 +67,6 @@ function ExploreDisplay() {
   ) => {
     let newFilteredShows: Show[] = [...movies];
     let noFiltersApplied = true;
-
-    updateQueryParam(
-      filters.reduce<Record<FilterTypes, string[]>>(
-        (accumulator, filter) => {
-          accumulator[filter.name] = filter.applied;
-          return accumulator;
-        },
-        { Status: [], Country: [], Language: [], Rating: [], Type: [] },
-      ),
-    );
 
     filters.forEach((filter) => {
       if (!filter.applied.length) {
@@ -113,7 +117,82 @@ function ExploreDisplay() {
       newFilteredShows = movies;
     }
     setFilteredShows(newFilteredShows);
+
+    updateQueryParam(
+      filters.reduce<Record<FilterTypes, string[]>>(
+        (accumulator, filter) => {
+          accumulator[filter.name] = filter.applied;
+          return accumulator;
+        },
+        { Status: [], Country: [], Language: [], Rating: [], Type: [] },
+      ),
+    );
   };
+
+  function loadFilteredShows(
+    filters: {
+      name: FilterTypes | QueryParams.SEARCH;
+      applied: string[];
+    }[],
+  ) {
+    let newFilteredShows: Show[] = [...movies];
+    let noFiltersApplied = true;
+    console.log(filters);
+
+    filters.forEach((filter) => {
+      if (!filter.applied.length) {
+        return;
+      }
+
+      noFiltersApplied = false;
+
+      newFilteredShows = [
+        ...newFilteredShows.filter((show) => {
+          switch (filter.name) {
+            case FilterTypes.RATING:
+              const rating = Math.floor(show.rating.average as number);
+              const filterRating = parseInt(filter.applied[0].substring(1));
+              return filterRating <= rating;
+
+            case FilterTypes.COUNTRY:
+              if (show.network?.country.name === DropdownValues.UNITED_STATES) {
+                return filter.applied.includes(DropdownValues.USA);
+              }
+
+              if (
+                show.network?.country.name === DropdownValues.UNITED_KINGDOM
+              ) {
+                return filter.applied.includes(DropdownValues.UK);
+              }
+
+              return filter.applied.includes(
+                (!!show.network && show.network?.country.name) as string,
+              );
+
+            case FilterTypes.STATUS:
+              return filter.applied.includes(show.status);
+
+            case FilterTypes.LANGUAGE:
+              return filter.applied.includes(show.language);
+
+            case FilterTypes.TYPE:
+              return filter.applied.includes(show.type);
+            case QueryParams.SEARCH:
+              return show.name
+                .toLowerCase()
+                .includes(filter.applied[0].toLowerCase());
+            default:
+              break;
+          }
+        }),
+      ];
+    });
+
+    if (noFiltersApplied) {
+      newFilteredShows = movies;
+    }
+    return newFilteredShows;
+  }
 
   const updateSearchQueryParam = (value: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -166,7 +245,7 @@ function ExploreDisplay() {
         </div>
         <div className="separator"> </div>
         <div className="filters__display__results">
-          {filteredShows.map((show) => {
+          {filteredShows.slice(0, 20).map((show) => {
             return (
               <FilterResult
                 image={show.image.medium}

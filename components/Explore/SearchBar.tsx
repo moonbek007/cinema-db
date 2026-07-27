@@ -1,11 +1,21 @@
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { CircleXIcon, SearchIcon } from "lucide-react";
 
+import { QueryParams } from "@/constants/constants";
 import "../../css/filters.css";
 
 function SearchBar({ search, clear }: SearchBarProps) {
+  const searchParams = useSearchParams();
+
   const searchRef = useRef<HTMLInputElement>(null);
-  const [searchWord, setSearchWord] = useState("");
+  const [searchWord, setSearchWord] = useState(
+    searchParams.get(QueryParams.SEARCH) || "",
+  );
+
+  useEffect(() => {
+    searchRef.current?.focus();
+  }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     search(e.target.value);

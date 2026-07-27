@@ -13793,7 +13793,7 @@ export const enum QueryParams {
   TYPE = "type",
   COUNTRY = "country",
   GENRE = "genre",
-  SEARCH="search"
+  SEARCH="Search"
 }
 
 export const defaultFilters: DefaultFiltersType = {
