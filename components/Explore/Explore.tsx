@@ -1,18 +1,45 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SlidersHorizontalIcon } from "lucide-react";
 
 import FilterResult from "./FilterResult.tsx";
 import FiltersModal from "./FiltersSection/FiltersModal.tsx";
 import SearchBar from "./SearchBar.tsx";
 
-import { DropdownValues, FilterTypes, movies } from "@/constants/constants.ts";
+import {
+  DropdownValues,
+  FilterTypes,
+  movies,
+  QueryParams,
+} from "@/constants/constants.ts";
 import "../../css/filters.css";
 
 function ExploreDisplay() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   const [filtersModalOpen, setFiltersModalOpen] = useState(false);
   const [filteredShows, setFilteredShows] = useState([...movies]);
+
+  const updateQueryParam = (queryParams: queryParams) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    const queries = Object.keys(queryParams) as unknown as FilterTypes[];
+    queries.forEach((query) => {
+      const searchQuery = query.toLowerCase();
+      if (!queryParams[query].length) {
+        params.delete(searchQuery);
+        return;
+      }
+
+      params.set(searchQuery, queryParams[query].join("&"));
+    });
+
+    router.replace(`${pathname}?${params.toString()}`);
+  };
 
   const handleCloseFiltersModal = () => {
     setFiltersModalOpen(() => false);
@@ -26,6 +53,16 @@ function ExploreDisplay() {
   ) => {
     let newFilteredShows: Show[] = [...movies];
     let noFiltersApplied = true;
+
+    updateQueryParam(
+      filters.reduce<Record<FilterTypes, string[]>>(
+        (accumulator, filter) => {
+          accumulator[filter.name] = filter.applied;
+          return accumulator;
+        },
+        { Status: [], Country: [], Language: [], Rating: [], Type: [] },
+      ),
+    );
 
     filters.forEach((filter) => {
       if (!filter.applied.length) {
@@ -78,7 +115,20 @@ function ExploreDisplay() {
     setFilteredShows(newFilteredShows);
   };
 
+  const updateSearchQueryParam = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+
+    if (value) {
+      params.set(QueryParams.SEARCH, value);
+    } else {
+      params.delete(QueryParams.SEARCH);
+    }
+
+    router.replace(`${pathname}?${params.toString()}`);
+  };
+
   const handleSearchShows = (searchWord: string) => {
+    updateSearchQueryParam(searchWord);
     const shows = movies.filter((show) =>
       show.name.toLowerCase().includes(searchWord.toLowerCase()),
     );
@@ -86,6 +136,7 @@ function ExploreDisplay() {
   };
 
   const handleClearSearchBar = () => {
+    updateSearchQueryParam("");
     setFilteredShows([...movies]);
   };
 

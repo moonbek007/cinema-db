@@ -13786,6 +13786,16 @@ export const enum DropdownValues {
   UNITED_KINGDOM = "United Kingdom",
 }
 
+export const enum QueryParams {
+  RATING = "rating",
+  STATUS = "status",
+  LANGUAGE = "language",
+  TYPE = "type",
+  COUNTRY = "country",
+  GENRE = "genre",
+  SEARCH="search"
+}
+
 export const defaultFilters: DefaultFiltersType = {
   Rating: { value: "All", dropdownOpen: false, picked: [], applied: [] },
   Status: { value: "All", dropdownOpen: false, picked: [], applied: [] },

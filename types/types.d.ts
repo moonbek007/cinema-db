@@ -148,3 +148,8 @@ declare type SearchBarProps = {
   search: (word: string) => void;
   clear: () => void;
 };
+
+declare type queryParams = Record<
+  import("@/constants/constants").FilterTypes | string,
+  string[]
+>;
