@@ -1,11 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function FilterResult({ image, link, name }: FilterResultProps) {
   return (
     <div className="filter-result">
-      <a
+      <Link
         href={link}
-        className="filter-result__link"
+        className="filter-result__link rounded-2xl"
         target="_blank"
         rel="noreferrer"
       >
@@ -21,10 +22,9 @@ function FilterResult({ image, link, name }: FilterResultProps) {
             position: "relative",
             zIndex: "1",
           }}
-          className="rounded-2xl"
         />
-      </a>
-      <p className="filter-result-title">{name}</p>
+        <p className="filter-result-title">{name}</p>
+      </Link>
     </div>
   );
 }

@@ -3,7 +3,7 @@
   background: rgba(0, 0, 0, 0.817);
   color: white;
   display: flex;
-  min-height: 80vh;
+  min-height: 90vh;
 }
 .filters h1,
 .filters h2 {
@@ -91,11 +91,14 @@
   text-decoration: none;
 }
 .filter-result-title {
-  background-color: black;
-  padding: 5px 0px;
   text-align: center;
-  margin: 0;
   font-family: "Roboto";
+  font-size: 1.25rem;
+  padding: 10px 0;
+  margin-top: 3px;
+  background-color: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .filters-modal {
