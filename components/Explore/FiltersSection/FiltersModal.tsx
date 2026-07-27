@@ -103,14 +103,24 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
       // Close all other dropdown and toggle the chosen one afterwards
       filters.forEach((filter: FilterTypes) => {
         if (filter === type) {
-          newState[type].dropdownOpen = !isOpen;
+          newState[type] = {
+            ...newState[type],
+            dropdownOpen: !isOpen,
+          };
         } else {
-          newState[filter].dropdownOpen = false;
+          newState[filter] = {
+            ...newState[filter],
+            dropdownOpen: false,
+          };
         }
       });
 
       return { ...newState };
     });
+  };
+
+  const handleCloseFiltersModal = () => {
+    closeModal();
   };
 
   const handleClickApplyFilters = () => {
@@ -127,7 +137,7 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
         <span>Filters</span>
         <button
           className="title__close__button hover:cursor-pointer"
-          onClick={() => closeModal()}
+          onClick={() => handleCloseFiltersModal()}
         >
           <XIcon />
         </button>
