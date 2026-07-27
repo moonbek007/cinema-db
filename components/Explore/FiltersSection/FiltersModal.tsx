@@ -13,7 +13,7 @@ import {
 } from "@/constants/constants";
 import "../../../css/filters.css";
 
-function FiltersModal({ closeModal }: FiltersModalProps) {
+function FiltersModal({ closeModal, filterShows }: FiltersModalProps) {
   const [filters, setFilters] = useState(defaultFilters);
 
   const handlePickDropdownOption = (type: FilterTypes, option: string) => {
@@ -124,6 +124,14 @@ function FiltersModal({ closeModal }: FiltersModalProps) {
   };
 
   const handleClickApplyFilters = () => {
+    const filtersToApply: filterShowsProps[] = [];
+    Object.keys(filters).forEach((filter) => {
+      filtersToApply.push({
+        name: filter,
+        applied: filters[filter as FilterTypes].picked,
+      });
+    });
+    filterShows(filtersToApply);
     closeModal();
   };
 

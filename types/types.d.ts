@@ -114,8 +114,14 @@ declare type FilterResultProps = {
   name: string;
 };
 
+declare type filterShowsProps = {
+  name: FilterTypes;
+  applied: string[];
+};
+
 declare type FiltersModalProps = {
   closeModal: () => void;
+  filterShows: (filters: filterShowsProps[]) => void;
 };
 
 declare type DropdownMenuProps = {
