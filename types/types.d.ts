@@ -120,6 +120,7 @@ declare type filterShowsProps = {
 };
 
 declare type FiltersModalProps = {
+  filtersApplied: DefaultFiltersType;
   closeModal: () => void;
   filterShows: (filters: filterShowsProps[]) => void;
 };
@@ -133,6 +134,15 @@ declare type DropdownMenuProps = {
     option: string,
   ) => void;
 };
+
+declare type DropdownFiltersType = Record<
+  import("@/constants/constants").FilterTypes,
+  {
+    value: string;
+    dropdownOpen: boolean;
+    picked: string[];
+  }
+>;
 
 declare type DefaultFiltersType = Record<
   import("@/constants/constants").FilterTypes,

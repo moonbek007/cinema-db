@@ -13793,7 +13793,7 @@ export const enum QueryParams {
   TYPE = "type",
   COUNTRY = "country",
   GENRE = "genre",
-  SEARCH="Search"
+  SEARCH = "Search",
 }
 
 export const defaultFilters: DefaultFiltersType = {
@@ -13802,4 +13802,12 @@ export const defaultFilters: DefaultFiltersType = {
   Type: { value: "All", dropdownOpen: false, picked: [], applied: [] },
   Country: { value: "All", dropdownOpen: false, picked: [], applied: [] },
   Language: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+};
+
+export const modalFilters: DropdownFiltersType = {
+  Rating: { value: "All", dropdownOpen: false, picked: [] },
+  Status: { value: "All", dropdownOpen: false, picked: [] },
+  Type: { value: "All", dropdownOpen: false, picked: [] },
+  Country: { value: "All", dropdownOpen: false, picked: [] },
+  Language: { value: "All", dropdownOpen: false, picked: [] },
 };

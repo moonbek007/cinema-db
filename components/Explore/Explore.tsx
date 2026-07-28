@@ -9,6 +9,7 @@ import FiltersModal from "./FiltersSection/FiltersModal.tsx";
 import SearchBar from "./SearchBar.tsx";
 
 import {
+  defaultFilters,
   DropdownValues,
   FilterTypes,
   movies,
@@ -33,6 +34,9 @@ function ExploreDisplay() {
     });
   });
 
+  const [filters, setFilters] = useState(
+    loadFilters(queryFilters, defaultFilters),
+  );
   const [filtersModalOpen, setFiltersModalOpen] = useState(false);
   const [filteredShows, setFilteredShows] = useState([
     ...loadFilteredShows(queryFilters),
@@ -117,6 +121,7 @@ function ExploreDisplay() {
       newFilteredShows = movies;
     }
     setFilteredShows(newFilteredShows);
+    setFilters(loadFilters(filters, defaultFilters));
 
     updateQueryParam(
       filters.reduce<Record<FilterTypes, string[]>>(
@@ -137,7 +142,6 @@ function ExploreDisplay() {
   ) {
     let newFilteredShows: Show[] = [...movies];
     let noFiltersApplied = true;
-    console.log(filters);
 
     filters.forEach((filter) => {
       if (!filter.applied.length) {
@@ -238,6 +242,7 @@ function ExploreDisplay() {
               <FiltersModal
                 closeModal={handleCloseFiltersModal}
                 filterShows={handleFilterShows}
+                filtersApplied={filters}
               />
             )}
           </div>
@@ -262,3 +267,30 @@ function ExploreDisplay() {
 }
 
 export default ExploreDisplay;
+
+function loadFilters(
+  filters: {
+    name: FilterTypes | QueryParams.SEARCH;
+    applied: string[];
+  }[],
+  defaultFilters: DefaultFiltersType,
+) {
+  const newFilters = { ...defaultFilters };
+  const filterNames = Object.keys(newFilters) as FilterTypes[];
+  filterNames.forEach((filter) => {
+    const appliedFilter = filters.find(
+      (loadedFilter) => loadedFilter.name === filter,
+    );
+    if (!!appliedFilter) {
+      newFilters[filter] = {
+        ...newFilters[filter],
+        value:
+          appliedFilter.applied.length > 1
+            ? `${appliedFilter.applied[0]} +${appliedFilter.applied.length - 1}`
+            : appliedFilter.applied[0] || DropdownValues.ALL,
+        applied: [...(appliedFilter?.applied as string[])],
+      };
+    }
+  });
+  return newFilters;
+}
