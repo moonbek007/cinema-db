@@ -118,4 +118,22 @@ function loadFilteredShows(
   return newFilteredShows;
 }
 
-export { loadFiltersModalFilters, loadFilters, loadFilteredShows };
+function getNumberOfFiltersApplied(
+  filters: {
+    name: FilterTypes;
+    applied: string[];
+  }[],
+) {
+  let numberOfFiltersApplied = 0;
+  filters.forEach((filter) => {
+    if (!!filter.applied.length) numberOfFiltersApplied += 1;
+  });
+  return numberOfFiltersApplied;
+}
+
+export {
+  loadFiltersModalFilters,
+  loadFilters,
+  loadFilteredShows,
+  getNumberOfFiltersApplied,
+};

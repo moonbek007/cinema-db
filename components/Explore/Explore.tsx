@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { SlidersHorizontalIcon } from "lucide-react";
+import { SlidersHorizontalIcon, StarIcon } from "lucide-react";
 
 import FilterResult from "./FilterResult.tsx";
 import FiltersModal from "./FiltersSection/FiltersModal.tsx";
@@ -14,7 +14,11 @@ import {
   movies,
   QueryParams,
 } from "@/constants/constants.ts";
-import { loadFilters, loadFilteredShows } from "@/lib/utils.ts";
+import {
+  loadFilters,
+  loadFilteredShows,
+  getNumberOfFiltersApplied,
+} from "@/lib/utils.ts";
 
 import "../../css/filters.css";
 
@@ -37,6 +41,9 @@ function ExploreDisplay() {
 
   const [filters, setFilters] = useState({ ...loadFilters(queryFilters) });
   const [filtersModalOpen, setFiltersModalOpen] = useState(false);
+  const [numberOfFiltersApplied, setNumberOfFiltersApplied] = useState(
+    queryFilters.length,
+  );
 
   const [filteredShows, setFilteredShows] = useState([
     ...loadFilteredShows(queryFilters),
@@ -126,6 +133,10 @@ function ExploreDisplay() {
     if (noFiltersApplied) {
       newFilteredShows = movies;
     }
+
+    console.log(filters);
+    console.log(newFilteredShows);
+    setNumberOfFiltersApplied(getNumberOfFiltersApplied(filters));
     setFilteredShows(newFilteredShows);
     setFilters(loadFilters(filters));
 
@@ -177,8 +188,18 @@ function ExploreDisplay() {
               className="filters__display__filters-btn"
               onClick={() => setFiltersModalOpen(!filtersModalOpen)}
             >
-              <span>Filters</span>
-              <SlidersHorizontalIcon />
+              {numberOfFiltersApplied > 0 ? (
+                <>
+                  <span>Filters: </span>
+                  <StarIcon />
+                  <span> {numberOfFiltersApplied}</span>
+                </>
+              ) : (
+                <>
+                  <span>Filters</span>
+                  <SlidersHorizontalIcon />
+                </>
+              )}
             </button>
             {filtersModalOpen && (
               <FiltersModal
