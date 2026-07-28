@@ -4,6 +4,7 @@
   color: white;
   display: flex;
   min-height: 90vh;
+  padding-bottom: 20px;
 }
 .filters h1,
 .filters h2 {
@@ -80,7 +81,7 @@
 }
 
 .filter-result {
-  margin: 15px;
+  margin: 25px 15px;
   display: inline-block;
   text-align: left;
   position: relative;
