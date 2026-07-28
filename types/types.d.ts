@@ -160,6 +160,8 @@ declare type SearchBarProps = {
 };
 
 declare type queryParams = Record<
-  import("@/constants/constants").FilterTypes | string,
+  | import("@/constants/constants").FilterTypes
+  | import("@/constants/constants").QueryParams.SEARCH
+  | string,
   string[]
 >;

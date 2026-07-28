@@ -120,12 +120,13 @@ function loadFilteredShows(
 
 function getNumberOfFiltersApplied(
   filters: {
-    name: FilterTypes;
+    name: FilterTypes | QueryParams.SEARCH;
     applied: string[];
   }[],
 ) {
   let numberOfFiltersApplied = 0;
   filters.forEach((filter) => {
+    if (filter.name === QueryParams.SEARCH) return;
     if (!!filter.applied.length) numberOfFiltersApplied += 1;
   });
   return numberOfFiltersApplied;

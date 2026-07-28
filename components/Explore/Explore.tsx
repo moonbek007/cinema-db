@@ -42,7 +42,7 @@ function ExploreDisplay() {
   const [filters, setFilters] = useState({ ...loadFilters(queryFilters) });
   const [filtersModalOpen, setFiltersModalOpen] = useState(false);
   const [numberOfFiltersApplied, setNumberOfFiltersApplied] = useState(
-    queryFilters.length,
+    getNumberOfFiltersApplied(queryFilters),
   );
 
   const [filteredShows, setFilteredShows] = useState([
@@ -54,7 +54,7 @@ function ExploreDisplay() {
 
     const queries = Object.keys(queryParams) as unknown as FilterTypes[];
     queries.forEach((query) => {
-      const searchQuery = query; //.toLowerCase();
+      const searchQuery = query;
       if (!queryParams[query].length) {
         params.delete(searchQuery);
         return;
@@ -72,7 +72,7 @@ function ExploreDisplay() {
 
   const handleFilterShows = (
     filters: {
-      name: FilterTypes;
+      name: FilterTypes | QueryParams.SEARCH;
       applied: string[];
     }[],
   ) => {
@@ -123,6 +123,10 @@ function ExploreDisplay() {
                 if (show.genres.includes(f)) genreFound = true;
               });
               return genreFound;
+            case QueryParams.SEARCH:
+              return show.name
+                .toLowerCase()
+                .includes(filter.applied[0].toLowerCase());
             default:
               break;
           }
@@ -134,8 +138,6 @@ function ExploreDisplay() {
       newFilteredShows = movies;
     }
 
-    console.log(filters);
-    console.log(newFilteredShows);
     setNumberOfFiltersApplied(getNumberOfFiltersApplied(filters));
     setFilteredShows(newFilteredShows);
     setFilters(loadFilters(filters));
@@ -146,34 +148,52 @@ function ExploreDisplay() {
           accumulator[filter.name] = filter.applied;
           return accumulator;
         },
-        { Status: [], Country: [], Language: [], Rating: [], Type: [] },
+        {
+          Status: [],
+          Country: [],
+          Language: [],
+          Rating: [],
+          Type: [],
+          Search: [],
+        },
       ),
     );
   };
 
-  const updateSearchQueryParam = (value: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (value) {
-      params.set(QueryParams.SEARCH, value);
-    } else {
-      params.delete(QueryParams.SEARCH);
-    }
-
-    router.replace(`${pathname}?${params.toString()}`);
-  };
-
   const handleSearchShows = (searchWord: string) => {
-    updateSearchQueryParam(searchWord);
-    const shows = movies.filter((show) =>
-      show.name.toLowerCase().includes(searchWord.toLowerCase()),
-    );
-    setFilteredShows([...shows]);
+    handleFilterShows([
+      ...Object.entries(filters).reduce<
+        Array<{ name: FilterTypes | QueryParams.SEARCH; applied: string[] }>
+      >((accumulator, [filterName, filterValues]) => {
+        accumulator.push({
+          name: filterName as FilterTypes | QueryParams.SEARCH,
+          applied: [...filterValues.applied],
+        });
+        return accumulator;
+      }, []),
+      {
+        name: QueryParams.SEARCH,
+        applied: searchWord.length ? [searchWord] : [],
+      },
+    ]);
   };
 
   const handleClearSearchBar = () => {
-    updateSearchQueryParam("");
-    setFilteredShows([...movies]);
+    handleFilterShows([
+      ...Object.entries(filters).reduce<
+        Array<{ name: FilterTypes | QueryParams.SEARCH; applied: string[] }>
+      >((accumulator, [filterName, filterValues]) => {
+        accumulator.push({
+          name: filterName as FilterTypes | QueryParams.SEARCH,
+          applied: [...filterValues.applied],
+        });
+        return accumulator;
+      }, []),
+      {
+        name: QueryParams.SEARCH,
+        applied: [],
+      },
+    ]);
   };
 
   return (
