@@ -33,7 +33,7 @@ function FiltersModal({
           [type]: {
             ...state[type],
             value: option,
-            picked: [option],
+            picked: option === DropdownValues.ALL ? [] : [option],
             dropdownOpen: false,
           },
         };
