@@ -109,7 +109,7 @@ function FiltersModal({
       const filters = Object.keys(newState) as FilterTypes[];
 
       // Close all other dropdown and toggle the chosen one afterwards
-      filters.forEach((filter: FilterTypes) => {
+      filters.forEach((filter) => {
         if (filter === type) {
           newState[type] = {
             ...newState[type],
@@ -132,13 +132,16 @@ function FiltersModal({
   };
 
   const handleClickApplyFilters = () => {
-    const filtersToApply: filterShowsProps[] = [];
-    Object.keys(filters).forEach((filter) => {
+    const filtersToApply: FilterShowsPropsType[] = [];
+    const appliedFilters = Object.keys(filters) as FilterTypes[];
+
+    appliedFilters.forEach((filter) => {
       filtersToApply.push({
         name: filter,
-        applied: filters[filter as FilterTypes].picked,
+        applied: filters[filter].picked,
       });
     });
+
     filterShows(filtersToApply);
     closeModal();
   };

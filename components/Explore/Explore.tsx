@@ -28,10 +28,7 @@ function ExploreDisplay() {
   const searchParams = useSearchParams();
 
   // Get filters from searchParams for the initial render
-  const queryFilters: {
-    name: FilterTypes;
-    applied: string[];
-  }[] = [];
+  const queryFilters: FilterShowsPropsType[] = [];
   [...searchParams.entries()].forEach((param) => {
     queryFilters.push({
       name: param[0] as FilterTypes,
@@ -49,10 +46,10 @@ function ExploreDisplay() {
     ...loadFilteredShows(queryFilters),
   ]);
 
-  const updateQueryParam = (queryParams: queryParams) => {
+  const updateQueryParam = (queryParams: QueryParamsType) => {
     const params = new URLSearchParams(searchParams.toString());
 
-    const queries = Object.keys(queryParams) as unknown as FilterTypes[];
+    const queries = Object.keys(queryParams) as FilterTypes[];
     queries.forEach((query) => {
       const searchQuery = query;
       if (!queryParams[query].length) {
@@ -70,12 +67,7 @@ function ExploreDisplay() {
     setFiltersModalOpen(() => false);
   };
 
-  const handleFilterShows = (
-    filters: {
-      name: FilterTypes | QueryParams.SEARCH;
-      applied: string[];
-    }[],
-  ) => {
+  const handleFilterShows = (filters: FilterShowsPropsType[]) => {
     let newFilteredShows: Show[] = [...movies];
     let noFiltersApplied = true;
 
@@ -143,7 +135,7 @@ function ExploreDisplay() {
     setFilters(loadFilters(filters));
 
     updateQueryParam(
-      filters.reduce<queryParams>(
+      filters.reduce<QueryParamsType>(
         (accumulator, filter) => {
           accumulator[filter.name] = filter.applied;
           return accumulator;
@@ -162,15 +154,16 @@ function ExploreDisplay() {
 
   const handleSearchShows = (searchWord: string) => {
     handleFilterShows([
-      ...Object.entries(filters).reduce<
-        Array<{ name: FilterTypes | QueryParams.SEARCH; applied: string[] }>
-      >((accumulator, [filterName, filterValues]) => {
-        accumulator.push({
-          name: filterName as FilterTypes | QueryParams.SEARCH,
-          applied: [...filterValues.applied],
-        });
-        return accumulator;
-      }, []),
+      ...Object.entries(filters).reduce<FilterShowsPropsType[]>(
+        (accumulator, [filterName, filterValues]) => {
+          accumulator.push({
+            name: filterName as FilterTypes,
+            applied: [...filterValues.applied],
+          });
+          return accumulator;
+        },
+        [],
+      ),
       {
         name: QueryParams.SEARCH,
         applied: searchWord.length ? [searchWord] : [],
@@ -180,15 +173,16 @@ function ExploreDisplay() {
 
   const handleClearSearchBar = () => {
     handleFilterShows([
-      ...Object.entries(filters).reduce<
-        Array<{ name: FilterTypes | QueryParams.SEARCH; applied: string[] }>
-      >((accumulator, [filterName, filterValues]) => {
-        accumulator.push({
-          name: filterName as FilterTypes | QueryParams.SEARCH,
-          applied: [...filterValues.applied],
-        });
-        return accumulator;
-      }, []),
+      ...Object.entries(filters).reduce<Array<FilterShowsPropsType>>(
+        (accumulator, [filterName, filterValues]) => {
+          accumulator.push({
+            name: filterName as FilterTypes,
+            applied: [...filterValues.applied],
+          });
+          return accumulator;
+        },
+        [],
+      ),
       {
         name: QueryParams.SEARCH,
         applied: [],

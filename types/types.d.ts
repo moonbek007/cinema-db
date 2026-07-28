@@ -114,8 +114,10 @@ declare type FilterResultProps = {
   name: string;
 };
 
-declare type filterShowsProps = {
-  name: FilterTypes;
+declare type FilterShowsPropsType = {
+  name:
+    | import("@/constants/constants").FilterTypes
+    | import("@/constants/constants").QueryParams.SEARCH;
   applied: string[];
 };
 
@@ -159,7 +161,7 @@ declare type SearchBarProps = {
   clear: () => void;
 };
 
-declare type queryParams = Record<
+declare type QueryParamsType = Record<
   | import("@/constants/constants").FilterTypes
   | import("@/constants/constants").QueryParams.SEARCH
   | string,
