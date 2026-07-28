@@ -13768,6 +13768,21 @@ export const dropdownOptions = {
   Type: ["All", "Scripted", "Animation", "Talk Show", "Reality", "Documentary"],
   Country: ["All", "USA", "Canada", "Japan", "UK", "France", "Germany"],
   Rating: ["All", "+5.0", "+6.0", "+7.0", "+8.0", "+9.0"],
+  Genre: [
+    "All",
+    "Drama",
+    "Crime",
+    "Comedy",
+    "Action",
+    "Thriller",
+    "Romance",
+    "Science-Fiction",
+    "Adventure",
+    "Family",
+    "Horror",
+    "Fantasy",
+    "Supernatural",
+  ],
 };
 
 export const enum FilterTypes {
@@ -13776,6 +13791,7 @@ export const enum FilterTypes {
   TYPE = "Type",
   COUNTRY = "Country",
   RATING = "Rating",
+  GENRE = "Genre",
 }
 
 export const enum DropdownValues {
@@ -13802,6 +13818,7 @@ export const defaultFilters: DefaultFiltersType = {
   Type: { value: "All", dropdownOpen: false, picked: [], applied: [] },
   Country: { value: "All", dropdownOpen: false, picked: [], applied: [] },
   Language: { value: "All", dropdownOpen: false, picked: [], applied: [] },
+  Genre: { value: "All", dropdownOpen: false, picked: [], applied: [] },
 };
 
 export const modalFilters: DropdownFiltersType = {
@@ -13810,4 +13827,5 @@ export const modalFilters: DropdownFiltersType = {
   Type: { value: "All", dropdownOpen: false, picked: [] },
   Country: { value: "All", dropdownOpen: false, picked: [] },
   Language: { value: "All", dropdownOpen: false, picked: [] },
+  Genre: { value: "All", dropdownOpen: false, picked: [] },
 };

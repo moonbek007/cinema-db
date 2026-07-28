@@ -110,6 +110,12 @@ function ExploreDisplay() {
 
             case FilterTypes.TYPE:
               return filter.applied.includes(show.type);
+            case FilterTypes.GENRE:
+              let genreFound = false;
+              filter.applied.forEach((f) => {
+                if (show.genres.includes(f)) genreFound = true;
+              });
+              return genreFound;
             default:
               break;
           }
@@ -124,7 +130,7 @@ function ExploreDisplay() {
     setFilters(loadFilters(filters));
 
     updateQueryParam(
-      filters.reduce<Record<FilterTypes, string[]>>(
+      filters.reduce<queryParams>(
         (accumulator, filter) => {
           accumulator[filter.name] = filter.applied;
           return accumulator;

@@ -8,7 +8,7 @@ function CollectionElement({
 }: CollectionElementProps) {
   return (
     <div className="collections__element rounded-2xl">
-      <Link href={`/explore?genre=${name}`}>
+      <Link href={`/explore?Genre=${name}`}>
         <Image
           src={image}
           alt="collection image"

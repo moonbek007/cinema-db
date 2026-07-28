@@ -51,7 +51,9 @@
   justify-content: center;
   background-color: transparent;
 }
-.filters__display__search-bar__input-field, .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+.filters__display__search-bar__input-field,
+.filters__display__search-bar__search-button,
+.filters__display__search-bar__clear-button {
   outline: none;
   border: none;
   background: rgba(45, 65, 63, 0.95);
@@ -161,6 +163,9 @@
 .filters-modal__filters__filter button.dropdown__option svg {
   left: 5px;
 }
+.filters-modal__filters .genre {
+  min-width: 175px;
+}
 .filters-modal__filters .rating {
   min-width: 90px;
 }
@@ -174,7 +179,7 @@
   min-width: 120px;
 }
 .filters-modal__filters .type {
-  min-width: 160px;
+  min-width: 175px;
 }
 .filters-modal__buttons {
   display: flex;
@@ -252,4 +257,4 @@
 .separator {
   margin: 0 10px;
   border: 2px solid rgba(255, 255, 255, 0.527);
-}/*# sourceMappingURL=filters.css.map */
+} /*# sourceMappingURL=filters.css.map */

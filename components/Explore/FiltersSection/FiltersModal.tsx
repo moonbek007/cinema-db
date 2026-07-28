@@ -159,6 +159,55 @@ function FiltersModal({
         </button>
       </p>
       <div className="filters-modal__filters">
+        <div className="filters-modal__filters__filter genre">
+          <p>
+            <label htmlFor="type">Genre</label>
+          </p>
+          <button
+            id="genre"
+            className="rounded-md dropdown-btn"
+            onClick={() =>
+              handleToggleDropdown(
+                FilterTypes.GENRE,
+                filters.Genre.dropdownOpen,
+              )
+            }
+          >
+            <span>{filters.Genre.value}</span>
+            {filters.Genre.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          </button>
+          {filters.Genre.dropdownOpen && (
+            <DropdownMenu
+              type={FilterTypes.GENRE}
+              options={dropdownOptions[FilterTypes.GENRE]}
+              tickedOptions={filters.Genre.picked}
+              pickOption={handlePickDropdownOption}
+            />
+          )}
+        </div>
+        <div className="filters-modal__filters__filter type">
+          <p>
+            <label htmlFor="type">Type</label>
+          </p>
+          <button
+            id="type"
+            className="rounded-md dropdown-btn"
+            onClick={() =>
+              handleToggleDropdown(FilterTypes.TYPE, filters.Type.dropdownOpen)
+            }
+          >
+            <span>{filters.Type.value}</span>
+            {filters.Type.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
+          </button>
+          {filters.Type.dropdownOpen && (
+            <DropdownMenu
+              type={FilterTypes.TYPE}
+              options={dropdownOptions[FilterTypes.TYPE]}
+              tickedOptions={filters.Type.picked}
+              pickOption={handlePickDropdownOption}
+            />
+          )}
+        </div>
         <div className="filters-modal__filters__filter rating">
           <p>
             <label htmlFor="rating">Rating</label>
@@ -264,29 +313,6 @@ function FiltersModal({
               type={FilterTypes.LANGUAGE}
               options={dropdownOptions[FilterTypes.LANGUAGE]}
               tickedOptions={filters.Language.picked}
-              pickOption={handlePickDropdownOption}
-            />
-          )}
-        </div>
-        <div className="filters-modal__filters__filter type">
-          <p>
-            <label htmlFor="type">Type</label>
-          </p>
-          <button
-            id="type"
-            className="rounded-md dropdown-btn"
-            onClick={() =>
-              handleToggleDropdown(FilterTypes.TYPE, filters.Type.dropdownOpen)
-            }
-          >
-            <span>{filters.Type.value}</span>
-            {filters.Type.dropdownOpen ? <ArrowUpIcon /> : <ArrowDownIcon />}
-          </button>
-          {filters.Type.dropdownOpen && (
-            <DropdownMenu
-              type={FilterTypes.TYPE}
-              options={dropdownOptions[FilterTypes.TYPE]}
-              tickedOptions={filters.Type.picked}
               pickOption={handlePickDropdownOption}
             />
           )}

@@ -95,6 +95,12 @@ function loadFilteredShows(
 
           case FilterTypes.TYPE:
             return filter.applied.includes(show.type);
+          case FilterTypes.GENRE:
+            let genreFound = false;
+            filter.applied.forEach((f) => {
+              if (show.genres.includes(f)) genreFound = true;
+            });
+            return genreFound;
           case QueryParams.SEARCH:
             return show.name
               .toLowerCase()
