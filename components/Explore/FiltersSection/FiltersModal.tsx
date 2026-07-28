@@ -5,13 +5,14 @@ import { ArrowDownIcon, ArrowUpIcon, XIcon } from "lucide-react";
 
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
+import { loadFiltersModalFilters } from "@/lib/utils";
 import {
   defaultFilters,
   dropdownOptions,
   DropdownValues,
   FilterTypes,
-  modalFilters,
 } from "@/constants/constants";
+
 import "../../../css/filters.css";
 
 function FiltersModal({
@@ -19,8 +20,8 @@ function FiltersModal({
   filterShows,
   filtersApplied,
 }: FiltersModalProps) {
-  const [filters, setFilters] = useState<DropdownFiltersType>({
-    ...loadFiltersModalFilters(filtersApplied, modalFilters),
+  const [filters, setFilters] = useState({
+    ...loadFiltersModalFilters(filtersApplied),
   });
 
   const handlePickDropdownOption = (type: FilterTypes, option: string) => {
@@ -310,23 +311,3 @@ function FiltersModal({
 }
 
 export default FiltersModal;
-
-function loadFiltersModalFilters(
-  filters: DefaultFiltersType,
-  defaultFilters: DropdownFiltersType,
-) {
-  const newFilters = { ...defaultFilters };
-  Object.entries(filters).forEach(([filterName, filterValues]) => {
-    if (!!filterValues.applied.length) {
-      newFilters[filterName as FilterTypes] = {
-        ...newFilters[filterName as FilterTypes],
-        value:
-          filterValues.applied.length > 1
-            ? `${filterValues.applied[0]} +${filterValues.applied.length - 1}`
-            : filterValues.applied[0] || DropdownValues.ALL,
-        picked: [...(filterValues?.applied as string[])],
-      };
-    }
-  });
-  return newFilters;
-}
