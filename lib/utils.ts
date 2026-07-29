@@ -1,5 +1,6 @@
 import {
   defaultFilters,
+  defaultPageValues,
   DropdownValues,
   FilterTypes,
   modalFilters,
@@ -52,7 +53,7 @@ function loadFilters(
 
 function loadFilteredShows(
   filters: {
-    name: FilterTypes | QueryParams.SEARCH;
+    name: FilterTypes | QueryParams.SEARCH | QueryParams.PAGE;
     applied: string[];
   }[],
 ) {
@@ -60,7 +61,7 @@ function loadFilteredShows(
   let noFiltersApplied = true;
 
   filters.forEach((filter) => {
-    if (!filter.applied.length) {
+    if (!filter.applied.length || filter.name === QueryParams.PAGE) {
       return;
     }
 
@@ -120,16 +121,66 @@ function loadFilteredShows(
 
 function getNumberOfFiltersApplied(
   filters: {
-    name: FilterTypes | QueryParams.SEARCH;
+    name: FilterTypes | QueryParams.SEARCH | QueryParams.PAGE;
     applied: string[];
   }[],
 ) {
   let numberOfFiltersApplied = 0;
   filters.forEach((filter) => {
-    if (filter.name === QueryParams.SEARCH) return;
+    if (filter.name === QueryParams.SEARCH || filter.name === QueryParams.PAGE)
+      return;
     if (!!filter.applied.length) numberOfFiltersApplied += 1;
   });
   return numberOfFiltersApplied;
+}
+
+function getPageDetails(
+  pageQuery: string | null,
+  numberOfShows: number,
+): PageType {
+  const totalPages = Math.ceil(numberOfShows / 20);
+  if (totalPages === 1) return { ...defaultPageValues };
+
+  if (!pageQuery)
+    return {
+      ...defaultPageValues,
+      nextPage: defaultPageValues.currentPage + 1,
+      totalPages: totalPages,
+    };
+
+  const newPageValues = { ...defaultPageValues };
+  newPageValues.totalPages = totalPages;
+  if (pageQuery) {
+    const pageNumber = parseInt(pageQuery);
+    if (pageNumber >= totalPages) {
+      newPageValues.currentPage = totalPages;
+      newPageValues.nextPage = totalPages;
+    } else {
+      newPageValues.currentPage = pageNumber;
+      newPageValues.nextPage = pageNumber + 1;
+    }
+
+    if (newPageValues.currentPage - 1 < 1) {
+      newPageValues.previousPage = 1;
+    } else {
+      newPageValues.previousPage = newPageValues.currentPage - 1;
+    }
+  } else {
+    if (totalPages > 1) {
+      newPageValues.nextPage = newPageValues.currentPage + 1;
+    }
+  }
+  return newPageValues;
+}
+
+function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
+  const indecies: PaginationIndeciesType = { start: 0, end: numberOfShows - 1 };
+  indecies.start = (pageDetails.currentPage - 1) * 20;
+  indecies.end =
+    pageDetails.currentPage * 20 - 1 > numberOfShows - 1
+      ? numberOfShows - 1
+      : pageDetails.currentPage * 20 - 1;
+  return indecies;
 }
 
 export {
@@ -137,4 +188,6 @@ export {
   loadFilters,
   loadFilteredShows,
   getNumberOfFiltersApplied,
+  getPageDetails,
+  getPaginationIndecies,
 };
