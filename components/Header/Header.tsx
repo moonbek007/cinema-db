@@ -2,13 +2,14 @@
 
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { CircleXIcon, SearchIcon } from "lucide-react";
-
-import SearchResults from "./SearchResults/SearchResults";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import dynamic from "next/dynamic";
 
 import { movies } from "@/constants/constants";
 import "../../css/header.css";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+
+const SearchResults = dynamic(() => import("./SearchResults/SearchResults"));
 
 const filterShows = (searchWord: string, shows: Show[]) => {
   const result = shows.filter((show) => {
