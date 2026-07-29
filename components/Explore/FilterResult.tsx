@@ -22,6 +22,7 @@ function FilterResult({ image, link, name }: FilterResultProps) {
             position: "relative",
             zIndex: "1",
           }}
+          unoptimized
         />
         <p className="filter-result-title">{name}</p>
       </Link>

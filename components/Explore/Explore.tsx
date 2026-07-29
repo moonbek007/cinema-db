@@ -1,13 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { SlidersHorizontalIcon, StarIcon } from "lucide-react";
 
 import FilterResult from "./FilterResult.tsx";
-import FiltersModal from "./FiltersSection/FiltersModal.tsx";
 import SearchBar from "./SearchBar.tsx";
 import Pagination from "./Pagination.tsx";
+
+const FiltersModal = dynamic(() => import("./FiltersSection/FiltersModal.tsx"));
 
 import {
   DropdownValues,
@@ -24,6 +25,8 @@ import {
 } from "@/lib/utils.ts";
 
 import "../../css/filters.css";
+import FilterResultFallback from "./FilterResultFallback.tsx";
+import dynamic from "next/dynamic";
 
 function ExploreDisplay() {
   const router = useRouter();
@@ -271,12 +274,14 @@ function ExploreDisplay() {
             .slice(paginationIndecies.start, paginationIndecies.end + 1)
             .map((show) => {
               return (
-                <FilterResult
-                  image={show.image.medium}
-                  key={show.id}
-                  link={show.url}
-                  name={show.name}
-                />
+                <Suspense key={show.id} fallback={<FilterResultFallback />}>
+                  <FilterResult
+                    image={show.image.medium}
+                    key={show.id}
+                    link={show.url}
+                    name={show.name}
+                  />
+                </Suspense>
               );
             })}
         </div>

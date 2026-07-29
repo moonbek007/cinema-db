@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Roboto&display=swap");
 .filters {
-  background: rgba(0, 0, 0, 0.817);
+  background: rgba(0, 0, 0, 0.95);
   color: white;
   display: flex;
   min-height: 90vh;
+  padding-bottom: 10px;
 }
 .filters h1,
 .filters h2 {
@@ -81,6 +82,7 @@
 
 .filter-result {
   margin: 25px 15px;
+  border: 1px solid lightslategray;
   display: inline-block;
   text-align: left;
   position: relative;
@@ -103,6 +105,42 @@
 }
 .filter-result img {
   width: 100%;
+}
+
+.filter-result-skeleton {
+  margin: 25px 15px;
+  display: inline-block;
+  position: relative;
+  min-width: 300px;
+  height: 400px;
+  position: relative;
+}
+.filter-result-skeleton__link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.filter-result-skeleton-title {
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  padding: 10px 0;
+  margin-top: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  justify-self: flex-end;
+  background: #152331;
+  background: linear-gradient(180deg, rgba(21, 35, 49, 0.61) 0%, rgb(0, 0, 0) 100%);
+  color: transparent;
+}
+.filter-result-skeleton .img-placeholder {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 350px;
+  width: 100%;
+  background: #152331;
+  background: linear-gradient(180deg, rgba(21, 35, 49, 0.85) 0%, rgb(0, 0, 0) 100%);
 }
 
 .filters-modal {
