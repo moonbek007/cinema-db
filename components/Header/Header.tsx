@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
-import { CircleXIcon, SearchIcon } from "lucide-react";
+import { CircleXIcon, MenuIcon, SearchIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -116,6 +116,9 @@ function Header({}) {
           </li>
         </ul>
       </nav>
+      <button className="header__nav-btn">
+        <MenuIcon />
+      </button>
     </header>
   );
 }

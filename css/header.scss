@@ -1,7 +1,7 @@
 .header {
   width: 100vw;
+  // height: 10vh;
   min-height: 60px;
-  height: 10vh;
   background-color: rgb(8, 7, 5);
   opacity: 0.96;
   position: sticky;
@@ -9,11 +9,10 @@
   z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   &__input {
-    position: absolute;
-    left: 10vw;
-    // top: 15px;
+    position: relative;
     display: flex;
     background: rgba(45, 65, 63, 0.856);
     border-radius: 10px;
@@ -22,6 +21,7 @@
     &__search-button,
     &__clear-button {
       display: flex;
+      align-items: center;
       padding: 10px;
       outline: none;
       border: none;
@@ -52,11 +52,10 @@
 
   &__nav {
     background-color: inherit;
-    position: absolute;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    right: 10vw;
+    position: relative;
+    margin-right: 20px;
 
     & ul {
       display: flex;
@@ -79,20 +78,288 @@
       }
     }
   }
-}
 
-#filters-icon {
-  color: rgb(179, 28, 121);
-}
-#favourites-icon {
-  color: red;
-}
-#notifications-icon {
-  color: gold;
-}
-#login-icon {
-  color: lightskyblue;
-}
-#explore-icon {
-  color: white;
+  &__nav-btn {
+    display: none;
+    color: wheat;
+    padding: 4px;
+  }
+
+  @media screen and (width <420px) {
+    & {
+      padding: 15px 10px;
+
+      &__input {
+        font-size: 0.9rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 8px 12px;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+        &__clear-button {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+      }
+
+      &__nav {
+        display: none;
+      }
+
+      &__nav-btn {
+        display: block;
+      }
+    }
+  }
+
+  @media screen and (width >=420px) and (width<640px) {
+    & {
+      padding: 15px 20px;
+
+      &__input {
+        font-size: 1rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 8px 10px;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+        &__clear-button {
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+      }
+
+      &__nav {
+        display: none;
+      }
+      &__nav-btn {
+        display: block;
+      }
+    }
+  }
+
+  @media screen and (width>= 640px) and (width<768px) {
+    & {
+      padding: 15px;
+
+      &__input {
+        font-size: 0.75rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 6px 8px;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+        &__clear-button {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+      }
+
+      &__nav {
+        & ul {
+          & button {
+            margin: 0 6px;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+          }
+
+          & button.link-active {
+            border-bottom: 1px solid rgb(113, 174, 207);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (width>= 768px) {
+    & {
+      padding: 20px 20px;
+      &__input {
+        font-size: 0.85rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 10px 12px;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+        }
+        &__clear-button {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+        }
+      }
+
+      &__nav {
+        & ul {
+          & button {
+            margin: 0 8px;
+            font-size: 1.25rem;
+          }
+
+          & button.link-active {
+            border-bottom: 2px solid rgb(113, 174, 207);
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>=1024px) {
+    & {
+      padding: 20px 25px;
+      &__input {
+        font-size: 1rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 10px 12px;
+
+          svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+        &__clear-button {
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+      }
+
+      &__nav {
+        & ul {
+          & button {
+            margin: 0 10px;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>=1280px) {
+    & {
+      padding: 25px 30px;
+
+      &__input {
+        font-size: 1.25rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 12px 14px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+        &__clear-button {
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+      }
+
+      &__nav {
+        & ul {
+          & button {
+            margin: 0 12px;
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>=1536px) {
+    & {
+      padding: 30px;
+
+      &__input {
+        font-size: 1.5rem;
+
+        &__input-field,
+        &__search-button,
+        &__clear-button {
+          padding: 14px 16px;
+
+          svg {
+            width: 32px;
+            height: 32px;
+          }
+        }
+
+        &__search-button {
+          border-top-right-radius: 16px;
+          border-bottom-right-radius: 16px;
+        }
+        &__clear-button {
+          border-top-left-radius: 16px;
+          border-bottom-left-radius: 16px;
+        }
+      }
+
+      &__nav {
+        & ul {
+          & button {
+            margin: 0 8px;
+            font-size: 2.25rem;
+          }
+
+          & button.link-active {
+            border-bottom: 3px solid rgb(113, 174, 207);
+          }
+        }
+      }
+    }
+  }
 }

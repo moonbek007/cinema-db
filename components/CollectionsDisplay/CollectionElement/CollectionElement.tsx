@@ -22,7 +22,6 @@ function CollectionElement({
             zIndex: "1",
           }}
           className="rounded-2xl"
-          loading="eager"
         />
         <p className="collections__element__title">{name}</p>
         <p className="collections__element__quantity py-1 px-2 rounded-full text-xs">

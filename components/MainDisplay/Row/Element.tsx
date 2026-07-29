@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Element({ link, image, name, year, country }: ElementProps) {
   return (
-    <div className="element hover:bg-sky-950 p-4 rounded-2xl">
+    <div className="element p-4 rounded-2xl">
       <Link href={link} target="_blank" rel="noreferrer">
         <Image
           src={image}
@@ -18,6 +18,7 @@ function Element({ link, image, name, year, country }: ElementProps) {
             zIndex: "1",
           }}
           className="rounded-2xl"
+          unoptimized
         />
         <div className="element__info">
           <h4 className="element__info__title">{name}</h4>
