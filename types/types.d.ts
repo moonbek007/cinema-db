@@ -167,3 +167,20 @@ declare type QueryParamsType = Record<
   | string,
   string[]
 >;
+
+declare type PaginationProps = {
+  page:PageType,
+  changePage:(number)=>void
+}
+
+declare type PageType = {
+  previousPage: number;
+  currentPage: number;
+  nextPage: number;
+  totalPages: number;
+};
+
+declare type PaginationIndeciesType = {
+  start: number;
+  end: number;
+};

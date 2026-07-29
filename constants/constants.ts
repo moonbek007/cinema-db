@@ -13810,6 +13810,7 @@ export const enum QueryParams {
   COUNTRY = "country",
   GENRE = "genre",
   SEARCH = "Search",
+  PAGE = "Page",
 }
 
 export const defaultFilters: DefaultFiltersType = {
@@ -13828,4 +13829,11 @@ export const modalFilters: DropdownFiltersType = {
   Country: { value: "All", dropdownOpen: false, picked: [] },
   Language: { value: "All", dropdownOpen: false, picked: [] },
   Genre: { value: "All", dropdownOpen: false, picked: [] },
+};
+
+export const defaultPageValues: PageType = {
+  previousPage: 1,
+  currentPage: 1,
+  nextPage: 1,
+  totalPages: 1,
 };
