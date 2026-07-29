@@ -13,7 +13,7 @@ const Pagination = ({ page, changePage }: PaginationProps) => {
         {page.currentPage - 1 > 1 && (
           <>
             <button onClick={() => changePage(1)}>1</button>
-            {page.currentPage - 2 > 2 && (
+            {page.currentPage - 2 >= 2 && (
               <button onClick={() => changePage(2)}>2</button>
             )}
           </>
@@ -52,7 +52,7 @@ const Pagination = ({ page, changePage }: PaginationProps) => {
         )}
         {page.currentPage < page.totalPages - 1 && (
           <>
-            {page.totalPages - 2 > Math.ceil(page.totalPages / 2) && (
+            {page.totalPages - 1 !== page.nextPage && (
               <button onClick={() => changePage(page.totalPages - 1)}>
                 {page.totalPages - 1}
               </button>
