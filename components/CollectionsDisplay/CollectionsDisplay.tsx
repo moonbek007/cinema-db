@@ -34,6 +34,7 @@ function MainDisplay() {
   return (
     <div className="collections">
       <h1>Collections of movies & series</h1>
+      <div className="separator"> </div>
       <div className="collections__display">
         {genres.map((genre, index) => {
           return (

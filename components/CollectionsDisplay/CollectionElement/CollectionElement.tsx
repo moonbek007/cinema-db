@@ -25,7 +25,8 @@ function CollectionElement({
         />
         <p className="collections__element__title">{name}</p>
         <p className="collections__element__quantity py-1 px-2 rounded-full text-xs">
-          {numberOfShows} shows
+          <span>{numberOfShows}</span>
+          <span> shows</span>
         </p>
       </Link>
     </div>
