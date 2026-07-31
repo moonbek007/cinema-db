@@ -1,5 +1,8 @@
 import Image from "next/image";
+import { useMemo, memo } from "react";
 import { StarIcon } from "lucide-react";
+
+import { getRawShowDescription } from "@/lib/utils";
 
 function SearchResult({
   image,
@@ -11,6 +14,10 @@ function SearchResult({
   genres,
   description,
 }: SearchResultProps) {
+  const newDescription = useMemo(
+    () => getRawShowDescription(description),
+    [description],
+  );
   return (
     <>
       <div className="search-result__show">
@@ -21,7 +28,6 @@ function SearchResult({
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: "30%", height: "auto" }}
         />
         <div className="search-result__show__info">
           <div className="search-result__show__info__row1">
@@ -44,14 +50,13 @@ function SearchResult({
               {genres?.join(", ")}
             </p>
           </div>
-          <div
-            className="search-result__show__info__description"
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></div>
+          <div className="search-result__show__info__description">
+            <p>{newDescription}</p>
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default SearchResult;
+export default memo(SearchResult);

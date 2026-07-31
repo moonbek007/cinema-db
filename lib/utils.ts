@@ -183,6 +183,14 @@ function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
   return indecies;
 }
 
+function getRawShowDescription(description: string) {
+  const descriptionWords = description.split(" ").map((word) => {
+    const newWord = word.replace(/<\/?([a-zA-Z]+)([^>]*)*>/g, "");
+    return newWord;
+  });
+  return descriptionWords.join(" ");
+}
+
 export {
   loadFiltersModalFilters,
   loadFilters,
@@ -190,4 +198,5 @@ export {
   getNumberOfFiltersApplied,
   getPageDetails,
   getPaginationIndecies,
+  getRawShowDescription,
 };
