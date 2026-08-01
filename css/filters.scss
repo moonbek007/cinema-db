@@ -93,6 +93,154 @@
     }
   }
 
+  &-modal {
+    position: absolute;
+    z-index: 100;
+    top: 50px;
+    left: 0px;
+    width: 400px;
+    background-color: black;
+    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+    padding: 16px 16px 20px 16px;
+
+    .title {
+      display: flex;
+      font-size: 1.25rem;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+
+      &__close__button {
+        background-color: inherit;
+        border: none;
+      }
+    }
+
+    &__filters {
+      margin: 12px 0 18px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 4px;
+
+        svg {
+          position: absolute;
+          right: 5px;
+          width: 1rem;
+          height: auto;
+        }
+      }
+
+      &__filter {
+        display: inline-block;
+        position: relative;
+
+        p {
+          font-size: 1rem;
+        }
+
+        button {
+          min-width: 50px;
+          border: 1px solid white;
+          width: 100%;
+        }
+
+        button.dropdown__option {
+          svg {
+            left: 5px;
+          }
+        }
+      }
+
+      .genre {
+        min-width: 180px;
+      }
+
+      .rating {
+        min-width: 90px;
+      }
+
+      .status {
+        min-width: 120px;
+      }
+
+      .country {
+        min-width: 120px;
+      }
+
+      .language {
+        min-width: 120px;
+      }
+
+      .type {
+        min-width: 160px;
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 0.75rem;
+        width: 45%;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        span {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+
+      .apply__filters__button {
+        border: 1px solid lightblue;
+
+        svg {
+          path {
+            fill: lightblue;
+          }
+        }
+
+        span {
+          color: lightblue;
+          margin-left: 6px;
+        }
+      }
+
+      .clear__filters__button {
+        border: 1px solid red;
+        margin-left: 2px;
+
+        svg {
+          path {
+            fill: red;
+          }
+        }
+
+        span {
+          color: red;
+          margin-left: 4px;
+          margin-top: 1px;
+        }
+      }
+    }
+  }
+
   &__pagination {
     padding: 20px;
     text-align: center;
@@ -135,6 +283,66 @@
         text-align: center;
       }
 
+      &-modal {
+        top: 50px;
+        left: 0px;
+        width: 100%;
+        padding: 10px 10px 15px 10px;
+
+        .title {
+          font-size: 1.25rem;
+        }
+
+        &__filters {
+          margin: 10px 0 14px 0;
+          gap: 12px;
+
+          button {
+            padding: 4px 0;
+            font-size: 1rem;
+            margin-top: 4px;
+
+            svg {
+              right: 3px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .genre {
+            width: 100%;
+          }
+
+          .type {
+            width: 100%;
+          }
+
+          .rating {
+            width: clamp(90px, 48%, 180px);
+          }
+
+          .country {
+            width: clamp(90px, 48%, 200px);
+          }
+
+          .status {
+            width: clamp(90px, 48%, 180px);
+          }
+
+          .language {
+            width: clamp(90px, 48%, 200px);
+          }
+        }
+
+        &__buttons {
+          justify-content: center;
+          gap: 10px;
+          button {
+            width: 48%;
+          }
+        }
+      }
+
       .separator {
         margin: 8px 0 12px;
         border: 1px solid rgba(255, 255, 255, 0.527);
@@ -146,6 +354,9 @@
           h1 {
             font-size: 1.5rem;
           }
+        }
+        &__filters-btn-and-modal {
+          position: initial;
         }
 
         &__filters-btn {
@@ -226,6 +437,64 @@
         font-size: 1.5rem;
       }
 
+      &-modal {
+        max-width: 100%;
+        padding: 10px 10px 15px 10px;
+
+        .title {
+          font-size: 1.25rem;
+        }
+
+        &__filters {
+          margin: 10px 0 14px 0;
+          gap: 12px;
+
+          button {
+            padding: 4px 0;
+            font-size: 1rem;
+            margin-top: 4px;
+
+            svg {
+              right: 3px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .genre {
+            width: clamp(180px, 49%, 200px);
+          }
+
+          .type {
+            width: clamp(160px, 49%, 180px);
+          }
+
+          .rating {
+            width: clamp(90px, 49%, 200px);
+          }
+
+          .country {
+            width: clamp(120px, 49%, 180px);
+          }
+
+          .status {
+            width: clamp(120px, 49%, 200px);
+          }
+
+          .language {
+            width: clamp(120px, 49%, 180px);
+          }
+        }
+
+        &__buttons {
+          justify-content: center;
+          gap: 10px;
+          button {
+            width: 48%;
+          }
+        }
+      }
+
       .separator {
         margin: 8px 0 12px;
         border: 1px solid rgba(255, 255, 255, 0.527);
@@ -237,6 +506,9 @@
           h1 {
             font-size: 1.5rem;
           }
+        }
+        &__filters-btn-and-modal {
+          position: initial;
         }
 
         &__filters-btn {
@@ -314,6 +586,43 @@
 
       h1 {
         font-size: 1.25rem;
+      }
+
+      &-modal {
+        width: 410px;
+        padding: 10px 10px 15px 10px;
+
+        &__filters {
+          .genre {
+            width: clamp(180px, 49%, 200px);
+          }
+
+          .type {
+            width: clamp(160px, 49%, 180px);
+          }
+
+          .rating {
+            width: clamp(90px, 49%, 200px);
+          }
+
+          .country {
+            width: clamp(120px, 49%, 180px);
+          }
+
+          .status {
+            width: clamp(120px, 49%, 200px);
+          }
+
+          .language {
+            width: clamp(120px, 49%, 180px);
+          }
+        }
+        &__buttons {
+          gap: 10px;
+          button {
+            width: 48%;
+          }
+        }
       }
 
       .separator {
@@ -401,6 +710,55 @@
         font-size: 1.5rem;
       }
 
+      &-modal {
+        width: 440px;
+        padding: 14px 14px 18px 14px;
+
+        .title {
+          font-size: 1.35rem;
+        }
+
+        &__filters {
+          margin: 5px 0 15px 0;
+
+          &__filter {
+            button {
+              padding: 4px 0;
+            }
+          }
+
+          .genre {
+            width: clamp(180px, 49%, 200px);
+          }
+
+          .type {
+            width: clamp(160px, 49%, 190px);
+          }
+
+          .rating {
+            width: clamp(90px, 49%, 200px);
+          }
+
+          .country {
+            width: clamp(120px, 49%, 190px);
+          }
+
+          .status {
+            width: clamp(120px, 49%, 200px);
+          }
+
+          .language {
+            width: clamp(120px, 49%, 190px);
+          }
+        }
+        &__buttons {
+          gap: 10px;
+          button {
+            width: 48%;
+          }
+        }
+      }
+
       .separator {
         margin: 8px 0 12px;
       }
@@ -481,6 +839,47 @@
       h1 {
         font-size: 1.75rem;
       }
+      &-modal {
+        width: 440px;
+        padding: 14px 14px 18px 14px;
+
+        .title {
+          font-size: 1.35rem;
+        }
+
+        &__filters {
+          margin: 5px 0 15px 0;
+          .genre {
+            width: clamp(180px, 49%, 200px);
+          }
+
+          .type {
+            width: clamp(160px, 49%, 190px);
+          }
+
+          .rating {
+            width: clamp(90px, 49%, 200px);
+          }
+
+          .country {
+            width: clamp(120px, 49%, 190px);
+          }
+
+          .status {
+            width: clamp(120px, 49%, 200px);
+          }
+
+          .language {
+            width: clamp(120px, 49%, 190px);
+          }
+        }
+        &__buttons {
+          gap: 10px;
+          button {
+            width: 48%;
+          }
+        }
+      }
 
       .separator {
         margin: 8px 0 12px;
@@ -556,6 +955,27 @@
   @media screen and (width>=1280px) {
     & {
       padding: 0px 18px 12px;
+
+      &-modal {
+        padding: 18px 18px 24px 18px;
+
+        .title {
+          font-size: 1.5rem;
+        }
+
+        &__filters {
+          margin: 6px 0 16px 0;
+          &__filter {
+            p {
+              font-size: 1rem;
+            }
+            button {
+              font-size: 0.85rem;
+              padding: 6px 0;
+            }
+          }
+        }
+      }
 
       .separator {
         margin: 12px 0 16px 0;
@@ -636,6 +1056,58 @@
   @media screen and (width>=1536px) {
     & {
       padding: 0 18px 12px;
+
+      &-modal {
+        width: 500px;
+        padding: 18px 18px 24px 18px;
+
+        .title {
+          font-size: 1.75rem;
+        }
+
+        &__filters {
+          margin: 8px 0 18px 0;
+          &__filter {
+            p {
+              font-size: 1.15rem;
+            }
+            button {
+              font-size: 1rem;
+              padding: 6px 0;
+            }
+          }
+
+          .genre {
+            width: clamp(180px, 49%, 225px);
+          }
+
+          .type {
+            width: clamp(160px, 49%, 220px);
+          }
+
+          .rating {
+            width: clamp(90px, 49%, 225px);
+          }
+
+          .country {
+            width: clamp(120px, 49%, 220px);
+          }
+
+          .status {
+            width: clamp(120px, 49%, 225px);
+          }
+
+          .language {
+            width: clamp(120px, 49%, 220px);
+          }
+        }
+        &__buttons {
+          gap: 15px;
+          button {
+            width: 48%;
+          }
+        }
+      }
 
       .separator {
         margin: 15px 0 20px 0;
@@ -793,154 +1265,6 @@
       rgba(21, 35, 49, 0.85) 0%,
       rgba(0, 0, 0, 1) 100%
     );
-  }
-}
-
-.filters-modal {
-  position: absolute;
-  z-index: 100;
-  top: 50px;
-  left: 0px;
-  width: 400px;
-  background-color: black;
-  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
-  padding: 16px 16px 20px 16px;
-
-  .title {
-    display: flex;
-    font-size: 1.25rem;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
-
-    &__close__button {
-      background-color: inherit;
-      border: none;
-    }
-  }
-
-  &__filters {
-    margin: 12px 0 18px 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2px 4px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-top: 4px;
-
-      svg {
-        position: absolute;
-        right: 5px;
-        width: 1rem;
-        height: auto;
-      }
-    }
-
-    &__filter {
-      display: inline-block;
-      position: relative;
-
-      p {
-        font-size: 1rem;
-      }
-
-      button {
-        min-width: 50px;
-        border: 1px solid white;
-        width: 100%;
-      }
-
-      button.dropdown__option {
-        svg {
-          left: 5px;
-        }
-      }
-    }
-
-    .genre {
-      min-width: 180px;
-    }
-
-    .rating {
-      min-width: 90px;
-    }
-
-    .status {
-      min-width: 120px;
-    }
-
-    .country {
-      min-width: 120px;
-    }
-
-    .language {
-      min-width: 120px;
-    }
-
-    .type {
-      min-width: 160px;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    justify-content: space-between;
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 0.75rem;
-      width: 45%;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      span {
-        font-size: 16px;
-        font-weight: 500;
-      }
-    }
-
-    .apply__filters__button {
-      border: 1px solid lightblue;
-
-      svg {
-        path {
-          fill: lightblue;
-        }
-      }
-
-      span {
-        color: lightblue;
-        margin-left: 6px;
-      }
-    }
-
-    .clear__filters__button {
-      border: 1px solid red;
-      margin-left: 2px;
-
-      svg {
-        path {
-          fill: red;
-        }
-      }
-
-      span {
-        color: red;
-        margin-left: 4px;
-        margin-top: 1px;
-      }
-    }
   }
 }
 

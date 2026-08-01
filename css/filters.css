@@ -79,6 +79,122 @@
   cursor: pointer;
   padding: 10px;
 }
+.filters-modal {
+  position: absolute;
+  z-index: 100;
+  top: 50px;
+  left: 0px;
+  width: 400px;
+  background-color: black;
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+  padding: 16px 16px 20px 16px;
+}
+.filters-modal .title {
+  display: flex;
+  font-size: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+.filters-modal .title__close__button {
+  background-color: inherit;
+  border: none;
+}
+.filters-modal__filters {
+  margin: 12px 0 18px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.filters-modal__filters button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.filters-modal__filters button svg {
+  position: absolute;
+  right: 5px;
+  width: 1rem;
+  height: auto;
+}
+.filters-modal__filters__filter {
+  display: inline-block;
+  position: relative;
+}
+.filters-modal__filters__filter p {
+  font-size: 1rem;
+}
+.filters-modal__filters__filter button {
+  min-width: 50px;
+  border: 1px solid white;
+  width: 100%;
+}
+.filters-modal__filters__filter button.dropdown__option svg {
+  left: 5px;
+}
+.filters-modal__filters .genre {
+  min-width: 180px;
+}
+.filters-modal__filters .rating {
+  min-width: 90px;
+}
+.filters-modal__filters .status {
+  min-width: 120px;
+}
+.filters-modal__filters .country {
+  min-width: 120px;
+}
+.filters-modal__filters .language {
+  min-width: 120px;
+}
+.filters-modal__filters .type {
+  min-width: 160px;
+}
+.filters-modal__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.filters-modal__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 0.75rem;
+  width: 45%;
+}
+.filters-modal__buttons button:hover {
+  cursor: pointer;
+}
+.filters-modal__buttons button span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.filters-modal__buttons .apply__filters__button {
+  border: 1px solid lightblue;
+}
+.filters-modal__buttons .apply__filters__button svg path {
+  fill: lightblue;
+}
+.filters-modal__buttons .apply__filters__button span {
+  color: lightblue;
+  margin-left: 6px;
+}
+.filters-modal__buttons .clear__filters__button {
+  border: 1px solid red;
+  margin-left: 2px;
+}
+.filters-modal__buttons .clear__filters__button svg path {
+  fill: red;
+}
+.filters-modal__buttons .clear__filters__button span {
+  color: red;
+  margin-left: 4px;
+  margin-top: 1px;
+}
 .filters__pagination {
   padding: 20px;
   text-align: center;
@@ -114,6 +230,54 @@
     font-size: 1.05rem;
     text-align: center;
   }
+  .filters-modal {
+    top: 50px;
+    left: 0px;
+    width: 100%;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal .title {
+    font-size: 1.25rem;
+  }
+  .filters-modal__filters {
+    margin: 10px 0 14px 0;
+    gap: 12px;
+  }
+  .filters-modal__filters button {
+    padding: 4px 0;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  .filters-modal__filters button svg {
+    right: 3px;
+    width: 20px;
+    height: 20px;
+  }
+  .filters-modal__filters .genre {
+    width: 100%;
+  }
+  .filters-modal__filters .type {
+    width: 100%;
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 48%, 180px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(90px, 48%, 200px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(90px, 48%, 180px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(90px, 48%, 200px);
+  }
+  .filters-modal__buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
   .filters .separator {
     margin: 8px 0 12px;
     border: 1px solid rgba(255, 255, 255, 0.527);
@@ -123,6 +287,9 @@
   }
   .filters__display__row1 h1 {
     font-size: 1.5rem;
+  }
+  .filters__display__filters-btn-and-modal {
+    position: initial;
   }
   .filters__display__filters-btn {
     padding: 4px 6px;
@@ -186,6 +353,52 @@
   .filters h1 {
     font-size: 1.5rem;
   }
+  .filters-modal {
+    max-width: 100%;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal .title {
+    font-size: 1.25rem;
+  }
+  .filters-modal__filters {
+    margin: 10px 0 14px 0;
+    gap: 12px;
+  }
+  .filters-modal__filters button {
+    padding: 4px 0;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  .filters-modal__filters button svg {
+    right: 3px;
+    width: 20px;
+    height: 20px;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 180px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
   .filters .separator {
     margin: 8px 0 12px;
     border: 1px solid rgba(255, 255, 255, 0.527);
@@ -195,6 +408,9 @@
   }
   .filters__display__row1 h1 {
     font-size: 1.5rem;
+  }
+  .filters__display__filters-btn-and-modal {
+    position: initial;
   }
   .filters__display__filters-btn {
     padding: 6px 8px;
@@ -257,6 +473,34 @@
   }
   .filters h1 {
     font-size: 1.25rem;
+  }
+  .filters-modal {
+    width: 410px;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 180px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
   }
   .filters .separator {
     margin: 8px 0 12px;
@@ -324,6 +568,43 @@
   .filters h1 {
     font-size: 1.5rem;
   }
+  .filters-modal {
+    width: 440px;
+    padding: 14px 14px 18px 14px;
+  }
+  .filters-modal .title {
+    font-size: 1.35rem;
+  }
+  .filters-modal__filters {
+    margin: 5px 0 15px 0;
+  }
+  .filters-modal__filters__filter button {
+    padding: 4px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 190px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
   .filters .separator {
     margin: 8px 0 12px;
   }
@@ -386,6 +667,40 @@
   .filters h1 {
     font-size: 1.75rem;
   }
+  .filters-modal {
+    width: 440px;
+    padding: 14px 14px 18px 14px;
+  }
+  .filters-modal .title {
+    font-size: 1.35rem;
+  }
+  .filters-modal__filters {
+    margin: 5px 0 15px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 190px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
   .filters .separator {
     margin: 8px 0 12px;
   }
@@ -446,6 +761,22 @@
 @media screen and (width >= 1280px) {
   .filters {
     padding: 0px 18px 12px;
+  }
+  .filters-modal {
+    padding: 18px 18px 24px 18px;
+  }
+  .filters-modal .title {
+    font-size: 1.5rem;
+  }
+  .filters-modal__filters {
+    margin: 6px 0 16px 0;
+  }
+  .filters-modal__filters__filter p {
+    font-size: 1rem;
+  }
+  .filters-modal__filters__filter button {
+    font-size: 0.85rem;
+    padding: 6px 0;
   }
   .filters .separator {
     margin: 12px 0 16px 0;
@@ -510,6 +841,47 @@
 @media screen and (width >= 1536px) {
   .filters {
     padding: 0 18px 12px;
+  }
+  .filters-modal {
+    width: 500px;
+    padding: 18px 18px 24px 18px;
+  }
+  .filters-modal .title {
+    font-size: 1.75rem;
+  }
+  .filters-modal__filters {
+    margin: 8px 0 18px 0;
+  }
+  .filters-modal__filters__filter p {
+    font-size: 1.15rem;
+  }
+  .filters-modal__filters__filter button {
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 225px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 220px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 225px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 220px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 225px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 220px);
+  }
+  .filters-modal__buttons {
+    gap: 15px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
   }
   .filters .separator {
     margin: 15px 0 20px 0;
@@ -633,123 +1005,6 @@
   width: 100%;
   background: #152331;
   background: linear-gradient(180deg, rgba(21, 35, 49, 0.85) 0%, rgb(0, 0, 0) 100%);
-}
-
-.filters-modal {
-  position: absolute;
-  z-index: 100;
-  top: 50px;
-  left: 0px;
-  width: 400px;
-  background-color: black;
-  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
-  padding: 16px 16px 20px 16px;
-}
-.filters-modal .title {
-  display: flex;
-  font-size: 1.25rem;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-}
-.filters-modal .title__close__button {
-  background-color: inherit;
-  border: none;
-}
-.filters-modal__filters {
-  margin: 12px 0 18px 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-.filters-modal__filters button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px 4px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 4px;
-}
-.filters-modal__filters button svg {
-  position: absolute;
-  right: 5px;
-  width: 1rem;
-  height: auto;
-}
-.filters-modal__filters__filter {
-  display: inline-block;
-  position: relative;
-}
-.filters-modal__filters__filter p {
-  font-size: 1rem;
-}
-.filters-modal__filters__filter button {
-  min-width: 50px;
-  border: 1px solid white;
-  width: 100%;
-}
-.filters-modal__filters__filter button.dropdown__option svg {
-  left: 5px;
-}
-.filters-modal__filters .genre {
-  min-width: 180px;
-}
-.filters-modal__filters .rating {
-  min-width: 90px;
-}
-.filters-modal__filters .status {
-  min-width: 120px;
-}
-.filters-modal__filters .country {
-  min-width: 120px;
-}
-.filters-modal__filters .language {
-  min-width: 120px;
-}
-.filters-modal__filters .type {
-  min-width: 160px;
-}
-.filters-modal__buttons {
-  display: flex;
-  justify-content: space-between;
-}
-.filters-modal__buttons button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 12px;
-  border-radius: 0.75rem;
-  width: 45%;
-}
-.filters-modal__buttons button:hover {
-  cursor: pointer;
-}
-.filters-modal__buttons button span {
-  font-size: 16px;
-  font-weight: 500;
-}
-.filters-modal__buttons .apply__filters__button {
-  border: 1px solid lightblue;
-}
-.filters-modal__buttons .apply__filters__button svg path {
-  fill: lightblue;
-}
-.filters-modal__buttons .apply__filters__button span {
-  color: lightblue;
-  margin-left: 6px;
-}
-.filters-modal__buttons .clear__filters__button {
-  border: 1px solid red;
-  margin-left: 2px;
-}
-.filters-modal__buttons .clear__filters__button svg path {
-  fill: red;
-}
-.filters-modal__buttons .clear__filters__button span {
-  color: red;
-  margin-left: 4px;
-  margin-top: 1px;
 }
 
 .dropdown {
