@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function Element({ link, image, name, year, country }: ElementProps) {
   return (
-    <div className="element p-4 rounded-2xl">
+    <div className="element rounded-2xl">
       <Link href={link} target="_blank" rel="noreferrer">
         <Image
           src={image}
