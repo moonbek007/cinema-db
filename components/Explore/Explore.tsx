@@ -236,7 +236,7 @@ function ExploreDisplay() {
   return (
     <div className="filters">
       <div className="filters__display">
-        <div className="filters__display__title">
+        <div className="filters__display__row1">
           <h1>
             <span>Shows</span>
           </h1>
@@ -247,7 +247,7 @@ function ExploreDisplay() {
             >
               {numberOfFiltersApplied > 0 ? (
                 <>
-                  <span>Filters: </span>
+                  <span className="filters-label">Filters: </span>
                   <StarIcon />
                   <span> {numberOfFiltersApplied}</span>
                 </>

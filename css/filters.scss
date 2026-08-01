@@ -16,11 +16,11 @@
     width: 100%;
     position: relative;
 
-    &__title {
+    &__row1 {
       display: flex;
+      position: relative;
       align-items: center;
       gap: 20px;
-      padding: 20px;
 
       h1 {
         font-size: 2.25rem;
@@ -49,17 +49,16 @@
     }
 
     &__results {
-      padding: 10px;
+      display: grid;
+      row-gap: 15px;
+      column-gap: 20px;
     }
 
     &__search-bar {
-      width: 400px;
-      position: absolute;
-      right: 20px;
-      margin: 15px;
       display: flex;
       justify-content: center;
       background-color: transparent;
+      margin-left: auto;
 
       &__input-field,
       &__search-button,
@@ -74,7 +73,7 @@
         padding: 6px;
         border-left: none;
         border-right: none;
-        width: 80%;
+        width: 100%;
       }
 
       &__search-button {
@@ -93,16 +92,639 @@
       }
     }
   }
+
+  &__pagination {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    &-container {
+      display: flex;
+      align-items: center;
+      background-color: black;
+      padding: 10px;
+    }
+
+    & button {
+      padding: 5px 8px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 1.25rem;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    .active-page {
+      border: 1px solid lightblue;
+    }
+  }
+
+  @media screen and (width <425px) {
+    & {
+      padding: 0 10px 5px;
+
+      h1 {
+        font-size: 1.05rem;
+        text-align: center;
+      }
+
+      .separator {
+        margin: 8px 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.527);
+      }
+
+      &__display {
+        &__row1 {
+          gap: 8px;
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 4px 6px;
+          border: 1px solid lightblue;
+          border-radius: 8px;
+          .filters-label {
+            display: none;
+          }
+
+          svg {
+            margin-left: 0;
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        &__search-bar {
+          font-size: 0.95rem;
+
+          &__input-field {
+            padding: 8px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 8px;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          row-gap: 10px;
+          column-gap: 8px;
+        }
+      }
+
+      .filter-result {
+        &-title {
+          padding: 8px 0;
+          font-size: 0.8rem;
+        }
+      }
+
+      &__pagination {
+        display: block;
+        padding: 15px 0;
+
+        &-container {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 0px;
+        }
+
+        & button {
+          padding: 4px 6px;
+          margin: 0;
+          font-size: 0.85rem;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (width >=425px) and (width<640px) {
+    & {
+      padding: 0 12px 6px;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .separator {
+        margin: 8px 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.527);
+      }
+
+      &__display {
+        &__row1 {
+          gap: 10px;
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          border: 1px solid lightblue;
+          border-radius: 8px;
+          .filters-label {
+            display: none;
+          }
+
+          svg {
+            margin-left: 0;
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        &__search-bar {
+          font-size: 0.95rem;
+
+          &__input-field {
+            padding: 8px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 8px;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          row-gap: 10px;
+          column-gap: 8px;
+        }
+      }
+
+      .filter-result {
+        &-title {
+          padding: 8px 0;
+          font-size: 0.8rem;
+        }
+      }
+
+      &__pagination {
+        display: block;
+        padding: 20px 0;
+
+        &-container {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 0px;
+        }
+
+        & button {
+          padding: 4px 6px;
+          margin: 0;
+          font-size: 1.15rem;
+
+          svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>= 640px) and (width<768px) {
+    & {
+      padding: 0 12px 8px;
+
+      h1 {
+        font-size: 1.25rem;
+      }
+
+      .separator {
+        margin: 8px 0 12px;
+        border: 1px solid rgba(255, 255, 255, 0.527);
+      }
+
+      &__display {
+        &__row1 {
+          gap: 10px;
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          border: 1px solid lightblue;
+          border-radius: 8px;
+          font-size: 0.9rem;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
+        &__search-bar {
+          font-size: 0.85rem;
+
+          &__input-field {
+            padding: 8px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 8px;
+            svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+          row-gap: 8px;
+          column-gap: 6px;
+        }
+      }
+
+      .filter-result {
+        &-title {
+          padding: 8px 0;
+          font-size: 0.9rem;
+        }
+      }
+
+      &__pagination {
+        padding: 20px 0;
+
+        &-container {
+          padding: 0px;
+        }
+
+        & button {
+          margin: 0 5px;
+          padding: 6px;
+          font-size: 1.45rem;
+
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (width>= 768px) {
+    & {
+      padding: 0 15px 10px;
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .separator {
+        margin: 8px 0 12px;
+      }
+
+      &__display {
+        &__row1 {
+          gap: 12px;
+          h1 {
+            font-size: 1.5rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          font-size: 1rem;
+          border: 1px solid #add8e6;
+
+          svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+
+        &__search-bar {
+          min-width: 40vw;
+          font-size: 0.95rem;
+
+          &__input-field {
+            padding: 8px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 8px;
+            svg {
+              width: 22px;
+              height: 22px;
+            }
+          }
+        }
+
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          row-gap: 10px;
+          column-gap: 8px;
+        }
+      }
+
+      .filter-result {
+        &-title {
+          padding: 8px 0;
+          font-size: 1rem;
+        }
+      }
+
+      &__pagination {
+        padding: 20px 0 10px 0;
+
+        &-container {
+          padding: 0px;
+        }
+
+        & button {
+          margin: 0 10px;
+          padding: 6px;
+          font-size: 1.15rem;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>=1024px) {
+    & {
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      .separator {
+        margin: 8px 0 12px;
+      }
+
+      &__display {
+        &__row1 {
+          gap: 12px;
+          h1 {
+            font-size: 1.75rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          font-size: 1.15rem;
+          border: 1px solid #add8e6;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        &__search-bar {
+          min-width: 40vw;
+          font-size: 1.15rem;
+
+          &__input-field {
+            padding: 8px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 8px;
+            svg {
+              width: 22px;
+              height: 22px;
+            }
+          }
+        }
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          row-gap: 12px;
+          column-gap: 10px;
+        }
+      }
+
+      &__pagination {
+        padding: 25px 0 15px 0;
+
+        &-container {
+          padding: 0px;
+        }
+
+        & button {
+          margin: 0 10px;
+          padding: 8px;
+          font-size: 1.35rem;
+
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+
+      & .filter-result {
+        max-width: 250px;
+      }
+    }
+  }
+  @media screen and (width>=1280px) {
+    & {
+      padding: 0px 18px 12px;
+
+      .separator {
+        margin: 12px 0 16px 0;
+      }
+
+      &__display {
+        &__row1 {
+          gap: 15px;
+          h1 {
+            font-size: 2rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          font-size: 1.15rem;
+          border: 1px solid #add8e6;
+
+          svg {
+            width: 26px;
+            height: 26px;
+          }
+        }
+
+        &__search-bar {
+          min-width: 35vw;
+          font-size: 1.35rem;
+
+          &__input-field {
+            padding: 10px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 10px;
+            svg {
+              width: 28px;
+              height: 28px;
+            }
+          }
+        }
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+          gap: 15px 12px;
+        }
+      }
+
+      & .filter-result {
+        border: 2px solid lightslategray;
+        max-width: 380px;
+
+        &-title {
+          font-size: 1.5rem;
+          padding: 15px 0;
+        }
+      }
+
+      &__pagination {
+        padding: 25px 0 15px 0;
+
+        &-container {
+          padding: 0px;
+        }
+
+        & button {
+          margin: 0 10px;
+          padding: 6px;
+          font-size: 1.35rem;
+
+          svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (width>=1536px) {
+    & {
+      padding: 0 18px 12px;
+
+      .separator {
+        margin: 15px 0 20px 0;
+      }
+
+      &__display {
+        &__row1 {
+          gap: 25px;
+          h1 {
+            font-size: 2.25rem;
+          }
+        }
+
+        &__filters-btn {
+          padding: 6px 8px;
+          font-size: 1.35rem;
+          border: 2px solid #add8e6;
+
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+
+        &__search-bar {
+          min-width: 35vw;
+          font-size: 1.5rem;
+
+          &__input-field {
+            padding: 12px 0;
+          }
+
+          &__search-button,
+          &__clear-button {
+            padding: 12px;
+            svg {
+              width: 32px;
+              height: 32px;
+            }
+          }
+        }
+
+        &__results {
+          grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+          gap: 25px 15px;
+        }
+      }
+
+      & .filter-result {
+        border: 2px solid lightslategray;
+        max-width: 450px;
+
+        &-title {
+          font-size: 1.75rem;
+          padding: 20px 0;
+        }
+      }
+
+      &__pagination {
+        padding: 25px 0 15px;
+
+        &-container {
+          padding: 0px;
+        }
+
+        & button {
+          margin: 0 12px;
+          padding: 8px;
+          font-size: 1.5rem;
+
+          svg {
+            width: 32px;
+            height: 32px;
+          }
+        }
+
+        .active-page {
+          border: 2px solid rgb(173, 216, 230);
+        }
+      }
+    }
+  }
 }
 
 .filter-result {
-  margin: 25px 15px;
   border: 1px solid lightslategray;
   display: inline-block;
   text-align: left;
   position: relative;
-  min-width: 300px;
-  height: 400px;
 
   &__link {
     color: white;
@@ -319,31 +941,6 @@
         margin-top: 1px;
       }
     }
-  }
-}
-
-.filters__pagination {
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-
-  &-container {
-    display: flex;
-    align-items: center;
-    background-color: black;
-    padding: 10px;
-  }
-
-  & button {
-    padding: 5px 8px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 1.25rem;
-  }
-
-  .active-page {
-    border: 1px solid lightblue;
   }
 }
 
