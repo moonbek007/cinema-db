@@ -149,9 +149,9 @@
     }
   }
 
-  @media screen and (width <420px) {
+  @media screen and (width <425px) {
     & {
-      width: 345px;
+      min-width: 305px;
       max-width: 100%;
       max-height: 280px;
       padding: 2px;
@@ -202,9 +202,9 @@
     }
   }
 
-  @media screen and (width >=420px) and (width<640px) {
+  @media screen and (width >=425px) and (width<640px) {
     & {
-      width: max(70vw, 380px);
+      width: max(70vw, 395px);
       max-height: 280px;
       padding: 2px;
       top: 40px;

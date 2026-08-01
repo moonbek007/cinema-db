@@ -124,9 +124,9 @@
   font-weight: 100;
   text-align: start;
 }
-@media screen and (width < 420px) {
+@media screen and (width < 425px) {
   .search-results {
-    width: 345px;
+    min-width: 305px;
     max-width: 100%;
     max-height: 280px;
     padding: 2px;
@@ -164,9 +164,9 @@
     font-size: 0.5rem;
   }
 }
-@media screen and (width >= 420px) and (width < 640px) {
+@media screen and (width >= 425px) and (width < 640px) {
   .search-results {
-    width: max(70vw, 380px);
+    width: max(70vw, 395px);
     max-height: 280px;
     padding: 2px;
     top: 40px;

@@ -1,6 +1,5 @@
 .header {
   width: 100vw;
-  // height: 10vh;
   min-height: 60px;
   background-color: rgb(8, 7, 5);
   opacity: 0.96;
@@ -85,7 +84,7 @@
     padding: 4px;
   }
 
-  @media screen and (width <420px) {
+  @media screen and (width <425px) {
     & {
       padding: 15px 10px;
 
@@ -123,9 +122,9 @@
     }
   }
 
-  @media screen and (width >=420px) and (width<640px) {
+  @media screen and (width >=425px) and (width<640px) {
     & {
-      padding: 15px 20px;
+      padding: 15px 12px;
 
       &__input {
         font-size: 1rem;
@@ -247,7 +246,7 @@
   }
   @media screen and (width>=1024px) {
     & {
-      padding: 20px 25px;
+      padding: 20px;
       &__input {
         font-size: 1rem;
 
