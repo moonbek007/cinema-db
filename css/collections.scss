@@ -64,7 +64,7 @@
 
   @media screen and (width <425px) {
     & {
-      padding: 5px 15px 10px;
+      padding: 0 10px 5px;
 
       h1 {
         font-size: 1.5rem;
@@ -101,10 +101,11 @@
 
   @media screen and (width >=425px) and (width<640px) {
     & {
-      padding: 5px 15px 15px;
+      padding: 0 12px 6px;
 
       h1 {
         font-size: 1.5rem;
+        text-align: center;
       }
 
       .separator {
@@ -138,7 +139,7 @@
   }
   @media screen and (width>= 640px) and (width<768px) {
     & {
-      padding: 10px 20px 15px;
+      padding: 0 12px 8px;
 
       h1 {
         font-size: 1.25rem;
@@ -176,7 +177,7 @@
 
   @media screen and (width>= 768px) {
     & {
-      padding: 10px 20px 15px;
+      padding: 0 15px 10px;
 
       h1 {
         font-size: 1.5rem;
@@ -246,7 +247,7 @@
   }
   @media screen and (width>=1280px) {
     & {
-      padding: 15px 25px 20px;
+      padding: 0px 18px 12px;
       h1 {
         font-size: 2rem;
       }
@@ -281,7 +282,7 @@
   }
   @media screen and (width>=1536px) {
     & {
-      padding: 20px 30px 20px;
+      padding: 0 20px 12px;
 
       h1 {
         font-size: 2.25rem;

@@ -54,7 +54,7 @@
 }
 @media screen and (width < 425px) {
   .collections {
-    padding: 5px 15px 10px;
+    padding: 0 10px 5px;
   }
   .collections h1 {
     font-size: 1.5rem;
@@ -83,10 +83,11 @@
 }
 @media screen and (width >= 425px) and (width < 640px) {
   .collections {
-    padding: 5px 15px 15px;
+    padding: 0 12px 6px;
   }
   .collections h1 {
     font-size: 1.5rem;
+    text-align: center;
   }
   .collections .separator {
     margin: 8px 0 15px;
@@ -114,7 +115,7 @@
 }
 @media screen and (width >= 640px) and (width < 768px) {
   .collections {
-    padding: 10px 20px 15px;
+    padding: 0 12px 8px;
   }
   .collections h1 {
     font-size: 1.25rem;
@@ -145,7 +146,7 @@
 }
 @media screen and (width >= 768px) {
   .collections {
-    padding: 10px 20px 15px;
+    padding: 0 15px 10px;
   }
   .collections h1 {
     font-size: 1.5rem;
@@ -202,7 +203,7 @@
 }
 @media screen and (width >= 1280px) {
   .collections {
-    padding: 15px 25px 20px;
+    padding: 0px 18px 12px;
   }
   .collections h1 {
     font-size: 2rem;
@@ -232,7 +233,7 @@
 }
 @media screen and (width >= 1536px) {
   .collections {
-    padding: 20px 30px 20px;
+    padding: 0 20px 12px;
   }
   .collections h1 {
     font-size: 2.25rem;

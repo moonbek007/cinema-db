@@ -126,8 +126,7 @@
 }
 @media screen and (width < 425px) {
   .search-results {
-    min-width: 305px;
-    max-width: 100%;
+    width: clamp(305px, 93vw, 410px);
     max-height: 280px;
     padding: 2px;
     top: 40px;
@@ -166,7 +165,7 @@
 }
 @media screen and (width >= 425px) and (width < 640px) {
   .search-results {
-    width: max(70vw, 395px);
+    width: clamp(395px, 93vw, 600px);
     max-height: 280px;
     padding: 2px;
     top: 40px;
