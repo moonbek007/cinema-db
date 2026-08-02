@@ -269,6 +269,14 @@ function ExploreDisplay() {
           <SearchBar search={handleSearchShows} clear={handleClearSearchBar} />
         </div>
         <div className="separator"> </div>
+        {!filteredShows.length && (
+          <div className="filters__display-empty">
+            <p>
+              No matching shows, please apply different filters or a search
+              word.
+            </p>
+          </div>
+        )}
         <div className="filters__display__results">
           {filteredShows
             .slice(paginationIndecies.start, paginationIndecies.end + 1)
