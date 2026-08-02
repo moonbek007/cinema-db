@@ -3,6 +3,7 @@
   background: rgba(0, 0, 1, 0.95);
   color: white;
   padding: 30px;
+  flex-grow: 1;
 
   h1 {
     font-size: 2rem;
@@ -16,7 +17,6 @@
   &__display {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    min-height: 90vh;
 
     row-gap: 15px;
     column-gap: 20px;
