@@ -7,8 +7,8 @@ declare type Show = {
   genres: Genre[];
   status: string;
   runtime: number | null;
-  averageRuntime: number;
-  premiered: string;
+  averageRuntime: number | null;
+  premiered: string | null;
   ended: string | null;
   officialSite: string | null;
   schedule: {
@@ -59,7 +59,7 @@ declare type Show = {
     self: {
       href: string;
     };
-    previousepisode: {
+    previousepisode?: {
       href: string;
       name: string;
     };
@@ -92,7 +92,7 @@ declare type SearchResultProps = {
   name: string;
   status: string;
   rating: number;
-  year: string;
+  year: string | null;
   genres: string[];
   description: string;
 };

@@ -13,9 +13,9 @@ const FiltersModal = dynamic(() => import("./FiltersSection/FiltersModal.tsx"));
 import {
   DropdownValues,
   FilterTypes,
-  movies,
   QueryParams,
 } from "@/constants/constants.ts";
+import { movies } from "@/constants/movies.ts";
 import {
   loadFilters,
   loadFilteredShows,

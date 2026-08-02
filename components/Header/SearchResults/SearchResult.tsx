@@ -44,7 +44,7 @@ function SearchResult({
               <span> {rating}</span>
             </p>
             <p className="search-result__show__info__period">
-              {year.substring(0, 4)}
+              {year && year.substring(0, 4)}
             </p>
             <p className="search-result__show__info__genres">
               {genres?.join(", ")}

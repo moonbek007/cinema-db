@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import Row from "./Row/Row.tsx";
 
-import { movies } from "@/constants/constants.ts";
+import { movies } from "@/constants/movies.ts";
 import "../../css/explore.css";
 
 const sortShows: (shows: Show[]) => Record<string, Show[]> = (shows) => {
@@ -27,7 +27,7 @@ const sortShows: (shows: Show[]) => Record<string, Show[]> = (shows) => {
 };
 
 function MainDisplay() {
-  const [shows, setShows] = useState<Record<string, Show[]>>(sortShows(movies));
+  const [shows] = useState<Record<string, Show[]>>(sortShows(movies));
 
   const genres = Object.keys(shows);
 

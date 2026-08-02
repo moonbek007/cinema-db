@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import { movies } from "@/constants/constants";
+import { movies } from "@/constants/movies";
 
 import "../../css/header.css";
 

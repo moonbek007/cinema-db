@@ -4,9 +4,9 @@ import {
   DropdownValues,
   FilterTypes,
   modalFilters,
-  movies,
   QueryParams,
 } from "@/constants/constants";
+import { movies } from "@/constants/movies";
 
 function loadFiltersModalFilters(filters: DefaultFiltersType) {
   const newFilters = { ...modalFilters };

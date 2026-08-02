@@ -4,7 +4,9 @@ import { useState } from "react";
 
 import CollectionElement from "./CollectionElement/CollectionElement.tsx";
 
-import { images, movies } from "@/constants/constants.ts";
+import { images } from "@/constants/constants.ts";
+import { movies } from "@/constants/movies.ts";
+
 import "../../css/collections.css";
 
 const sortShows: (shows: Show[]) => Record<string, Show[]> = (shows) => {
