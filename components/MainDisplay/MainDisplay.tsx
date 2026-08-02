@@ -4,30 +4,12 @@ import { useState } from "react";
 
 import Row from "./Row/Row.tsx";
 
-import { movies } from "@/constants/movies.ts";
+import { loadSortedShows } from "@/lib/utils.ts";
+
 import "../../css/explore.css";
 
-const sortShows: (shows: Show[]) => Record<string, Show[]> = (shows) => {
-  const sortedShows = shows.reduce(
-    (accumulator, currentShow) => {
-      const showGenres = currentShow.genres;
-      showGenres.map((genre) => {
-        if (!accumulator[genre]) {
-          // Initialize the array for this genre if it doesn't exist yet
-          accumulator[genre] = [currentShow];
-        } else {
-          accumulator[genre].push(currentShow);
-        }
-      });
-      return accumulator;
-    },
-    {} as Record<string, Show[]>,
-  );
-  return sortedShows;
-};
-
 function MainDisplay() {
-  const [shows] = useState<Record<string, Show[]>>(sortShows(movies));
+  const [shows] = useState<Record<string, Show[]>>(loadSortedShows());
 
   const genres = Object.keys(shows);
 

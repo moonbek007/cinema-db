@@ -8,6 +8,25 @@ import {
 } from "@/constants/constants";
 import { movies } from "@/constants/movies";
 
+const loadSortedShows: () => Record<string, Show[]> = () => {
+  const sortedShows = movies.reduce(
+    (accumulator, currentShow) => {
+      const showGenres = currentShow.genres;
+      showGenres.map((genre) => {
+        if (!accumulator[genre]) {
+          // Initialize the array for this genre if it doesn't exist yet
+          accumulator[genre] = [currentShow];
+        } else {
+          accumulator[genre].push(currentShow);
+        }
+      });
+      return accumulator;
+    },
+    {} as Record<string, Show[]>,
+  );
+  return sortedShows;
+};
+
 function loadFiltersModalFilters(filters: DefaultFiltersType) {
   const newFilters = { ...modalFilters };
   Object.entries(filters).forEach(([filterName, filterValues]) => {
@@ -183,15 +202,24 @@ function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
   return indecies;
 }
 
-function getRawShowDescription(description: string) {
+function getRawShowDescription(
+  description: string,
+  numberOfWords: number | null,
+) {
   const descriptionWords = description.split(" ").map((word) => {
     const newWord = word.replace(/<\/?([a-zA-Z]+)([^>]*)*>/g, "");
     return newWord;
   });
+
+  if (numberOfWords) {
+    if (descriptionWords.length > numberOfWords)
+      return descriptionWords.slice(0, numberOfWords).join(" ") + " ...";
+  }
   return descriptionWords.join(" ");
 }
 
 export {
+  loadSortedShows,
   loadFiltersModalFilters,
   loadFilters,
   loadFilteredShows,
