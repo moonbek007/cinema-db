@@ -169,9 +169,9 @@ declare type QueryParamsType = Record<
 >;
 
 declare type PaginationProps = {
-  page:PageType,
-  changePage:(number)=>void
-}
+  page: PageType;
+  changePage: (number) => void;
+};
 
 declare type PageType = {
   previousPage: number;
@@ -183,4 +183,8 @@ declare type PageType = {
 declare type PaginationIndeciesType = {
   start: number;
   end: number;
+};
+
+declare type NavModalProps = {
+  closeModal: () => void;
 };

@@ -1,0 +1,70 @@
+.nav-modal {
+  position: absolute;
+  z-index: 1000;
+  right: 12px;
+  top: 60px;
+  padding: 14px;
+  background-color: black;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .nav {
+    & ul {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      & button {
+        width: 100%;
+        padding-bottom: 3px;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        font-size: 1.15rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0);
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          svg {
+            width: 22px;
+            height: auto;
+          }
+        }
+      }
+      & button.link-active {
+        border-bottom: 1px solid rgb(113, 174, 207);
+      }
+    }
+  }
+
+  @media screen and (width <425px) {
+    & {
+      padding: 12px;
+      .nav {
+        & ul {
+          gap: 2px;
+
+          & button {
+            padding-bottom: 2px;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0);
+
+            a {
+              gap: 4px;
+
+              svg {
+                width: 18px;
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
