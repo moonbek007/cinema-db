@@ -7,8 +7,8 @@ declare type Show = {
   genres: Genre[];
   status: string;
   runtime: number | null;
-  averageRuntime: number;
-  premiered: string;
+  averageRuntime: number | null;
+  premiered: string | null;
   ended: string | null;
   officialSite: string | null;
   schedule: {
@@ -59,7 +59,7 @@ declare type Show = {
     self: {
       href: string;
     };
-    previousepisode: {
+    previousepisode?: {
       href: string;
       name: string;
     };
@@ -74,14 +74,14 @@ declare type Genre = string;
 
 declare type RowProps = {
   genre: Genre;
-  showsToFilter: Show[];
+  filteredShows: Show[];
 };
 
 declare type ElementProps = {
   link: string;
   image: string;
   name: string;
-  year: string;
+  year: string | undefined;
   country: string | undefined;
   show: Show;
 };
@@ -92,7 +92,7 @@ declare type SearchResultProps = {
   name: string;
   status: string;
   rating: number;
-  year: string;
+  year: string | null;
   genres: string[];
   description: string;
 };
@@ -100,10 +100,98 @@ declare type SearchResultProps = {
 declare type SearchResultsProps = {
   searchWord: string;
   searchResults: Show[];
+  screenWidth: number;
+};
+
+declare type CollectionData = {
+  name: string;
+  count: number;
+  image: string;
 };
 
 declare type CollectionElementProps = {
   name: string;
   image: string;
   numberOfShows: number;
+};
+
+declare type FilterResultProps = {
+  image: string;
+  link: string;
+  name: string;
+};
+
+declare type FilterShowsPropsType = {
+  name:
+    | import("@/constants/constants").FilterTypes
+    | import("@/constants/constants").QueryParams.SEARCH;
+  applied: string[];
+};
+
+declare type FiltersModalProps = {
+  filtersApplied: DefaultFiltersType;
+  closeModal: () => void;
+  filterShows: (filters: filterShowsProps[]) => void;
+};
+
+declare type DropdownMenuProps = {
+  type: import("@/constants/constants").FilterTypes;
+  options: string[];
+  tickedOptions: string[];
+  pickOption: (
+    type: import("@/constants/constants").FilterTypes,
+    option: string,
+  ) => void;
+};
+
+declare type DropdownFiltersType = Record<
+  import("@/constants/constants").FilterTypes,
+  {
+    value: string;
+    dropdownOpen: boolean;
+    picked: string[];
+  }
+>;
+
+declare type DefaultFiltersType = Record<
+  import("@/constants/constants").FilterTypes,
+  {
+    value: string;
+    dropdownOpen: boolean;
+    picked: string[];
+    applied: string[];
+  }
+>;
+
+declare type SearchBarProps = {
+  search: (word: string) => void;
+  clear: () => void;
+};
+
+declare type QueryParamsType = Record<
+  | import("@/constants/constants").FilterTypes
+  | import("@/constants/constants").QueryParams.SEARCH
+  | string,
+  string[]
+>;
+
+declare type PaginationProps = {
+  page: PageType;
+  changePage: (number) => void;
+};
+
+declare type PageType = {
+  previousPage: number;
+  currentPage: number;
+  nextPage: number;
+  totalPages: number;
+};
+
+declare type PaginationIndeciesType = {
+  start: number;
+  end: number;
+};
+
+declare type NavModalProps = {
+  closeModal: () => void;
 };

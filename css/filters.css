@@ -1,0 +1,1098 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Roboto&display=swap");
+.filters-fallback {
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  display: flex;
+  flex-grow: 1;
+}
+
+.filters {
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  display: flex;
+  flex-grow: 1;
+  padding-bottom: 10px;
+}
+.filters h1,
+.filters h2 {
+  margin: 0;
+}
+.filters__display {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+.filters__display__row1 {
+  display: flex;
+  position: relative;
+  align-items: center;
+  gap: 20px;
+}
+.filters__display__row1 h1 {
+  font-size: 2.25rem;
+}
+.filters__display__filters-btn-and-modal {
+  position: relative;
+}
+.filters__display__filters-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 8px;
+  border: 2px solid lightblue;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+.filters__display__filters-btn svg {
+  margin-left: 6px;
+  width: 20px;
+  fill: lightslategray;
+}
+.filters__display-empty {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.filters__display-empty p {
+  text-align: center;
+  font-size: 1.75rem;
+}
+.filters__display__results {
+  display: grid;
+  row-gap: 15px;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.filters__display__search-bar {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  margin-left: auto;
+}
+.filters__display__search-bar__input-field, .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+  outline: none;
+  border: none;
+  background: rgba(45, 65, 63, 0.95);
+}
+.filters__display__search-bar__input-field {
+  text-align: center;
+  padding: 6px;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+}
+.filters__display__search-bar__search-button {
+  border-left: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+}
+.filters__display__search-bar__clear-button {
+  border-right: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+}
+.filters-modal {
+  position: absolute;
+  z-index: 100;
+  top: 50px;
+  left: 0px;
+  width: 400px;
+  background-color: black;
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+  padding: 16px 16px 20px 16px;
+}
+.filters-modal .title {
+  display: flex;
+  font-size: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+.filters-modal .title__close__button {
+  background-color: inherit;
+  border: none;
+}
+.filters-modal__filters {
+  margin: 12px 0 18px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.filters-modal__filters button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.filters-modal__filters button svg {
+  position: absolute;
+  right: 5px;
+  width: 1rem;
+  height: auto;
+}
+.filters-modal__filters__filter {
+  display: inline-block;
+  position: relative;
+}
+.filters-modal__filters__filter p {
+  font-size: 1rem;
+}
+.filters-modal__filters__filter button {
+  min-width: 50px;
+  border: 1px solid white;
+  width: 100%;
+}
+.filters-modal__filters__filter button.dropdown__option svg {
+  left: 5px;
+}
+.filters-modal__filters .genre {
+  min-width: 180px;
+}
+.filters-modal__filters .rating {
+  min-width: 90px;
+}
+.filters-modal__filters .status {
+  min-width: 120px;
+}
+.filters-modal__filters .country {
+  min-width: 120px;
+}
+.filters-modal__filters .language {
+  min-width: 120px;
+}
+.filters-modal__filters .type {
+  min-width: 160px;
+}
+.filters-modal__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.filters-modal__buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 0.75rem;
+  width: 45%;
+}
+.filters-modal__buttons button:hover {
+  cursor: pointer;
+}
+.filters-modal__buttons button span {
+  font-size: 16px;
+  font-weight: 500;
+}
+.filters-modal__buttons .apply__filters__button {
+  border: 1px solid lightblue;
+}
+.filters-modal__buttons .apply__filters__button svg path {
+  fill: lightblue;
+}
+.filters-modal__buttons .apply__filters__button span {
+  color: lightblue;
+  margin-left: 6px;
+}
+.filters-modal__buttons .clear__filters__button {
+  border: 1px solid red;
+  margin-left: 2px;
+}
+.filters-modal__buttons .clear__filters__button svg path {
+  fill: red;
+}
+.filters-modal__buttons .clear__filters__button span {
+  color: red;
+  margin-left: 4px;
+  margin-top: 1px;
+}
+.filters__pagination {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.filters__pagination-container {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  padding: 10px;
+}
+.filters__pagination button {
+  padding: 5px 8px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 1.25rem;
+}
+.filters__pagination button:first-of-type {
+  margin-left: 0;
+}
+.filters__pagination button:last-of-type {
+  margin-right: 0;
+}
+.filters__pagination .active-page {
+  border: 1px solid lightblue;
+}
+@media screen and (width < 425px) {
+  .filters {
+    padding: 0 10px 5px;
+  }
+  .filters h1 {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+  .filters-modal {
+    top: 50px;
+    left: 0px;
+    width: 100%;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal .title {
+    font-size: 1.25rem;
+  }
+  .filters-modal__filters {
+    margin: 10px 0 14px 0;
+    gap: 12px;
+  }
+  .filters-modal__filters button {
+    padding: 4px 0;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  .filters-modal__filters button svg {
+    right: 3px;
+    width: 20px;
+    height: 20px;
+  }
+  .filters-modal__filters .genre {
+    width: 100%;
+  }
+  .filters-modal__filters .type {
+    width: 100%;
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 48%, 180px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(90px, 48%, 200px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(90px, 48%, 180px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(90px, 48%, 200px);
+  }
+  .filters-modal__buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 8px 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.527);
+  }
+  .filters__display__row1 {
+    gap: 8px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 1.5rem;
+  }
+  .filters__display__filters-btn-and-modal {
+    position: initial;
+  }
+  .filters__display__filters-btn {
+    padding: 4px 6px;
+    border: 1px solid lightblue;
+    border-radius: 8px;
+  }
+  .filters__display__filters-btn .filters-label {
+    display: none;
+  }
+  .filters__display__filters-btn svg {
+    margin-left: 0;
+    width: 22px;
+    height: 22px;
+  }
+  .filters__display__search-bar {
+    font-size: 0.95rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 8px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 8px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 20px;
+    height: 20px;
+  }
+  .filters__display-empty {
+    padding: 10px;
+  }
+  .filters__display-empty p {
+    text-align: center;
+    font-size: 1.65rem;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    row-gap: 10px;
+    -moz-column-gap: 8px;
+         column-gap: 8px;
+  }
+  .filters .filter-result-title {
+    padding: 8px 0;
+    font-size: 0.8rem;
+  }
+  .filters__pagination {
+    display: block;
+    padding: 15px 0;
+  }
+  .filters__pagination-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+  .filters__pagination button {
+    padding: 4px 6px;
+    margin: 0;
+    font-size: 0.85rem;
+  }
+  .filters__pagination button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media screen and (width >= 425px) and (width < 640px) {
+  .filters {
+    padding: 0 12px 6px;
+  }
+  .filters h1 {
+    font-size: 1.5rem;
+  }
+  .filters-modal {
+    max-width: 100%;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal .title {
+    font-size: 1.25rem;
+  }
+  .filters-modal__filters {
+    margin: 10px 0 14px 0;
+    gap: 12px;
+  }
+  .filters-modal__filters button {
+    padding: 4px 0;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+  .filters-modal__filters button svg {
+    right: 3px;
+    width: 20px;
+    height: 20px;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 180px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__buttons {
+    justify-content: center;
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 8px 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.527);
+  }
+  .filters__display__row1 {
+    gap: 10px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 1.5rem;
+  }
+  .filters__display__filters-btn-and-modal {
+    position: initial;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    border: 1px solid lightblue;
+    border-radius: 8px;
+  }
+  .filters__display__filters-btn .filters-label {
+    display: none;
+  }
+  .filters__display__filters-btn svg {
+    margin-left: 0;
+    width: 22px;
+    height: 22px;
+  }
+  .filters__display__search-bar {
+    font-size: 0.95rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 8px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 8px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 20px;
+    height: 20px;
+  }
+  .filters__display-empty {
+    padding: 10px;
+  }
+  .filters__display-empty p {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    row-gap: 10px;
+    -moz-column-gap: 8px;
+         column-gap: 8px;
+  }
+  .filters .filter-result-title {
+    padding: 8px 0;
+    font-size: 0.8rem;
+  }
+  .filters__pagination {
+    display: block;
+    padding: 20px 0;
+  }
+  .filters__pagination-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+  }
+  .filters__pagination button {
+    padding: 4px 6px;
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .filters__pagination button svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+@media screen and (width >= 640px) and (width < 768px) {
+  .filters {
+    padding: 0 12px 8px;
+  }
+  .filters h1 {
+    font-size: 1.25rem;
+  }
+  .filters-modal {
+    width: 410px;
+    padding: 10px 10px 15px 10px;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 180px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 180px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 8px 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.527);
+  }
+  .filters__display__row1 {
+    gap: 10px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 1.5rem;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    border: 1px solid lightblue;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+  .filters__display__filters-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .filters__display__search-bar {
+    font-size: 0.85rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 8px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 8px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 20px;
+    height: 20px;
+  }
+  .filters__display-empty {
+    padding: 15px;
+  }
+  .filters__display-empty p {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    row-gap: 8px;
+    -moz-column-gap: 6px;
+         column-gap: 6px;
+  }
+  .filters .filter-result-title {
+    padding: 8px 0;
+    font-size: 0.9rem;
+  }
+  .filters__pagination {
+    padding: 20px 0;
+  }
+  .filters__pagination-container {
+    padding: 0px;
+  }
+  .filters__pagination button {
+    margin: 0 5px;
+    padding: 6px;
+    font-size: 1.45rem;
+  }
+  .filters__pagination button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media screen and (width >= 768px) {
+  .filters {
+    padding: 0 15px 10px;
+  }
+  .filters h1 {
+    font-size: 1.5rem;
+  }
+  .filters-modal {
+    width: 440px;
+    padding: 14px 14px 18px 14px;
+  }
+  .filters-modal .title {
+    font-size: 1.35rem;
+  }
+  .filters-modal__filters {
+    margin: 5px 0 15px 0;
+  }
+  .filters-modal__filters__filter button {
+    padding: 4px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 190px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 8px 0 12px;
+  }
+  .filters__display__row1 {
+    gap: 12px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 1.5rem;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    font-size: 1rem;
+    border: 1px solid #add8e6;
+  }
+  .filters__display__filters-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+  .filters__display__search-bar {
+    min-width: 40vw;
+    font-size: 0.95rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 8px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 8px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 22px;
+    height: 22px;
+  }
+  .filters__display-empty {
+    padding: 15px;
+  }
+  .filters__display-empty p {
+    text-align: center;
+    font-size: 1.75rem;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    row-gap: 10px;
+    -moz-column-gap: 8px;
+         column-gap: 8px;
+  }
+  .filters .filter-result-title {
+    padding: 8px 0;
+    font-size: 1rem;
+  }
+  .filters__pagination {
+    padding: 20px 0 10px 0;
+  }
+  .filters__pagination-container {
+    padding: 0px;
+  }
+  .filters__pagination button {
+    margin: 0 10px;
+    padding: 6px;
+    font-size: 1.15rem;
+  }
+  .filters__pagination button svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+@media screen and (width >= 1024px) {
+  .filters h1 {
+    font-size: 1.75rem;
+  }
+  .filters-modal {
+    width: 440px;
+    padding: 14px 14px 18px 14px;
+  }
+  .filters-modal .title {
+    font-size: 1.35rem;
+  }
+  .filters-modal__filters {
+    margin: 5px 0 15px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 200px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 190px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 200px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 200px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 190px);
+  }
+  .filters-modal__buttons {
+    gap: 10px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 8px 0 12px;
+  }
+  .filters__display__row1 {
+    gap: 12px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 1.75rem;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    font-size: 1.15rem;
+    border: 1px solid #add8e6;
+  }
+  .filters__display__filters-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  .filters__display__search-bar {
+    min-width: 40vw;
+    font-size: 1.15rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 8px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 8px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 22px;
+    height: 22px;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    row-gap: 12px;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+  }
+  .filters__pagination {
+    padding: 25px 0 15px 0;
+  }
+  .filters__pagination-container {
+    padding: 0px;
+  }
+  .filters__pagination button {
+    margin: 0 10px;
+    padding: 8px;
+    font-size: 1.35rem;
+  }
+  .filters__pagination button svg {
+    width: 28px;
+    height: 28px;
+  }
+  .filters .filter-result {
+    max-width: 250px;
+  }
+}
+@media screen and (width >= 1280px) {
+  .filters {
+    padding: 0px 18px 12px;
+  }
+  .filters-modal {
+    padding: 18px 18px 24px 18px;
+  }
+  .filters-modal .title {
+    font-size: 1.5rem;
+  }
+  .filters-modal__filters {
+    margin: 6px 0 16px 0;
+  }
+  .filters-modal__filters__filter p {
+    font-size: 1rem;
+  }
+  .filters-modal__filters__filter button {
+    font-size: 0.85rem;
+    padding: 6px 0;
+  }
+  .filters .separator {
+    margin: 12px 0 16px 0;
+  }
+  .filters__display__row1 {
+    gap: 15px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 2rem;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    font-size: 1.15rem;
+    border: 1px solid #add8e6;
+  }
+  .filters__display__filters-btn svg {
+    width: 26px;
+    height: 26px;
+  }
+  .filters__display__search-bar {
+    min-width: 35vw;
+    font-size: 1.35rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 10px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 10px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 28px;
+    height: 28px;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px 12px;
+  }
+  .filters .filter-result {
+    border: 2px solid lightslategray;
+    max-width: 380px;
+  }
+  .filters .filter-result-title {
+    font-size: 1.5rem;
+    padding: 15px 0;
+  }
+  .filters__pagination {
+    padding: 25px 0 15px 0;
+  }
+  .filters__pagination-container {
+    padding: 0px;
+  }
+  .filters__pagination button {
+    margin: 0 10px;
+    padding: 6px;
+    font-size: 1.35rem;
+  }
+  .filters__pagination button svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media screen and (width >= 1536px) {
+  .filters {
+    padding: 0 18px 12px;
+  }
+  .filters-modal {
+    width: 500px;
+    padding: 18px 18px 24px 18px;
+  }
+  .filters-modal .title {
+    font-size: 1.75rem;
+  }
+  .filters-modal__filters {
+    margin: 8px 0 18px 0;
+  }
+  .filters-modal__filters__filter p {
+    font-size: 1.15rem;
+  }
+  .filters-modal__filters__filter button {
+    font-size: 1rem;
+    padding: 6px 0;
+  }
+  .filters-modal__filters .genre {
+    width: clamp(180px, 49%, 225px);
+  }
+  .filters-modal__filters .type {
+    width: clamp(160px, 49%, 220px);
+  }
+  .filters-modal__filters .rating {
+    width: clamp(90px, 49%, 225px);
+  }
+  .filters-modal__filters .country {
+    width: clamp(120px, 49%, 220px);
+  }
+  .filters-modal__filters .status {
+    width: clamp(120px, 49%, 225px);
+  }
+  .filters-modal__filters .language {
+    width: clamp(120px, 49%, 220px);
+  }
+  .filters-modal__buttons {
+    gap: 15px;
+  }
+  .filters-modal__buttons button {
+    width: 48%;
+  }
+  .filters .separator {
+    margin: 15px 0 20px 0;
+  }
+  .filters__display__row1 {
+    gap: 25px;
+  }
+  .filters__display__row1 h1 {
+    font-size: 2.25rem;
+  }
+  .filters__display__filters-btn {
+    padding: 6px 8px;
+    font-size: 1.35rem;
+    border: 2px solid #add8e6;
+  }
+  .filters__display__filters-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+  .filters__display-empty {
+    padding: 25px;
+  }
+  .filters__display-empty p {
+    text-align: center;
+    font-size: 2.25rem;
+  }
+  .filters__display__search-bar {
+    min-width: 35vw;
+    font-size: 1.5rem;
+  }
+  .filters__display__search-bar__input-field {
+    padding: 12px 0;
+  }
+  .filters__display__search-bar__search-button, .filters__display__search-bar__clear-button {
+    padding: 12px;
+  }
+  .filters__display__search-bar__search-button svg, .filters__display__search-bar__clear-button svg {
+    width: 32px;
+    height: 32px;
+  }
+  .filters__display__results {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px 15px;
+  }
+  .filters .filter-result {
+    border: 2px solid lightslategray;
+    max-width: 450px;
+  }
+  .filters .filter-result-title {
+    font-size: 1.75rem;
+    padding: 20px 0;
+  }
+  .filters__pagination {
+    padding: 25px 0 15px;
+  }
+  .filters__pagination-container {
+    padding: 0px;
+  }
+  .filters__pagination button {
+    margin: 0 12px;
+    padding: 8px;
+    font-size: 1.5rem;
+  }
+  .filters__pagination button svg {
+    width: 32px;
+    height: 32px;
+  }
+  .filters__pagination .active-page {
+    border: 2px solid rgb(173, 216, 230);
+  }
+}
+
+.filter-result {
+  border: 1px solid lightslategray;
+  display: inline-block;
+  text-align: left;
+  position: relative;
+}
+.filter-result__link {
+  color: white;
+  text-decoration: none;
+}
+.filter-result-title {
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  padding: 10px 0;
+  margin-top: 3px;
+  background-color: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.filter-result img {
+  width: 100%;
+}
+
+.filter-result-skeleton {
+  margin: 25px 15px;
+  display: inline-block;
+  position: relative;
+  min-width: 300px;
+  height: 400px;
+  position: relative;
+}
+.filter-result-skeleton__link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+.filter-result-skeleton-title {
+  text-align: center;
+  font-family: "Roboto";
+  font-size: 1.25rem;
+  padding: 10px 0;
+  margin-top: 3px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  justify-self: flex-end;
+  background: #152331;
+  background: linear-gradient(180deg, rgba(21, 35, 49, 0.61) 0%, rgb(0, 0, 0) 100%);
+  color: transparent;
+}
+.filter-result-skeleton .img-placeholder {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  height: 350px;
+  width: 100%;
+  background: #152331;
+  background: linear-gradient(180deg, rgba(21, 35, 49, 0.85) 0%, rgb(0, 0, 0) 100%);
+}
+
+.dropdown {
+  background: black;
+  box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+}
+.dropdown ul {
+  margin: 0;
+  padding: 0;
+}
+.dropdown ul li {
+  list-style: none;
+}
+.dropdown ul li .dropdown__option {
+  width: 100%;
+  padding: 4px 0;
+  margin: 0;
+  border: none;
+}
+.dropdown ul li:first-of-type .dropdown__option {
+  margin-top: 5px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.dropdown ul li:last-of-type .dropdown__option {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.separator {
+  margin: 0 10px;
+  border: 2px solid rgba(255, 255, 255, 0.527);
+}/*# sourceMappingURL=filters.css.map */

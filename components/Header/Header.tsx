@@ -1,14 +1,19 @@
 "use client";
 
-import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
-import { CircleXIcon, SearchIcon } from "lucide-react";
-
-import SearchResults from "./SearchResults/SearchResults";
-
-import { movies } from "@/constants/constants";
-import "../../css/header.css";
-import Link from "next/link";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { CircleXIcon, MenuIcon, SearchIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+
+import { movies } from "@/constants/movies";
+
+import "../../css/header.css";
+
+const SearchResults = dynamic(() => import("./SearchResults/SearchResults"));
+const MobileNavModal = dynamic(
+  () => import("../MobileNavModal/MobileNavModal"),
+);
 
 const filterShows = (searchWord: string, shows: Show[]) => {
   const result = shows.filter((show) => {
@@ -23,11 +28,14 @@ function Header({}) {
   const [searchValue, setSearchValue] = useState("");
   const [searchResults, setSearchResults] = useState<Show[]>(movies);
   const [showResults, setShowResults] = useState(false);
+  const [showNavModal, setShowNavModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     searchRef.current?.focus();
+    (() => setWindowWidth(window.innerWidth))();
   }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +49,9 @@ function Header({}) {
     setSearchValue(event.target.value);
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {};
+  const handleToggleNavModal = () => {
+    setShowNavModal(() => !showNavModal);
+  };
 
   const handleSearchButtonClick = () => {
     searchRef.current?.focus();
@@ -73,9 +83,8 @@ function Header({}) {
           onChange={handleChange}
           placeholder={"Search a Show"}
           className="header__input__input-field"
-          onKeyDown={handleKeyDown}
           onFocus={() => setShowResults(true)}
-          onBlur={() => setShowResults(false)}
+          // onBlur={() => setShowResults(false)}
         />
         <button
           className="header__input__search-button"
@@ -87,6 +96,7 @@ function Header({}) {
           <SearchResults
             searchWord={searchValue}
             searchResults={searchResults}
+            screenWidth={windowWidth!}
           />
         )}
       </div>
@@ -115,6 +125,10 @@ function Header({}) {
           </li>
         </ul>
       </nav>
+      <button className="header__nav-btn" onClick={handleToggleNavModal}>
+        <MenuIcon />
+      </button>
+      {showNavModal && <MobileNavModal closeModal={handleToggleNavModal} />}
     </header>
   );
 }

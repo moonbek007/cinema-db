@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
 
@@ -21,7 +22,6 @@ function SearchResult({
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: "30%", height: "auto" }}
         />
         <div className="search-result__show__info">
           <div className="search-result__show__info__row1">
@@ -38,20 +38,19 @@ function SearchResult({
               <span> {rating}</span>
             </p>
             <p className="search-result__show__info__period">
-              {year.substring(0, 4)}
+              {year && year.substring(0, 4)}
             </p>
             <p className="search-result__show__info__genres">
               {genres?.join(", ")}
             </p>
           </div>
-          <div
-            className="search-result__show__info__description"
-            dangerouslySetInnerHTML={{ __html: description }}
-          ></div>
+          <div className="search-result__show__info__description">
+            <p>{description}</p>
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default SearchResult;
+export default memo(SearchResult);
