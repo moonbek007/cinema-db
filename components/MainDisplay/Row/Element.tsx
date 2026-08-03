@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { getElementYearAndCountry } from "@/lib/utils";
+
 function Element({ link, image, name, year, country }: ElementProps) {
+  const yearAndCountry = getElementYearAndCountry(year, country);
+
   return (
     <div className="element rounded-2xl">
       <Link href={link} target="_blank" rel="noreferrer">
@@ -22,9 +26,7 @@ function Element({ link, image, name, year, country }: ElementProps) {
         />
         <div className="element__info">
           <h4 className="element__info__title">{name}</h4>
-          <h5 className="element__info__year-country">
-            {year}, {country}
-          </h5>
+          <h5 className="element__info__year-country">{yearAndCountry}</h5>
         </div>
       </Link>
     </div>

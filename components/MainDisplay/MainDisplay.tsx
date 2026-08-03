@@ -1,22 +1,19 @@
 "use client";
 
-import { useState } from "react";
-
 import Row from "./Row/Row.tsx";
 
-import { loadSortedShows } from "@/lib/utils.ts";
+import { loadGenres, loadSortedShows } from "@/lib/utils.ts";
 
 import "../../css/explore.css";
 
 function MainDisplay() {
-  const [shows] = useState<Record<string, Show[]>>(loadSortedShows());
-
-  const genres = Object.keys(shows);
+  const shows = loadSortedShows();
+  const genres = loadGenres();
 
   return (
     <div className="explore">
       {genres.map((genre, index) => {
-        return <Row genre={genre} key={index} showsToFilter={shows[genre]} />;
+        return <Row genre={genre} key={index} filteredShows={shows[genre]} />;
       })}
     </div>
   );

@@ -74,14 +74,14 @@ declare type Genre = string;
 
 declare type RowProps = {
   genre: Genre;
-  showsToFilter: Show[];
+  filteredShows: Show[];
 };
 
 declare type ElementProps = {
   link: string;
   image: string;
   name: string;
-  year: string;
+  year: string | undefined;
   country: string | undefined;
   show: Show;
 };

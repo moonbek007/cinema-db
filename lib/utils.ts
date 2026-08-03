@@ -3,6 +3,7 @@ import {
   defaultPageValues,
   DropdownValues,
   FilterTypes,
+  genres,
   modalFilters,
   QueryParams,
 } from "@/constants/constants";
@@ -26,6 +27,29 @@ const loadSortedShows: () => Record<string, Show[]> = () => {
   );
   return sortedShows;
 };
+
+function loadGenres() {
+  return [...genres];
+}
+
+function loadRandomShowsByGenre(shows: Show[]) {
+  if (shows.length < 10) return [...shows];
+  const randomShows: Show[] = [];
+  const showsAdded: { [key: string]: boolean } = {};
+  while (randomShows.length < 10) {
+    const randomIndex = Math.floor(Math.random() * shows.length);
+    if (showsAdded[randomIndex]) continue;
+    randomShows.push(shows[randomIndex]);
+    showsAdded[randomIndex] = true;
+  }
+  return [...randomShows];
+}
+
+function loadShowsByGenre(shows: Show[]) {
+  const maxNumberOfShows = 20;
+  if (shows.length < maxNumberOfShows) return [...shows];
+  return shows.slice(shows.length - maxNumberOfShows);
+}
 
 function loadFiltersModalFilters(filters: DefaultFiltersType) {
   const newFilters = { ...modalFilters };
@@ -138,6 +162,15 @@ function loadFilteredShows(
   return newFilteredShows;
 }
 
+function getElementYearAndCountry(year?: string, country?: string) {
+  if (year) {
+    if (country) return `${year}, ${country}`;
+    return year;
+  }
+  if (country) return country;
+  return "";
+}
+
 function getNumberOfFiltersApplied(
   filters: {
     name: FilterTypes | QueryParams.SEARCH | QueryParams.PAGE;
@@ -220,9 +253,12 @@ function getRawShowDescription(
 
 export {
   loadSortedShows,
+  loadGenres,
+  loadShowsByGenre,
   loadFiltersModalFilters,
   loadFilters,
   loadFilteredShows,
+  getElementYearAndCountry,
   getNumberOfFiltersApplied,
   getPageDetails,
   getPaginationIndecies,

@@ -6090,52 +6090,6 @@ export const movies: Show[] = [
     },
   },
   {
-    id: 140,
-    url: "https://www.tvmaze.com/shows/140/looking",
-    name: "Looking",
-    type: "Scripted",
-    language: "English",
-    genres: ["Drama", "Comedy", "Romance"],
-    status: "Ended",
-    runtime: 30,
-    averageRuntime: 32,
-    premiered: "2014-01-19",
-    ended: "2015-03-22",
-    officialSite: "http://www.hbo.com/looking",
-    schedule: { time: "22:00", days: ["Sunday"] },
-    rating: { average: 7.3 },
-    weight: 49,
-    network: {
-      id: 8,
-      name: "HBO",
-      country: {
-        name: "United States",
-        code: "US",
-        timezone: "America/New_York",
-      },
-      officialSite: "https://www.hbo.com/",
-    },
-    webChannel: null,
-    dvdCountry: null,
-    externals: { tvrage: 37412, thetvdb: 274337, imdb: "tt2581458" },
-    image: {
-      medium:
-        "https://static.tvmaze.com/uploads/images/medium_portrait/0/1961.jpg",
-      original:
-        "https://static.tvmaze.com/uploads/images/original_untouched/0/1961.jpg",
-    },
-    summary:
-      "<p><b>Looking</b> offers up the unfiltered experiences of three close friends living - and loving - in modern-day San Francisco. Friendship may bind them, but each is at a markedly different point in his journey: Patrick is the 29-year-old video game designer getting back into the dating world in the wake of his ex's engagement; aspiring artist Agustín, 31, is questioning the idea of monogamy amid a move to domesticate with his boyfriend; and the group's oldest member - longtime waiter Dom, 39 - is facing middle age with romantic and professional dreams still unfulfilled.</p><p>The trio's stories intertwine and unspool dramatically as they search for happiness and intimacy in an age of unparalleled choices - and rights - for gay men. Also important to the ‘Looking' mix is the progressive, unpredictable, sexually open culture of the Bay Area, with real San Francisco locations serving as a backdrop for the group's lives. Rounding out the ‘Looking' world are a bevy of dynamic gay men including Kevin, Lynn, and Richie, as well as a wide-range of supporting characters like Dom's roommate Doris, Agustín's boyfriend Frank, and Patrick's co-worker Owen.</p>",
-    updated: 1704793861,
-    _links: {
-      self: { href: "https://api.tvmaze.com/shows/140" },
-      previousepisode: {
-        href: "https://api.tvmaze.com/episodes/131209",
-        name: "Looking for Home",
-      },
-    },
-  },
-  {
     id: 141,
     url: "https://www.tvmaze.com/shows/141/getting-on",
     name: "Getting On",
@@ -11148,61 +11102,6 @@ export const movies: Show[] = [
       previousepisode: {
         href: "https://api.tvmaze.com/episodes/623237",
         name: "The Finale",
-      },
-    },
-  },
-  {
-    id: 252,
-    url: "https://www.tvmaze.com/shows/252/girl-meets-world",
-    name: "Girl Meets World",
-    type: "Scripted",
-    language: "English",
-    genres: ["Drama", "Comedy", "Family"],
-    status: "Ended",
-    runtime: 30,
-    averageRuntime: 30,
-    premiered: "2014-06-27",
-    ended: "2017-01-20",
-    officialSite: "http://disneychannel.disney.com/girl-meets-world",
-    schedule: { time: "18:00", days: ["Friday"] },
-    rating: { average: 7.7 },
-    weight: 97,
-    network: {
-      id: 78,
-      name: "Disney Channel",
-      country: {
-        name: "United States",
-        code: "US",
-        timezone: "America/New_York",
-      },
-      officialSite: "https://disneynow.com/all-shows/disney-channel",
-    },
-    webChannel: {
-      id: 83,
-      name: "DisneyNOW",
-      country: {
-        name: "United States",
-        code: "US",
-        timezone: "America/New_York",
-      },
-      officialSite: "https://disneynow.com/",
-    },
-    dvdCountry: null,
-    externals: { tvrage: 33436, thetvdb: 267777, imdb: "tt2543796" },
-    image: {
-      medium:
-        "https://static.tvmaze.com/uploads/images/medium_portrait/316/792450.jpg",
-      original:
-        "https://static.tvmaze.com/uploads/images/original_untouched/316/792450.jpg",
-    },
-    summary:
-      "<p><b>Girl Meets World</b> is based on ABC's hugely popular sitcom, Boy Meets World (1993). Set in New York City, the show tells the wonderfully funny heartfelt stories that Boy Meets World is renowned for - only this time from a tween girl's perspective - as the curious and bright 7th grader Riley Matthews and her quick-witted friend Maya Fox embark on an unforgettable middle school experience. But their plans for a carefree year will be adjusted slightly under the watchful eyes of Riley's parents - dad Cory, who's also a faculty member (and their new History teacher), and mom Topanga, who owns a trendy after school hangout that specializes in pudding.</p>",
-    updated: 1704793836,
-    _links: {
-      self: { href: "https://api.tvmaze.com/shows/252" },
-      previousepisode: {
-        href: "https://api.tvmaze.com/episodes/1011244",
-        name: "Girl Meets Goodbye",
       },
     },
   },

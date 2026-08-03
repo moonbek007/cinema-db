@@ -1,14 +1,16 @@
 export const genres: Genre[] = [
-  "Action",
-  "Drama",
   "Adventure",
-  "Comedy",
   "Crime",
-  "Fantasy",
-  "Horror",
+  "Action",
   "Thriller",
-  "Romance",
+  "Drama",
   "Science-Fiction",
+  "Fantasy",
+  "Comedy",
+  "Horror",
+  "Romance",
+  "Mystery",
+  "Anime",
 ];
 
 export const images = [
