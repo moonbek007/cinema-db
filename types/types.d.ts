@@ -102,6 +102,12 @@ declare type SearchResultsProps = {
   searchResults: Show[];
 };
 
+declare type CollectionData = {
+  name: string;
+  count: number;
+  image: string;
+};
+
 declare type CollectionElementProps = {
   name: string;
   image: string;

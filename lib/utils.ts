@@ -1,4 +1,5 @@
 import {
+  collectionImages,
   defaultFilters,
   defaultPageValues,
   DropdownValues,
@@ -9,8 +10,8 @@ import {
 } from "@/constants/constants";
 import { movies } from "@/constants/movies";
 
-const loadSortedShows: () => Record<string, Show[]> = () => {
-  const sortedShows = movies.reduce(
+function loadSortedShows(): Record<string, Show[]> {
+  const sortedShows = movies.reduce<Record<string, Show[]>>(
     (accumulator, currentShow) => {
       const showGenres = currentShow.genres;
       showGenres.map((genre) => {
@@ -23,10 +24,10 @@ const loadSortedShows: () => Record<string, Show[]> = () => {
       });
       return accumulator;
     },
-    {} as Record<string, Show[]>,
+    {},
   );
   return sortedShows;
-};
+}
 
 function loadGenres() {
   return [...genres];
@@ -49,6 +50,39 @@ function loadShowsByGenre(shows: Show[]) {
   const maxNumberOfShows = 20;
   if (shows.length < maxNumberOfShows) return [...shows];
   return shows.slice(shows.length - maxNumberOfShows);
+}
+
+function loadCollections(): CollectionData[] {
+  const sortedShows = movies.reduce<Record<string, Show[]>>(
+    (accumulator, currentShow) => {
+      const showGenres = currentShow.genres;
+      showGenres.map((genre) => {
+        if (!accumulator[genre]) {
+          // Initialize the array for this genre if it doesn't exist yet
+          accumulator[genre] = [currentShow];
+        } else {
+          accumulator[genre].push(currentShow);
+        }
+      });
+      return accumulator;
+    },
+    {},
+  );
+
+  return Object.entries(collectionImages).reduce<CollectionData[]>(
+    (accumulator, [collectionName, collectionImage]) => {
+      accumulator = [
+        ...accumulator,
+        {
+          name: collectionName,
+          count: sortedShows[collectionName].length,
+          image: collectionImage,
+        },
+      ];
+      return accumulator;
+    },
+    [],
+  );
 }
 
 function loadFiltersModalFilters(filters: DefaultFiltersType) {
@@ -255,6 +289,7 @@ export {
   loadSortedShows,
   loadGenres,
   loadShowsByGenre,
+  loadCollections,
   loadFiltersModalFilters,
   loadFilters,
   loadFilteredShows,
