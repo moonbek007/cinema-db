@@ -1,0 +1,63 @@
+.collections {
+  overflow-x: hidden;
+  background: rgba(0, 0, 1, 0.95);
+  color: white;
+  padding: 30px;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  &__display {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    row-gap: 15px;
+    column-gap: 20px;
+  }
+
+  &__element {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    min-width: 250px;
+    max-height: 350px;
+    text-decoration: none;
+    text-align: left;
+
+    & a {
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      opacity: 0.8;
+    }
+
+    &__title,
+    &__quantity {
+      position: absolute;
+      z-index: 10;
+      color: white;
+    }
+
+    &__title {
+      margin: 10px 5px 5px 5px;
+      font-size: 1.5rem;
+      bottom: 5px;
+      left: 5px;
+    }
+
+    &__quantity {
+      top: 5px;
+      right: 5px;
+      background-color: black;
+    }
+  }
+}
