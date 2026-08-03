@@ -77,10 +77,14 @@
   .header__input {
     font-size: 0.9rem;
   }
-  .header__input__input-field, .header__input__search-button, .header__input__clear-button {
+  .header__input__input-field {
+    padding: 8px 0;
+    width: 75%;
+  }
+  .header__input__search-button, .header__input__clear-button {
     padding: 8px 12px;
   }
-  .header__input__input-field svg, .header__input__search-button svg, .header__input__clear-button svg {
+  .header__input__search-button svg, .header__input__clear-button svg {
     width: 16px;
     height: 16px;
   }

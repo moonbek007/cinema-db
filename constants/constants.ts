@@ -63,6 +63,10 @@ export const enum DropdownValues {
   UNITED_KINGDOM = "United Kingdom",
 }
 
+export const enum ConstValues {
+  ALL = "All",
+}
+
 export const enum QueryParams {
   RATING = "rating",
   STATUS = "status",

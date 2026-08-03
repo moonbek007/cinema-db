@@ -3,7 +3,7 @@
 import { memo } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CompassIcon, HouseIcon, LibraryIcon } from "lucide-react";
+import { HouseIcon, LibraryIcon, SearchIcon } from "lucide-react";
 
 import "../../css/navmodal.css";
 
@@ -41,7 +41,7 @@ const MobileNavModal = ({ closeModal }: NavModalProps) => {
               onClick={closeModal}
             >
               <Link href="/explore">
-                <CompassIcon />
+                <SearchIcon />
                 <span>Explore</span>
               </Link>
             </button>

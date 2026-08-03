@@ -88,7 +88,11 @@
       &__input {
         font-size: 0.9rem;
 
-        &__input-field,
+        &__input-field {
+          padding: 8px 0;
+          width: 75%;
+        }
+
         &__search-button,
         &__clear-button {
           padding: 8px 12px;

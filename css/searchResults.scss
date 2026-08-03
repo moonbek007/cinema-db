@@ -151,8 +151,8 @@
 
   @media screen and (width <425px) {
     & {
-      width: clamp(305px, 93vw, 410px);
-      max-height: 280px;
+      width: clamp(275px, 94vw, 410px);
+      max-height: 300px;
       padding: 2px;
       top: 40px;
 
@@ -162,13 +162,14 @@
           margin: 2px 0;
 
           &__image {
-            width: 25%;
+            width: 35%;
             border-radius: 4px;
           }
 
           &__info {
             padding: 2px 0 2px 4px;
             gap: 6px;
+            width: 65%;
 
             &__title {
               font-size: 0.65rem;
@@ -193,7 +194,7 @@
             }
 
             &__description {
-              font-size: 0.5rem;
+              font-size: clamp(0.6rem, 3vw, 0.79rem);
             }
           }
         }
@@ -203,8 +204,8 @@
 
   @media screen and (width >=425px) and (width<640px) {
     & {
-      width: clamp(395px, 93vw, 600px);
-      max-height: 280px;
+      width: clamp(395px, 94vw, 600px);
+      max-height: 300px;
       padding: 2px;
       top: 40px;
 
@@ -214,11 +215,12 @@
           margin: 4px 0;
 
           &__image {
-            width: 25%;
+            width: 30%;
             border-radius: 4px;
           }
 
           &__info {
+            width: 70%;
             padding: 2px 0 2px 4px;
             gap: 6px;
 
@@ -245,7 +247,7 @@
             }
 
             &__description {
-              font-size: 0.55rem;
+              font-size: clamp(0.8rem, 3vw, 1.03rem);
             }
           }
         }
@@ -297,7 +299,7 @@
             }
 
             &__description {
-              font-size: 0.55rem;
+              font-size: 0.75rem;
             }
           }
         }
@@ -308,7 +310,7 @@
   @media screen and (width>= 768px) {
     & {
       width: max(65vw, 540px);
-      max-height: 320px;
+      max-height: 350px;
       padding: 4px;
       top: 40px;
 
@@ -349,7 +351,7 @@
             }
 
             &__description {
-              font-size: 0.65rem;
+              font-size: clamp(0.7rem, 2vw, 1.05rem);
             }
           }
         }
@@ -359,7 +361,7 @@
   @media screen and (width>=1024px) {
     & {
       width: max(70vw, 750px);
-      max-height: 500px;
+      max-height: 440px;
       padding: 4px;
       top: 50px;
 
@@ -369,7 +371,7 @@
           margin: 6px 0;
 
           &__image {
-            width: 30%;
+            width: 35%;
             border-radius: 8px;
           }
 
@@ -400,7 +402,7 @@
             }
 
             &__description {
-              font-size: 1rem;
+              font-size: clamp(0.8rem, 1.5vw, 1.05rem);
             }
           }
         }
@@ -410,7 +412,7 @@
   @media screen and (width>=1280px) {
     & {
       width: max(60vw, 1000px);
-      max-height: 650px;
+      max-height: 550px;
       padding: 6px;
       top: 50px;
 
@@ -462,7 +464,7 @@
     & {
       width: max(70vw, 1200px);
       min-width: 1000px;
-      max-height: 750px;
+      max-height: 770px;
       padding: 10px;
       top: 70px;
 
@@ -503,7 +505,7 @@
             }
 
             &__description {
-              font-size: 1.75rem;
+              font-size: clamp(1rem, 1.35vw, 1.5rem);
             }
           }
         }

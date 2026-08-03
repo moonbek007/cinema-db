@@ -100,6 +100,7 @@ declare type SearchResultProps = {
 declare type SearchResultsProps = {
   searchWord: string;
   searchResults: Show[];
+  screenWidth: number;
 };
 
 declare type CollectionData = {

@@ -1,8 +1,6 @@
+import { memo } from "react";
 import Image from "next/image";
-import { useMemo, memo } from "react";
 import { StarIcon } from "lucide-react";
-
-import { getRawShowDescription } from "@/lib/utils";
 
 function SearchResult({
   image,
@@ -14,10 +12,6 @@ function SearchResult({
   genres,
   description,
 }: SearchResultProps) {
-  const newDescription = useMemo(
-    () => getRawShowDescription(description),
-    [description],
-  );
   return (
     <>
       <div className="search-result__show">
@@ -51,7 +45,7 @@ function SearchResult({
             </p>
           </div>
           <div className="search-result__show__info__description">
-            <p>{newDescription}</p>
+            <p>{description}</p>
           </div>
         </div>
       </div>

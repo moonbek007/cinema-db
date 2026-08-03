@@ -1,5 +1,6 @@
 import {
   collectionImages,
+  ConstValues,
   defaultFilters,
   defaultPageValues,
   DropdownValues,
@@ -271,18 +272,29 @@ function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
 
 function getRawShowDescription(
   description: string,
-  numberOfWords: number | null,
+  numberOfWords: number | ConstValues.ALL,
 ) {
   const descriptionWords = description.split(" ").map((word) => {
     const newWord = word.replace(/<\/?([a-zA-Z]+)([^>]*)*>/g, "");
     return newWord;
   });
 
-  if (numberOfWords) {
+  if (numberOfWords && numberOfWords !== ConstValues.ALL) {
     if (descriptionWords.length > numberOfWords)
       return descriptionWords.slice(0, numberOfWords).join(" ") + " ...";
   }
   return descriptionWords.join(" ");
+}
+
+function getNumberOfDescriptionWords(
+  screenWidth: number,
+): number | ConstValues.ALL {
+  if (screenWidth < 425) return 40;
+  if (screenWidth < 640) return 50;
+  if (screenWidth < 768) return 60;
+  if (screenWidth < 1024) return 75;
+  if (screenWidth < 1280) return 110;
+  return ConstValues.ALL;
 }
 
 export {
@@ -298,4 +310,5 @@ export {
   getPageDetails,
   getPaginationIndecies,
   getRawShowDescription,
+  getNumberOfDescriptionWords,
 };
