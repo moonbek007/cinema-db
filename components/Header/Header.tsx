@@ -29,11 +29,13 @@ function Header({}) {
   const [searchResults, setSearchResults] = useState<Show[]>(movies);
   const [showResults, setShowResults] = useState(false);
   const [showNavModal, setShowNavModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     searchRef.current?.focus();
+    (() => setWindowWidth(window.innerWidth))();
   }, []);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -82,7 +84,7 @@ function Header({}) {
           placeholder={"Search a Show"}
           className="header__input__input-field"
           onFocus={() => setShowResults(true)}
-          onBlur={() => setShowResults(false)}
+          // onBlur={() => setShowResults(false)}
         />
         <button
           className="header__input__search-button"
@@ -94,6 +96,7 @@ function Header({}) {
           <SearchResults
             searchWord={searchValue}
             searchResults={searchResults}
+            screenWidth={windowWidth!}
           />
         )}
       </div>

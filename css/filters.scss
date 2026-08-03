@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Roboto&display=swap");
 
+.filters-fallback {
+  background: rgba(0, 0, 0, 0.95);
+  color: white;
+  display: flex;
+  flex-grow: 1;
+}
+
 .filters {
   background: rgba(0, 0, 0, 0.95);
   color: white;
