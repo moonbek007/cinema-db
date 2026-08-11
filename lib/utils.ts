@@ -1,4 +1,6 @@
 import {
+  API_BASE_URL,
+  API_ENDPOINTS,
   collectionImages,
   ConstValues,
   defaultFilters,
@@ -53,18 +55,12 @@ function loadShowsByGenre(shows: Show[]) {
   return shows.slice(shows.length - maxNumberOfShows);
 }
 
-function loadCollections(): CollectionData[] {
-  const sortedShows = movies.reduce<Record<string, Show[]>>(
-    (accumulator, currentShow) => {
-      const showGenres = currentShow.genres;
-      showGenres.map((genre) => {
-        if (!accumulator[genre]) {
-          // Initialize the array for this genre if it doesn't exist yet
-          accumulator[genre] = [currentShow];
-        } else {
-          accumulator[genre].push(currentShow);
-        }
-      });
+function loadCollections(
+  collectionsData: { name: string; count: number }[],
+): CollectionData[] {
+  const cData = collectionsData.reduce<Record<string, number>>(
+    (accumulator, collection) => {
+      accumulator[collection.name] = collection.count;
       return accumulator;
     },
     {},
@@ -76,7 +72,7 @@ function loadCollections(): CollectionData[] {
         ...accumulator,
         {
           name: collectionName,
-          count: sortedShows[collectionName].length,
+          count: cData[collectionName],
           image: collectionImage,
         },
       ];
@@ -297,6 +293,14 @@ function getNumberOfDescriptionWords(
   return ConstValues.ALL;
 }
 
+async function fetchCollections() {
+  const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.COLLECTIONS}`);
+
+  if (!data.ok) throw new Error("Failed to fetch collections");
+
+  return data.json();
+}
+
 export {
   loadSortedShows,
   loadGenres,
@@ -311,4 +315,5 @@ export {
   getPaginationIndecies,
   getRawShowDescription,
   getNumberOfDescriptionWords,
+  fetchCollections,
 };

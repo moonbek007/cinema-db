@@ -102,3 +102,9 @@ export const defaultPageValues: PageType = {
   nextPage: 1,
   totalPages: 1,
 };
+
+export const API_BASE_URL = "http://localhost:3000";
+
+export const enum API_ENDPOINTS {
+  COLLECTIONS = "/collections",
+}

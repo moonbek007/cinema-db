@@ -1,11 +1,13 @@
 import CollectionElement from "./CollectionElement/CollectionElement.tsx";
 
-import { loadCollections } from "@/lib/utils.ts";
+import { fetchCollections, loadCollections } from "@/lib/utils.ts";
 
 import "../../css/collections.css";
 
-function CollectionsDisplay() {
-  const collections = loadCollections();
+async function CollectionsDisplay() {
+  const data = await fetchCollections();
+
+  const collections = loadCollections(data);
 
   return (
     <div className="collections">
