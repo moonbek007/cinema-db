@@ -1,9 +1,8 @@
 import Link from "next/link";
-import Element from "./Element.tsx";
-import { loadShowsByGenre } from "@/lib/utils.ts";
 
-function Row({ genre, filteredShows }: RowProps) {
-  const shows = loadShowsByGenre([...filteredShows]);
+import Element from "./Element.tsx";
+
+function Row({ genre, filteredShows: shows }: RowProps) {
   return (
     <>
       <div className="explore__row-header">
@@ -17,7 +16,7 @@ function Row({ genre, filteredShows }: RowProps) {
             <Element
               show={show}
               key={show.id}
-              image={show.image.medium}
+              image={show?.image ? show.image.medium : "/horror.avif"}
               name={show.name}
               link={show.url}
               year={show?.premiered?.substring(0, 4)}

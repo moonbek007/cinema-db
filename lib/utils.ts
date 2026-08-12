@@ -13,46 +13,21 @@ import {
 } from "@/constants/constants";
 import { movies } from "@/constants/movies";
 
-function loadSortedShows(): Record<string, Show[]> {
-  const sortedShows = movies.reduce<Record<string, Show[]>>(
-    (accumulator, currentShow) => {
-      const showGenres = currentShow.genres;
-      showGenres.map((genre) => {
-        if (!accumulator[genre]) {
-          // Initialize the array for this genre if it doesn't exist yet
-          accumulator[genre] = [currentShow];
-        } else {
-          accumulator[genre].push(currentShow);
-        }
-      });
+function loadGenres(
+  genresData: { name: string; count: number; shows: Show[] }[],
+) {
+  const gData = genresData.reduce<Record<string, Show[]>>(
+    (accumulator, genre) => {
+      accumulator[genre.name] = genre.shows;
       return accumulator;
     },
     {},
   );
-  return sortedShows;
-}
-
-function loadGenres() {
-  return [...genres];
-}
-
-function loadRandomShowsByGenre(shows: Show[]) {
-  if (shows.length < 10) return [...shows];
-  const randomShows: Show[] = [];
-  const showsAdded: { [key: string]: boolean } = {};
-  while (randomShows.length < 10) {
-    const randomIndex = Math.floor(Math.random() * shows.length);
-    if (showsAdded[randomIndex]) continue;
-    randomShows.push(shows[randomIndex]);
-    showsAdded[randomIndex] = true;
-  }
-  return [...randomShows];
-}
-
-function loadShowsByGenre(shows: Show[]) {
-  const maxNumberOfShows = 20;
-  if (shows.length < maxNumberOfShows) return [...shows];
-  return shows.slice(shows.length - maxNumberOfShows);
+  return [
+    ...genres.map((genre) => {
+      return { name: genre, shows: gData[genre] };
+    }),
+  ];
 }
 
 function loadCollections(
@@ -311,9 +286,16 @@ async function fetchSearchResults(searchValue: string) {
   return data.json();
 }
 
+async function fetchMoviesPreview() {
+  const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.MOVIES_PREVIEW}`);
+
+  if (!data.ok) return "Failed to fetch movies preview";
+
+  return data.json();
+}
+
 export {
   loadGenres,
-  loadShowsByGenre,
   loadCollections,
   loadFiltersModalFilters,
   loadFilters,
@@ -326,4 +308,5 @@ export {
   getNumberOfDescriptionWords,
   fetchCollections,
   fetchSearchResults,
+  fetchMoviesPreview,
 };
