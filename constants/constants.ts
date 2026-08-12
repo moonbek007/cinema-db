@@ -112,4 +112,5 @@ export const enum API_ENDPOINTS {
   COLLECTIONS = "/collections",
   SEARCH = "/movies/search",
   MOVIES_PREVIEW = "/genres/preview",
+  MOVIES = "/movies",
 }

@@ -196,3 +196,8 @@ declare type PaginationIndeciesType = {
 declare type NavModalProps = {
   closeModal: () => void;
 };
+
+declare type ExploreDisplayProps = {
+  queryFilters: FilterShowsPropsType[];
+  shows: Show[];
+};

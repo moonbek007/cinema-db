@@ -268,6 +268,17 @@ function getNumberOfDescriptionWords(
   return ConstValues.ALL;
 }
 
+const getQueryParamsValues = (queryParams: Record<string, string>) => {
+  const params = new URLSearchParams();
+
+  const queries = Object.entries(queryParams);
+  queries.forEach(([queryName, queryValue]) => {
+    params.set(queryName, queryValue);
+  });
+
+  return params;
+};
+
 async function fetchCollections() {
   const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.COLLECTIONS}`);
 
@@ -281,7 +292,7 @@ async function fetchSearchResults(searchValue: string) {
     `${API_BASE_URL}${API_ENDPOINTS.SEARCH}?name=${searchValue}`,
   );
 
-  if (!data.ok) return "Failed to fetch movies preview";
+  if (!data.ok) return "Failed to fetch search results";
 
   return data.json();
 }
@@ -290,6 +301,16 @@ async function fetchMoviesPreview() {
   const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.MOVIES_PREVIEW}`);
 
   if (!data.ok) return "Failed to fetch movies preview";
+
+  return data.json();
+}
+
+async function fetchFilteredShows(queries: URLSearchParams) {
+  const data = await fetch(
+    `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
+  );
+
+  if (!data.ok) return "Failed to fetch filtered shows";
 
   return data.json();
 }
@@ -306,7 +327,9 @@ export {
   getPaginationIndecies,
   getRawShowDescription,
   getNumberOfDescriptionWords,
+  getQueryParamsValues,
   fetchCollections,
   fetchSearchResults,
   fetchMoviesPreview,
+  fetchFilteredShows,
 };
