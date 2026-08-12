@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import SearchResult from "./SearchResult.tsx";
 
@@ -9,11 +9,14 @@ import {
 import { ConstValues } from "@/constants/constants.ts";
 
 import "../../../css/searchResults.css";
+import SearchResultFallback from "./fallback.tsx";
+import clsx from "clsx";
 
 function SearchResults({
   searchWord,
   searchResults,
   screenWidth,
+  isLoading,
 }: SearchResultsProps) {
   const [descriptionLength, setDescriptionLength] = useState(
     getNumberOfDescriptionWords(screenWidth),
@@ -37,29 +40,41 @@ function SearchResults({
 
   return (
     <div
-      className={`search-results ${
-        searchWord.length > 0 ? "search-results-open" : ""
-      }`}
-    >
-      {searchResults.map((item) => {
-        const newDescription =
-          descriptionLength !== ConstValues.ALL
-            ? getRawShowDescription(item.summary, descriptionLength)
-            : getRawShowDescription(item.summary, 1280);
-        return (
-          <SearchResult
-            image={item.image.medium}
-            genres={item.genres}
-            year={item.premiered}
-            description={newDescription}
-            link={item.url}
-            name={item.name}
-            rating={(item?.rating?.average as number) ?? "N/A"}
-            key={item.id}
-            status={item.status}
-          />
-        );
+      className={clsx(`search-results`, {
+        "search-results-open": searchWord.length,
+        "search-results-empty": !searchResults.length && !isLoading,
       })}
+    >
+      {isLoading ? (
+        <SearchResultFallback />
+      ) : !searchResults.length ? (
+        <p className="text-gray-100 text-xl text-center py-3 px-1.5 2xl:text-2xl 2xl:py-4 2xl:px-2.5">
+          No matching results found
+        </p>
+      ) : (
+        searchResults.map((item) => {
+          const newDescription = !item.summary
+            ? item.summary
+            : descriptionLength !== ConstValues.ALL
+              ? getRawShowDescription(item.summary, descriptionLength)
+              : getRawShowDescription(item.summary, 1280);
+          return (
+            <Suspense key={item.id} fallback={<SearchResultFallback />}>
+              <SearchResult
+                image={item?.image ? item.image.medium : "/horror.avif"}
+                genres={item.genres}
+                year={item.premiered}
+                description={newDescription}
+                link={item.url}
+                name={item.name}
+                rating={(item?.rating?.average as number) ?? "N/A"}
+                key={item.id}
+                status={item.status}
+              />
+            </Suspense>
+          );
+        })
+      )}
     </div>
   );
 }

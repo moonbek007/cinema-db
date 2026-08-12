@@ -11,6 +11,9 @@ export const genres: Genre[] = [
   "Romance",
   "Mystery",
   "Anime",
+  "History",
+  "Family",
+  "War",
 ];
 
 export const collectionImages: Record<string, string> = {
@@ -107,4 +110,6 @@ export const API_BASE_URL = "http://localhost:3000";
 
 export const enum API_ENDPOINTS {
   COLLECTIONS = "/collections",
+  SEARCH = "/movies/search",
+  MOVIES_PREVIEW = "/genres/preview",
 }

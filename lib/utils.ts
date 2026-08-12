@@ -301,8 +301,17 @@ async function fetchCollections() {
   return data.json();
 }
 
+async function fetchSearchResults(searchValue: string) {
+  const data = await fetch(
+    `${API_BASE_URL}${API_ENDPOINTS.SEARCH}?name=${searchValue}`,
+  );
+
+  if (!data.ok) return "Failed to fetch movies preview";
+
+  return data.json();
+}
+
 export {
-  loadSortedShows,
   loadGenres,
   loadShowsByGenre,
   loadCollections,
@@ -316,4 +325,5 @@ export {
   getRawShowDescription,
   getNumberOfDescriptionWords,
   fetchCollections,
+  fetchSearchResults,
 };

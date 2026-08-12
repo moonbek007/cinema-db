@@ -16,6 +16,10 @@
   animation-duration: 50ms;
   animation-fill-mode: forwards;
 }
+.search-results-empty {
+  padding: 8px 10px;
+  width: 100% !important;
+}
 @keyframes showSearchResults {
   1% {
     opacity: 0;

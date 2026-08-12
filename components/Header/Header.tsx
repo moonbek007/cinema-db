@@ -3,10 +3,11 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { CircleXIcon, MenuIcon, SearchIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-import { movies } from "@/constants/movies";
+import { fetchSearchResults } from "@/lib/utils";
 
 import "../../css/header.css";
 
@@ -15,21 +16,15 @@ const MobileNavModal = dynamic(
   () => import("../MobileNavModal/MobileNavModal"),
 );
 
-const filterShows = (searchWord: string, shows: Show[]) => {
-  const result = shows.filter((show) => {
-    return show.name.toLowerCase().includes(searchWord.toLowerCase());
-  });
-  return result;
-};
-
 function Header({}) {
   const pathName = usePathname();
 
   const [searchValue, setSearchValue] = useState("");
-  const [searchResults, setSearchResults] = useState<Show[]>(movies);
+  const [searchResults, setSearchResults] = useState<Show[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [showNavModal, setShowNavModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -38,15 +33,22 @@ function Header({}) {
     (() => setWindowWidth(window.innerWidth))();
   }, []);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.value) {
+  const debouncedAPICall = useDebouncedCallback(async (searchValue: string) => {
+    if (!searchValue) {
       setSearchResults([]);
-    } else {
-      setSearchResults(() => {
-        return filterShows(event.target.value, movies);
-      });
+      return;
     }
-    setSearchValue(event.target.value);
+    const searchResults = await fetchSearchResults(searchValue);
+    setSearchResults(() => {
+      return searchResults.slice(0, 10);
+    });
+    setIsLoading(false);
+  }, 500);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsLoading(true);
+    setSearchValue(() => event.target.value);
+    debouncedAPICall(event.target.value);
   };
 
   const handleToggleNavModal = () => {
@@ -55,15 +57,12 @@ function Header({}) {
 
   const handleSearchButtonClick = () => {
     searchRef.current?.focus();
-    if (!searchResults.length) {
-      setSearchResults(filterShows(searchValue, movies));
-    }
   };
 
   const handleClearButtonClick = () => {
     searchRef.current?.focus();
     setSearchValue("");
-    setSearchResults(movies);
+    setSearchResults([]);
   };
 
   return (
@@ -97,6 +96,7 @@ function Header({}) {
             searchWord={searchValue}
             searchResults={searchResults}
             screenWidth={windowWidth!}
+            isLoading={isLoading}
           />
         )}
       </div>
