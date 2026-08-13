@@ -165,8 +165,7 @@ declare type DefaultFiltersType = Record<
 >;
 
 declare type SearchBarProps = {
-  search: (word: string) => void;
-  clear: () => void;
+  resolvedSearchParams: Record<string, string>;
 };
 
 declare type QueryParamsType = Record<

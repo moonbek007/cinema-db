@@ -1,11 +1,15 @@
+"use client";
+
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CircleXIcon, SearchIcon } from "lucide-react";
 
 import { QueryParams } from "@/constants/constants";
-import "../../css/filters.css";
+import "../../../css/filters.css";
 
-function SearchBar({ search, clear }: SearchBarProps) {
+function SearchBar({ resolvedSearchParams }: SearchBarProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const searchRef = useRef<HTMLInputElement>(null);
@@ -17,19 +21,44 @@ function SearchBar({ search, clear }: SearchBarProps) {
     searchRef.current?.focus();
   }, []);
 
+  const handleSearchShows = (searchWord: string) => {
+    const searchParam = searchParams.get(QueryParams.SEARCH);
+    if (searchParam && searchParam.toLowerCase() === searchWord.toLowerCase())
+      return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(QueryParams.PAGE, "1");
+    if (searchWord.length) {
+      params.set(QueryParams.SEARCH, searchWord);
+    } else {
+      params.delete(QueryParams.SEARCH);
+    }
+
+    const newUrl = `${pathname}?${params.toString()}`;
+    window.history.pushState(null, "", newUrl);
+  };
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    search(e.target.value);
     setSearchWord(e.target.value);
   };
 
   const handleClickClearButton = () => {
-    clear();
+    if (!searchWord.length && !searchParams.get(QueryParams.SEARCH)) return;
+
     setSearchWord("");
-    searchRef?.current?.focus();
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.set(QueryParams.PAGE, "1");
+    params.delete(QueryParams.SEARCH);
+
+    const newUrl = `${pathname}?${params.toString()}`;
+    window.history.pushState(null, "", newUrl);
   };
 
   const handleClickSearchButton = () => {
-    search(searchWord);
+    if (!searchWord.length && !searchParams.get(QueryParams.SEARCH)) return;
+
+    handleSearchShows(searchWord);
   };
 
   return (

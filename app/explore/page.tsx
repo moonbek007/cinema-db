@@ -3,12 +3,16 @@ import { dehydrate } from "@tanstack/react-query";
 import ExploreDisplay from "@/components/Explore/Explore";
 
 import { getQueryClient } from "@/lib/getQueryClient";
-import { fetchFilteredShows, getQueryParamsValues } from "@/lib/utils";
+import {
+  fetchFilteredShows,
+  getQueryParamsValues,
+  getSearchParams,
+} from "@/lib/utils";
 
 import { FilterTypes } from "@/constants/constants";
 
 export default async function Explore({ searchParams }: ExplorePageProps) {
-  const resolvedSearchParams = await searchParams;
+  const resolvedSearchParams = getSearchParams(await searchParams);
 
   // Get filters from searchParams for the initial render
   const queryFilters: FilterShowsPropsType[] = [];

@@ -40,7 +40,7 @@ const Filters = ({ queryFilters }: FiltersProps) => {
       params.set(searchQuery, queryParams[query].join("&"));
     });
 
-    router.replace(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleFilterShows = (newFilters: FilterShowsPropsType[]) => {

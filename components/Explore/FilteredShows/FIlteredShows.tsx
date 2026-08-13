@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 import FilterResult from "../FilterResult";
@@ -10,6 +10,7 @@ import Pagination from "../Pagination";
 
 import {
   fetchFilteredShows,
+  getFilteredShows,
   getPageDetails,
   getPaginationIndecies,
   getQueryParamsValues,
@@ -17,7 +18,6 @@ import {
 import { QueryParams } from "@/constants/constants";
 
 const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -27,7 +27,10 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
       fetchFilteredShows(getQueryParamsValues(resolvedSearchParams)),
   });
 
-  const shows = data as Show[];
+  const shows = getFilteredShows(
+    searchParams.get(QueryParams.SEARCH),
+    data as Show[],
+  );
 
   // Get page details from searchParams for the initial render
   const pageDetails = getPageDetails(
@@ -41,7 +44,8 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(QueryParams.PAGE, `${pageNumber}`);
 
-    router.replace(`${pathname}?${params.toString()}`);
+    const newUrl = `${pathname}?${params.toString()}`;
+    window.history.replaceState(null, "", newUrl);
   };
 
   return (

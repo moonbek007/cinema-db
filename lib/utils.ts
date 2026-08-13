@@ -241,6 +241,24 @@ function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
   return indecies;
 }
 
+function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
+  if (!searchWord) return shows;
+
+  return shows.filter((show) =>
+    show.name.toLowerCase().includes(searchWord.toLowerCase()),
+  );
+}
+
+function getSearchParams(searchParams: Record<string, string>) {
+  const newSearchParams: Record<string, string> = {};
+  Object.entries(searchParams).forEach(([paramName, paramValue]) => {
+    if (paramName === QueryParams.SEARCH || paramName == QueryParams.PAGE)
+      return;
+    newSearchParams[paramName] = paramValue;
+  });
+  return newSearchParams;
+}
+
 function getRawShowDescription(
   description: string,
   numberOfWords: number | ConstValues.ALL,
@@ -326,6 +344,8 @@ export {
   getNumberOfFiltersApplied,
   getPageDetails,
   getPaginationIndecies,
+  getFilteredShows,
+  getSearchParams,
   getRawShowDescription,
   getNumberOfDescriptionWords,
   getQueryParamsValues,
