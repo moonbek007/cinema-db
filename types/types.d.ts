@@ -206,3 +206,7 @@ declare type ExploreDisplayProps = {
 declare type ExplorePageProps = {
   searchParams: Promise<Record<string, string>>;
 };
+
+declare type FiltersProps = {
+  queryFilters: FilterShowsPropsType[];
+};

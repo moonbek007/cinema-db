@@ -42,7 +42,7 @@ export const collectionImages: Record<string, string> = {
 
 export const dropdownOptions = {
   Status: ["All", "Running", "Ended"],
-  Language: ["All", "English", "Japanese"],
+  Language: ["All", "English", "French", "German", "Dutch", "Japanese"],
   Type: ["All", "Scripted", "Animation", "Talk Show", "Reality", "Documentary"],
   Country: ["All", "USA", "Canada", "Japan", "UK", "France", "Germany"],
   Rating: ["All", "+5.0", "+6.0", "+7.0", "+8.0", "+9.0"],
