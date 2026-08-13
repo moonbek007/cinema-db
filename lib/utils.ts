@@ -306,13 +306,14 @@ async function fetchMoviesPreview() {
 }
 
 async function fetchFilteredShows(queries: URLSearchParams) {
-  const data = await fetch(
+  const res = await fetch(
     `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
   );
 
-  if (!data.ok) return "Failed to fetch filtered shows";
+  if (!res.ok) return "Failed to fetch filtered shows";
+  const data = await res.json();
 
-  return data.json();
+  return JSON.parse(JSON.stringify(data));
 }
 
 export {

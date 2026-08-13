@@ -1,36 +1,42 @@
-import { Suspense } from "react";
+import { dehydrate } from "@tanstack/react-query";
 
 import ExploreDisplay from "@/components/Explore/Explore";
-import ExploreFallback from "@/components/Explore/ExploreFallback";
 
+import { getQueryClient } from "@/lib/getQueryClient";
 import { fetchFilteredShows, getQueryParamsValues } from "@/lib/utils";
+
 import { FilterTypes } from "@/constants/constants";
 
-export default async function Explore({
-  searchParams,
-}: {
-  searchParams: Record<string, string>;
-}) {
+export default async function Explore({ searchParams }: ExplorePageProps) {
   const resolvedSearchParams = await searchParams;
 
   // Get filters from searchParams for the initial render
   const queryFilters: FilterShowsPropsType[] = [];
-  [...Object.entries(searchParams)].forEach((param) => {
+  [...Object.entries(resolvedSearchParams)].forEach((param) => {
     queryFilters.push({
       name: param[0] as FilterTypes,
       applied: param[1].split("&"),
     });
   });
 
-  // Fetch Shows using query params
-  const shows = await fetchFilteredShows(
-    getQueryParamsValues(resolvedSearchParams),
-  );
+  const queryClient = getQueryClient();
+
+  // Prefetch using a dynamic key built directly from search parameters
+  await queryClient.prefetchQuery({
+    queryKey: ["shows", { ...resolvedSearchParams }],
+    queryFn: () =>
+      fetchFilteredShows(getQueryParamsValues(resolvedSearchParams)),
+  });
+
+  const plainDehydratedState = dehydrate(queryClient);
+
   return (
     <>
-      <Suspense fallback={<ExploreFallback />}>
-        <ExploreDisplay queryFilters={queryFilters} shows={shows} />
-      </Suspense>
+      <ExploreDisplay
+        queryFilters={queryFilters}
+        searchParams={resolvedSearchParams}
+        dehydratedState={plainDehydratedState}
+      />
     </>
   );
 }

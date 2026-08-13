@@ -199,5 +199,10 @@ declare type NavModalProps = {
 
 declare type ExploreDisplayProps = {
   queryFilters: FilterShowsPropsType[];
-  shows: Show[];
+  dehydratedState: DehydratedState;
+  searchParams: Record<string, string>;
+};
+
+declare type ExplorePageProps = {
+  searchParams: Promise<Record<string, string>>;
 };
