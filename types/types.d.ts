@@ -210,3 +210,7 @@ declare type ExplorePageProps = {
 declare type FiltersProps = {
   queryFilters: FilterShowsPropsType[];
 };
+
+declare type FIlteredShowsProps = {
+  resolvedSearchParams: Record<string, string>;
+};
