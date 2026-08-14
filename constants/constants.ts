@@ -1,3 +1,16 @@
+export const mainGenres: Genre[] = [
+  "Drama",
+  "Thriller",
+  "Crime",
+  "Fantasy",
+  "Action",
+  "Horror",
+  "Adventure",
+  "Science-Fiction",
+  "Comedy",
+  "Anime",
+];
+
 export const genres: Genre[] = [
   "Adventure",
   "Crime",

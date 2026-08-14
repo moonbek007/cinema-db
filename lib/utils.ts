@@ -7,7 +7,7 @@ import {
   defaultPageValues,
   DropdownValues,
   FilterTypes,
-  genres,
+  mainGenres,
   modalFilters,
   QueryParams,
 } from "@/constants/constants";
@@ -24,7 +24,7 @@ function loadGenres(
     {},
   );
   return [
-    ...genres.map((genre) => {
+    ...mainGenres.map((genre) => {
       return { name: genre, shows: gData[genre] };
     }),
   ];
