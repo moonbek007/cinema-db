@@ -1,25 +1,22 @@
-import Row from "./Row/Row.tsx";
+"use client";
 
-import { fetchMoviesPreview, loadGenres } from "@/lib/utils.ts";
+import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
+
+import Genres from "./Genres.tsx";
+
+import { getQueryClient } from "@/lib/getQueryClient.ts";
 
 import "../../css/explore.css";
 
-async function MainDisplay() {
-  const data = await fetchMoviesPreview();
-  const genres = loadGenres(data);
+function MainDisplay({ dehydratedState }: MainDisplayProps) {
+  const queryClient = getQueryClient();
 
   return (
-    <div className="explore">
-      {genres.map((genre) => {
-        return (
-          <Row
-            genre={genre.name}
-            key={genre.name}
-            filteredShows={genre.shows}
-          />
-        );
-      })}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <HydrationBoundary state={dehydratedState}>
+        <Genres />
+      </HydrationBoundary>
+    </QueryClientProvider>
   );
 }
 

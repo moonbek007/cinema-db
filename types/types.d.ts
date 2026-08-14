@@ -196,6 +196,10 @@ declare type NavModalProps = {
   closeModal: () => void;
 };
 
+declare type MainDisplayProps = {
+  dehydratedState: DehydratedState;
+};
+
 declare type CollectionsDisplayProps = {
   dehydratedState: DehydratedState;
 };
