@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 
 import FilterResult from "../FilterResult";
@@ -12,12 +12,12 @@ import {
   fetchFilteredShows,
   getFilteredShows,
   getPageDetails,
-  getPaginationIndecies,
   getQueryParamsValues,
 } from "@/lib/utils";
 import { QueryParams } from "@/constants/constants";
 
 const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -29,23 +29,20 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
 
   const shows = getFilteredShows(
     searchParams.get(QueryParams.SEARCH),
-    data as Show[],
+    data.shows as Show[],
   );
 
   // Get page details from searchParams for the initial render
   const pageDetails = getPageDetails(
     searchParams.get(QueryParams.PAGE),
-    shows.length,
+    data.count as number,
   );
-
-  const paginationIndecies = getPaginationIndecies(pageDetails, shows.length);
 
   const handleChangePage = (pageNumber: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set(QueryParams.PAGE, `${pageNumber}`);
 
-    const newUrl = `${pathname}?${params.toString()}`;
-    window.history.replaceState(null, "", newUrl);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (
@@ -58,20 +55,18 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
         </div>
       )}
       <div className="filters__display__results">
-        {shows
-          .slice(paginationIndecies.start, paginationIndecies.end + 1)
-          .map((show) => {
-            return (
-              <Suspense key={show.id} fallback={<FilterResultFallback />}>
-                <FilterResult
-                  image={show.image ? show.image.medium : "/horror.avif"}
-                  key={show.id}
-                  link={show.url}
-                  name={show.name}
-                />
-              </Suspense>
-            );
-          })}
+        {shows.map((show) => {
+          return (
+            <Suspense key={show.id} fallback={<FilterResultFallback />}>
+              <FilterResult
+                image={show.image ? show.image.medium : "/horror.avif"}
+                key={show.id}
+                link={show.url}
+                name={show.name}
+              />
+            </Suspense>
+          );
+        })}
       </div>
       {pageDetails.totalPages > 1 && (
         <Pagination page={pageDetails} changePage={handleChangePage} />

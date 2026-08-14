@@ -231,16 +231,6 @@ function getPageDetails(
   return newPageValues;
 }
 
-function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
-  const indecies: PaginationIndeciesType = { start: 0, end: numberOfShows - 1 };
-  indecies.start = (pageDetails.currentPage - 1) * 20;
-  indecies.end =
-    pageDetails.currentPage * 20 - 1 > numberOfShows - 1
-      ? numberOfShows - 1
-      : pageDetails.currentPage * 20 - 1;
-  return indecies;
-}
-
 function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
   if (!searchWord) return shows;
 
@@ -252,8 +242,7 @@ function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
 function getSearchParams(searchParams: Record<string, string>) {
   const newSearchParams: Record<string, string> = {};
   Object.entries(searchParams).forEach(([paramName, paramValue]) => {
-    if (paramName === QueryParams.SEARCH || paramName == QueryParams.PAGE)
-      return;
+    if (paramName === QueryParams.SEARCH) return;
     newSearchParams[paramName] = paramValue;
   });
   return newSearchParams;
@@ -343,7 +332,6 @@ export {
   getElementYearAndCountry,
   getNumberOfFiltersApplied,
   getPageDetails,
-  getPaginationIndecies,
   getFilteredShows,
   getSearchParams,
   getRawShowDescription,
