@@ -1,31 +1,22 @@
-import CollectionElement from "./CollectionElement/CollectionElement.tsx";
+"use client";
 
-import { fetchCollections, loadCollections } from "@/lib/utils.ts";
+import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
+
+import Collections from "./Collections.tsx";
+
+import { getQueryClient } from "@/lib/getQueryClient.ts";
 
 import "../../css/collections.css";
 
-async function CollectionsDisplay() {
-  const data = await fetchCollections();
-
-  const collections = loadCollections(data);
+function CollectionsDisplay({ dehydratedState }: CollectionsDisplayProps) {
+  const queryClient = getQueryClient();
 
   return (
-    <div className="collections">
-      <h1>Collections of movies & series</h1>
-      <div className="separator"> </div>
-      <div className="collections__display">
-        {collections.map((collection) => {
-          return (
-            <CollectionElement
-              key={collection.name}
-              name={collection.name}
-              image={collection.image}
-              numberOfShows={collection.count}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <HydrationBoundary state={dehydratedState}>
+        <Collections />
+      </HydrationBoundary>
+    </QueryClientProvider>
   );
 }
 

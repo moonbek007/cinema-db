@@ -196,6 +196,10 @@ declare type NavModalProps = {
   closeModal: () => void;
 };
 
+declare type CollectionsDisplayProps = {
+  dehydratedState: DehydratedState;
+};
+
 declare type ExploreDisplayProps = {
   queryFilters: FilterShowsPropsType[];
   dehydratedState: DehydratedState;
