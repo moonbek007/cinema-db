@@ -5,9 +5,10 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { CircleXIcon, SearchIcon } from "lucide-react";
 
 import { QueryParams } from "@/constants/constants";
+
 import "../../../css/filters.css";
 
-function SearchBar({ resolvedSearchParams }: SearchBarProps) {
+function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -34,8 +35,7 @@ function SearchBar({ resolvedSearchParams }: SearchBarProps) {
       params.delete(QueryParams.SEARCH);
     }
 
-    const newUrl = `${pathname}?${params.toString()}`;
-    window.history.pushState(null, "", newUrl);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,8 +51,7 @@ function SearchBar({ resolvedSearchParams }: SearchBarProps) {
     params.set(QueryParams.PAGE, "1");
     params.delete(QueryParams.SEARCH);
 
-    const newUrl = `${pathname}?${params.toString()}`;
-    window.history.pushState(null, "", newUrl);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   const handleClickSearchButton = () => {

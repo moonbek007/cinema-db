@@ -242,7 +242,6 @@ function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
 function getSearchParams(searchParams: Record<string, string>) {
   const newSearchParams: Record<string, string> = {};
   Object.entries(searchParams).forEach(([paramName, paramValue]) => {
-    if (paramName === QueryParams.SEARCH) return;
     newSearchParams[paramName] = paramValue;
   });
   return newSearchParams;

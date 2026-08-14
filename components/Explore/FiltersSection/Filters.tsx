@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 import { getNumberOfFiltersApplied, loadFilters } from "@/lib/utils";
 
-import { FilterTypes } from "@/constants/constants";
+import { FilterTypes, QueryParams } from "@/constants/constants";
 
 const FiltersModal = dynamic(() => import("./FiltersModal.tsx"));
 
@@ -82,6 +82,10 @@ const Filters = ({ queryFilters }: FiltersProps) => {
     )
       return;
 
+    const searchWordsArray = searchParams.get(QueryParams.SEARCH)
+      ? [searchParams.get(QueryParams.SEARCH) as string]
+      : [];
+
     updateQueryParam(
       newFilters.reduce<QueryParamsType>(
         (accumulator, filter) => {
@@ -94,7 +98,7 @@ const Filters = ({ queryFilters }: FiltersProps) => {
           Language: [],
           Rating: [],
           Type: [],
-          Search: [],
+          Search: searchWordsArray,
           Page: ["1"],
         },
       ),
