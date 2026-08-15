@@ -27,7 +27,7 @@ function ExploreDisplay({
                 <span>Shows</span>
               </h1>
               <Filters queryFilters={queryFilters} />
-              <SearchBar resolvedSearchParams={searchParams} />
+              <SearchBar />
             </div>
             <div className="separator"> </div>
             <FIlteredShows resolvedSearchParams={searchParams} />

@@ -1,14 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 
 import CollectionElement from "./CollectionElement/CollectionElement";
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 
 import { fetchCollections, loadCollections } from "@/lib/utils";
 
 const Collections = () => {
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["collections", {}],
     queryFn: () => fetchCollections(),
+    retry: false,
   });
+
+  if (isLoading) {
+    return (
+      <div className="collections flex">
+        <Loading />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="collections flex text-2xl">
+        <Error />
+      </div>
+    );
+  }
 
   const collections = loadCollections(data);
 

@@ -47,7 +47,7 @@ function SearchResults({
     >
       {isLoading ? (
         <SearchResultFallback />
-      ) : !searchResults.length ? (
+      ) : !searchResults.length || typeof searchResults === "string" ? (
         <p className="text-gray-100 text-xl text-center py-3 px-1.5 2xl:text-2xl 2xl:py-4 2xl:px-2.5">
           No matching results found
         </p>

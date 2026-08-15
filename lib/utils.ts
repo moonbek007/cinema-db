@@ -306,7 +306,7 @@ async function fetchSearchResults(searchValue: string) {
 async function fetchMoviesPreview() {
   const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.MOVIES_PREVIEW}`);
 
-  if (!data.ok) return "Failed to fetch movies preview";
+  if (!data.ok) throw new Error("Failed to fetch movies preview");
 
   return data.json();
 }
@@ -316,7 +316,7 @@ async function fetchFilteredShows(queries: URLSearchParams) {
     `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
   );
 
-  if (!res.ok) return "Failed to fetch filtered shows";
+  if (!res.ok) throw new Error("Failed to fetch filtered shows");
   const data = await res.json();
 
   return JSON.parse(JSON.stringify(data));
