@@ -119,7 +119,7 @@ export const defaultPageValues: PageType = {
   totalPages: 1,
 };
 
-export const API_BASE_URL = "http://localhost:3000";
+export const API_BASE_URL = "https://moonbek007-api-cinema-db.netlify.app/api/";
 
 export const enum API_ENDPOINTS {
   COLLECTIONS = "/collections",
