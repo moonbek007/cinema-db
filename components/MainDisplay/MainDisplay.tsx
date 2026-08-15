@@ -1,21 +1,22 @@
 "use client";
 
-import Row from "./Row/Row.tsx";
+import { HydrationBoundary, QueryClientProvider } from "@tanstack/react-query";
 
-import { loadGenres, loadSortedShows } from "@/lib/utils.ts";
+import Genres from "./Genres.tsx";
+
+import { getQueryClient } from "@/lib/getQueryClient.ts";
 
 import "../../css/explore.css";
 
-function MainDisplay() {
-  const shows = loadSortedShows();
-  const genres = loadGenres();
+function MainDisplay({ dehydratedState }: MainDisplayProps) {
+  const queryClient = getQueryClient();
 
   return (
-    <div className="explore">
-      {genres.map((genre, index) => {
-        return <Row genre={genre} key={index} filteredShows={shows[genre]} />;
-      })}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <HydrationBoundary state={dehydratedState}>
+        <Genres />
+      </HydrationBoundary>
+    </QueryClientProvider>
   );
 }
 

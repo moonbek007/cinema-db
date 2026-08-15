@@ -101,6 +101,7 @@ declare type SearchResultsProps = {
   searchWord: string;
   searchResults: Show[];
   screenWidth: number;
+  isLoading: boolean;
 };
 
 declare type CollectionData = {
@@ -164,8 +165,7 @@ declare type DefaultFiltersType = Record<
 >;
 
 declare type SearchBarProps = {
-  search: (word: string) => void;
-  clear: () => void;
+  resolvedSearchParams: Record<string, string>;
 };
 
 declare type QueryParamsType = Record<
@@ -194,4 +194,30 @@ declare type PaginationIndeciesType = {
 
 declare type NavModalProps = {
   closeModal: () => void;
+};
+
+declare type MainDisplayProps = {
+  dehydratedState: DehydratedState;
+};
+
+declare type CollectionsDisplayProps = {
+  dehydratedState: DehydratedState;
+};
+
+declare type ExploreDisplayProps = {
+  queryFilters: FilterShowsPropsType[];
+  dehydratedState: DehydratedState;
+  searchParams: Record<string, string>;
+};
+
+declare type ExplorePageProps = {
+  searchParams: Promise<Record<string, string>>;
+};
+
+declare type FiltersProps = {
+  queryFilters: FilterShowsPropsType[];
+};
+
+declare type FIlteredShowsProps = {
+  resolvedSearchParams: Record<string, string>;
 };

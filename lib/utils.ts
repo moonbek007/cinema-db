@@ -1,70 +1,41 @@
 import {
+  API_BASE_URL,
+  API_ENDPOINTS,
   collectionImages,
   ConstValues,
   defaultFilters,
   defaultPageValues,
   DropdownValues,
   FilterTypes,
-  genres,
+  mainGenres,
   modalFilters,
   QueryParams,
 } from "@/constants/constants";
 import { movies } from "@/constants/movies";
 
-function loadSortedShows(): Record<string, Show[]> {
-  const sortedShows = movies.reduce<Record<string, Show[]>>(
-    (accumulator, currentShow) => {
-      const showGenres = currentShow.genres;
-      showGenres.map((genre) => {
-        if (!accumulator[genre]) {
-          // Initialize the array for this genre if it doesn't exist yet
-          accumulator[genre] = [currentShow];
-        } else {
-          accumulator[genre].push(currentShow);
-        }
-      });
+function loadGenres(
+  genresData: { name: string; count: number; shows: Show[] }[],
+) {
+  const gData = genresData.reduce<Record<string, Show[]>>(
+    (accumulator, genre) => {
+      accumulator[genre.name] = genre.shows;
       return accumulator;
     },
     {},
   );
-  return sortedShows;
+  return [
+    ...mainGenres.map((genre) => {
+      return { name: genre, shows: gData[genre] };
+    }),
+  ];
 }
 
-function loadGenres() {
-  return [...genres];
-}
-
-function loadRandomShowsByGenre(shows: Show[]) {
-  if (shows.length < 10) return [...shows];
-  const randomShows: Show[] = [];
-  const showsAdded: { [key: string]: boolean } = {};
-  while (randomShows.length < 10) {
-    const randomIndex = Math.floor(Math.random() * shows.length);
-    if (showsAdded[randomIndex]) continue;
-    randomShows.push(shows[randomIndex]);
-    showsAdded[randomIndex] = true;
-  }
-  return [...randomShows];
-}
-
-function loadShowsByGenre(shows: Show[]) {
-  const maxNumberOfShows = 20;
-  if (shows.length < maxNumberOfShows) return [...shows];
-  return shows.slice(shows.length - maxNumberOfShows);
-}
-
-function loadCollections(): CollectionData[] {
-  const sortedShows = movies.reduce<Record<string, Show[]>>(
-    (accumulator, currentShow) => {
-      const showGenres = currentShow.genres;
-      showGenres.map((genre) => {
-        if (!accumulator[genre]) {
-          // Initialize the array for this genre if it doesn't exist yet
-          accumulator[genre] = [currentShow];
-        } else {
-          accumulator[genre].push(currentShow);
-        }
-      });
+function loadCollections(
+  collectionsData: { name: string; count: number }[],
+): CollectionData[] {
+  const cData = collectionsData.reduce<Record<string, number>>(
+    (accumulator, collection) => {
+      accumulator[collection.name] = collection.count;
       return accumulator;
     },
     {},
@@ -76,7 +47,7 @@ function loadCollections(): CollectionData[] {
         ...accumulator,
         {
           name: collectionName,
-          count: sortedShows[collectionName].length,
+          count: cData[collectionName],
           image: collectionImage,
         },
       ];
@@ -260,14 +231,20 @@ function getPageDetails(
   return newPageValues;
 }
 
-function getPaginationIndecies(pageDetails: PageType, numberOfShows: number) {
-  const indecies: PaginationIndeciesType = { start: 0, end: numberOfShows - 1 };
-  indecies.start = (pageDetails.currentPage - 1) * 20;
-  indecies.end =
-    pageDetails.currentPage * 20 - 1 > numberOfShows - 1
-      ? numberOfShows - 1
-      : pageDetails.currentPage * 20 - 1;
-  return indecies;
+function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
+  if (!searchWord) return shows;
+
+  return shows.filter((show) =>
+    show.name.toLowerCase().includes(searchWord.toLowerCase()),
+  );
+}
+
+function getSearchParams(searchParams: Record<string, string>) {
+  const newSearchParams: Record<string, string> = {};
+  Object.entries(searchParams).forEach(([paramName, paramValue]) => {
+    newSearchParams[paramName] = paramValue;
+  });
+  return newSearchParams;
 }
 
 function getRawShowDescription(
@@ -297,10 +274,56 @@ function getNumberOfDescriptionWords(
   return ConstValues.ALL;
 }
 
+const getQueryParamsValues = (queryParams: Record<string, string>) => {
+  const params = new URLSearchParams();
+
+  const queries = Object.entries(queryParams);
+  queries.forEach(([queryName, queryValue]) => {
+    params.set(queryName, queryValue);
+  });
+
+  return params;
+};
+
+async function fetchCollections() {
+  const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.COLLECTIONS}`);
+
+  if (!data.ok) throw new Error("Failed to fetch collections");
+
+  return data.json();
+}
+
+async function fetchSearchResults(searchValue: string) {
+  const data = await fetch(
+    `${API_BASE_URL}${API_ENDPOINTS.SEARCH}?name=${searchValue}`,
+  );
+
+  if (!data.ok) return "Failed to fetch search results";
+
+  return data.json();
+}
+
+async function fetchMoviesPreview() {
+  const data = await fetch(`${API_BASE_URL}${API_ENDPOINTS.MOVIES_PREVIEW}`);
+
+  if (!data.ok) throw new Error("Failed to fetch movies preview");
+
+  return data.json();
+}
+
+async function fetchFilteredShows(queries: URLSearchParams) {
+  const res = await fetch(
+    `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch filtered shows");
+  const data = await res.json();
+
+  return JSON.parse(JSON.stringify(data));
+}
+
 export {
-  loadSortedShows,
   loadGenres,
-  loadShowsByGenre,
   loadCollections,
   loadFiltersModalFilters,
   loadFilters,
@@ -308,7 +331,13 @@ export {
   getElementYearAndCountry,
   getNumberOfFiltersApplied,
   getPageDetails,
-  getPaginationIndecies,
+  getFilteredShows,
+  getSearchParams,
   getRawShowDescription,
   getNumberOfDescriptionWords,
+  getQueryParamsValues,
+  fetchCollections,
+  fetchSearchResults,
+  fetchMoviesPreview,
+  fetchFilteredShows,
 };

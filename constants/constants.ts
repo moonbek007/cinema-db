@@ -1,3 +1,16 @@
+export const mainGenres: Genre[] = [
+  "Drama",
+  "Thriller",
+  "Crime",
+  "Fantasy",
+  "Action",
+  "Horror",
+  "Adventure",
+  "Science-Fiction",
+  "Comedy",
+  "Anime",
+];
+
 export const genres: Genre[] = [
   "Adventure",
   "Crime",
@@ -11,6 +24,9 @@ export const genres: Genre[] = [
   "Romance",
   "Mystery",
   "Anime",
+  "History",
+  "Family",
+  "War",
 ];
 
 export const collectionImages: Record<string, string> = {
@@ -39,7 +55,7 @@ export const collectionImages: Record<string, string> = {
 
 export const dropdownOptions = {
   Status: ["All", "Running", "Ended"],
-  Language: ["All", "English", "Japanese"],
+  Language: ["All", "English", "French", "German", "Dutch", "Japanese"],
   Type: ["All", "Scripted", "Animation", "Talk Show", "Reality", "Documentary"],
   Country: ["All", "USA", "Canada", "Japan", "UK", "France", "Germany"],
   Rating: ["All", "+5.0", "+6.0", "+7.0", "+8.0", "+9.0"],
@@ -102,3 +118,12 @@ export const defaultPageValues: PageType = {
   nextPage: 1,
   totalPages: 1,
 };
+
+export const API_BASE_URL = "https://moonbek007-api-cinema-db.netlify.app/api/";
+
+export const enum API_ENDPOINTS {
+  COLLECTIONS = "/collections",
+  SEARCH = "/movies/search",
+  MOVIES_PREVIEW = "/genres/preview",
+  MOVIES = "/movies",
+}
