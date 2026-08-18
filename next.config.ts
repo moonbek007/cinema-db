@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "static.tvmaze.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
+        port: "",
+      },
     ],
   },
 };

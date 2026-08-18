@@ -53,6 +53,8 @@ export const collectionImages: Record<string, string> = {
   Sports: "/sports.jpeg",
 };
 
+export const defaultImage = "https://i.postimg.cc/cCGbVbQP/anime.avif";
+
 export const dropdownOptions = {
   Status: ["All", "Running", "Ended"],
   Language: ["All", "English", "French", "German", "Dutch", "Japanese"],

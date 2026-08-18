@@ -12,11 +12,10 @@ import Error from "@/components/Error/Error";
 
 import {
   fetchFilteredShows,
-  getFilteredShows,
   getPageDetails,
   getQueryParamsValues,
 } from "@/lib/utils";
-import { ERROR_TYPES, QueryParams } from "@/constants/constants";
+import { defaultImage, ERROR_TYPES, QueryParams } from "@/constants/constants";
 
 const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
   const router = useRouter();
@@ -72,10 +71,7 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
     return <Error type={errorType} />;
   }
 
-  const shows = getFilteredShows(
-    searchParams.get(QueryParams.SEARCH),
-    data.shows as Show[],
-  );
+  const shows = data.shows as Show[];
 
   // Get page details from searchParams for the initial render
   const pageDetails = getPageDetails(
@@ -104,7 +100,7 @@ const FIlteredShows = ({ resolvedSearchParams }: FIlteredShowsProps) => {
           return (
             <Suspense key={show.id} fallback={<FilterResultFallback />}>
               <FilterResult
-                image={show.image ? show.image.medium : "/horror.avif"}
+                image={show.image ? show.image.medium : defaultImage}
                 key={show.id}
                 link={show.url}
                 name={show.name}
