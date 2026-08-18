@@ -127,3 +127,9 @@ export const enum API_ENDPOINTS {
   MOVIES_PREVIEW = "/genres/preview",
   MOVIES = "/movies",
 }
+
+export const enum ERROR_TYPES {
+  SERVER_ERROR = "Server Error",
+  NOT_FOUND = "Not Found",
+  BAD_REQUEST = "Bad Request",
+}

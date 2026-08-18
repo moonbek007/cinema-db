@@ -316,7 +316,10 @@ async function fetchFilteredShows(queries: URLSearchParams) {
     `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
   );
 
-  if (!res.ok) throw new Error("Failed to fetch filtered shows");
+  if (!res.ok) {
+    const err = await res.json();
+    throw { status: res.status, ...err };
+  }
   const data = await res.json();
 
   return JSON.parse(JSON.stringify(data));

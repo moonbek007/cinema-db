@@ -5,6 +5,7 @@ import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
 
 import { fetchCollections, loadCollections } from "@/lib/utils";
+import { ERROR_TYPES } from "@/constants/constants";
 
 const Collections = () => {
   const { data, isLoading, isError } = useQuery({
@@ -24,7 +25,7 @@ const Collections = () => {
   if (isError) {
     return (
       <div className="collections flex text-2xl">
-        <Error />
+        <Error type={ERROR_TYPES.SERVER_ERROR} />
       </div>
     );
   }
