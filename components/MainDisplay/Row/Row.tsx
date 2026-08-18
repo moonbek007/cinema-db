@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import Element from "./Element.tsx";
 
+import { defaultImage } from "@/constants/constants.ts";
+
 function Row({ genre, filteredShows: shows }: RowProps) {
   return (
     <>
@@ -16,7 +18,7 @@ function Row({ genre, filteredShows: shows }: RowProps) {
             <Element
               show={show}
               key={show.id}
-              image={show?.image ? show.image.medium : "/horror.avif"}
+              image={show?.image ? show.image.medium : defaultImage}
               name={show.name}
               link={show.url}
               year={show?.premiered?.substring(0, 4)}

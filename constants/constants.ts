@@ -30,28 +30,30 @@ export const genres: Genre[] = [
 ];
 
 export const collectionImages: Record<string, string> = {
-  Drama: "/drama.avif",
-  Adventure: "/adventure.jpg",
-  Crime: "/crime.avif",
-  Action: "/action.jpg",
-  Thriller: "/thriller.avif",
-  "Science-Fiction": "/science-fiction.avif",
-  Fantasy: "/fantasy.jpg",
-  Comedy: "/comedy.jpg",
-  Horror: "/horror.avif",
-  Mystery: "/mystery.jpg",
-  Romance: "/romance.avif",
-  Anime: "/anime.avif",
-  Western: "/western.jpg",
-  War: "/war.avif",
-  Espionage: "/espionage.avif",
-  Family: "/family.avif",
-  Supernatural: "/supernatural.avif",
-  Music: "/music.avif",
-  Medical: "/medical.avif",
-  Legal: "/legal.avif",
-  Sports: "/sports.jpeg",
+  Drama: "https://i.postimg.cc/c49c3zvG/drama.avif",
+  Adventure: "https://i.postimg.cc/Pf8H0GkN/adventure.jpg",
+  Crime: "https://i.postimg.cc/gkNgDJBS/crime.avif",
+  Action: "https://i.postimg.cc/15w9nkCP/action.jpg",
+  Thriller: "https://i.postimg.cc/C5KqLFHw/thriller.avif",
+  "Science-Fiction": "https://i.postimg.cc/6qpxjQnM/science-fiction.avif",
+  Fantasy: "https://i.postimg.cc/26kq2zt6/fantasy.jpg",
+  Comedy: "https://i.postimg.cc/Nf35Z8VM/comedy.jpg",
+  Horror: "https://i.postimg.cc/FzfHB1Vf/horror.avif",
+  Mystery: "https://i.postimg.cc/jSjtgDq5/mystery.jpg",
+  Romance: "https://i.postimg.cc/9QDswZFZ/romance.avif",
+  Anime: "https://i.postimg.cc/cCGbVbQP/anime.avif",
+  Western: "https://i.postimg.cc/hvx1q4Sr/western.jpg",
+  War: "https://i.postimg.cc/fy4Y54xT/war.avif",
+  Espionage: "https://i.postimg.cc/tJ5768Db/espionage.avif",
+  Family: "https://i.postimg.cc/26Yzx21D/family.avif",
+  Supernatural: "https://i.postimg.cc/BQRfgMzD/supernatural.avif",
+  Music: "https://i.postimg.cc/x1LhPYMn/music.avif",
+  Medical: "https://i.postimg.cc/Vv3ZjHNb/medical.avif",
+  Legal: "https://i.postimg.cc/fWGh78pX/legal.avif",
+  Sports: "https://i.postimg.cc/857qMvHT/sports.jpg",
 };
+
+export const defaultImage = "https://i.postimg.cc/cCGbVbQP/anime.avif";
 
 export const dropdownOptions = {
   Status: ["All", "Running", "Ended"],
@@ -126,4 +128,10 @@ export const enum API_ENDPOINTS {
   SEARCH = "/movies/search",
   MOVIES_PREVIEW = "/genres/preview",
   MOVIES = "/movies",
+}
+
+export const enum ERROR_TYPES {
+  SERVER_ERROR = "Server Error",
+  NOT_FOUND = "Not Found",
+  BAD_REQUEST = "Bad Request",
 }

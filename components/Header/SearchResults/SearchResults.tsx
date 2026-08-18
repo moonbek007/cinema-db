@@ -1,16 +1,16 @@
 import { Suspense, useEffect, useState } from "react";
+import clsx from "clsx";
 
 import SearchResult from "./SearchResult.tsx";
+import SearchResultFallback from "./fallback.tsx";
 
 import {
   getNumberOfDescriptionWords,
   getRawShowDescription,
 } from "@/lib/utils.ts";
-import { ConstValues } from "@/constants/constants.ts";
+import { ConstValues, defaultImage } from "@/constants/constants.ts";
 
 import "../../../css/searchResults.css";
-import SearchResultFallback from "./fallback.tsx";
-import clsx from "clsx";
 
 function SearchResults({
   searchWord,
@@ -61,7 +61,7 @@ function SearchResults({
           return (
             <Suspense key={item.id} fallback={<SearchResultFallback />}>
               <SearchResult
-                image={item?.image ? item.image.medium : "/horror.avif"}
+                image={item?.image ? item.image.medium : defaultImage}
                 genres={item.genres}
                 year={item.premiered}
                 description={newDescription}

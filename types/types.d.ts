@@ -221,3 +221,15 @@ declare type FiltersProps = {
 declare type FIlteredShowsProps = {
   resolvedSearchParams: Record<string, string>;
 };
+
+declare type ErrorWithPayload = {
+  status: number;
+  message: string;
+  payload: {
+    totalPages?: number;
+  };
+};
+
+declare type ErrorProps = {
+  type: import("@/constants/constants").ERROR_TYPES;
+};

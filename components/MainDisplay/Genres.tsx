@@ -5,6 +5,7 @@ import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
 
 import { fetchMoviesPreview, loadGenres } from "@/lib/utils";
+import { ERROR_TYPES } from "@/constants/constants";
 
 const Genres = () => {
   const { data, isLoading, isError } = useQuery({
@@ -24,7 +25,7 @@ const Genres = () => {
   if (isError) {
     return (
       <div className="explore flex text-2xl">
-        <Error />
+        <Error type={ERROR_TYPES.SERVER_ERROR} />
       </div>
     );
   }

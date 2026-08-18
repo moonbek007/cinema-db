@@ -100,6 +100,7 @@ function loadFilters(
   return newFilters;
 }
 
+// Used during developing front-end when the back-end was not ready yet with dummy data from movies.ts
 function loadFilteredShows(
   filters: {
     name: FilterTypes | QueryParams.SEARCH | QueryParams.PAGE;
@@ -231,14 +232,6 @@ function getPageDetails(
   return newPageValues;
 }
 
-function getFilteredShows(searchWord: string | null, shows: Show[]): Show[] {
-  if (!searchWord) return shows;
-
-  return shows.filter((show) =>
-    show.name.toLowerCase().includes(searchWord.toLowerCase()),
-  );
-}
-
 function getSearchParams(searchParams: Record<string, string>) {
   const newSearchParams: Record<string, string> = {};
   Object.entries(searchParams).forEach(([paramName, paramValue]) => {
@@ -316,7 +309,10 @@ async function fetchFilteredShows(queries: URLSearchParams) {
     `${API_BASE_URL}${API_ENDPOINTS.MOVIES}?${queries.toString()}`,
   );
 
-  if (!res.ok) throw new Error("Failed to fetch filtered shows");
+  if (!res.ok) {
+    const err = await res.json();
+    throw { status: res.status, ...err };
+  }
   const data = await res.json();
 
   return JSON.parse(JSON.stringify(data));
@@ -331,7 +327,6 @@ export {
   getElementYearAndCountry,
   getNumberOfFiltersApplied,
   getPageDetails,
-  getFilteredShows,
   getSearchParams,
   getRawShowDescription,
   getNumberOfDescriptionWords,
